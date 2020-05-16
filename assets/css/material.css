@@ -1,0 +1,119 @@
+/*material theme*/
+/*buttons start */
+.btn {
+  border-radius: 3px;
+  transition: 0.6s;
+}
+.btn-danger {
+  background-color: #e74856;
+}
+.btn-success {
+  background-color: #018574;
+}
+.btn-primary {
+  background-color: #038387;
+}
+.btn-warning {
+  background-color: #f7630c;
+}
+.btn-info {
+  background-color: #00bcd4;
+}
+
+.btn-danger:hover {
+  background-color: rgb(236, 17, 35);
+}
+.btn-success:hover {
+  background-color: #00af98;
+}
+.btn-primary:hover {
+  background-color: #049ca1;
+}
+.btn-warning:hover {
+  background-color: rgb(252, 92, 0);
+}
+.btn-info:hover {
+  background-color: rgb(33, 198, 219);
+}
+/*buttons end*/
+
+#filter {
+/*fiter start*/
+  background-color: #78909c;
+}
+#filter input {
+  background-color: #fff;
+  color: #000;
+}
+/*filter end*/
+/*panel start*/
+.panel,
+.panel-heading {
+  border-radius: 0;
+}
+.panel-red {
+  background-color: #4a148c;
+}
+.panel-green {
+  background-color: #00c853;
+}
+.panel-blue {
+  background-color: #0091ea;
+}
+.panel-yellow .panel-heading {
+  background-color: #ffab00;
+  border-color: #ffab00;
+}
+.panel-primary .panel-heading {
+  background-color: #0091ea;
+  border-color: #0091ea;
+}
+.panel-info .panel-heading {
+  background-color: #00897b;
+  border-color: #00897b;
+  color: #ffffff;
+}
+.panel-danger .panel-heading {
+  background-color: #d32f2f;
+  border-color: #d32f2f;
+}
+.panel-red .panel-heading {
+  background-color: #d32f2f;
+  border-color: #d32f2f;
+}
+
+/*panel end*/
+
+/*menu */
+
+.navbar-inverse {
+  background-color: #2a3f54;
+}
+
+.modal-header {
+  color: #fbffe9;
+  background-color: #00352b;
+}
+.close {
+  background-color: #006758 !important;
+  color: #fff !important;
+  padding: 3px 15px !important;
+  border-radius: 0px;
+  opacity: 0.8 !important;
+}
+.close:hover {
+  background-color: #008d82 !important;
+}
+
+/*dashbord*/
+
+.panel-btn .panel-heading {
+  transition: 0.5s;
+}
+
+.panel-btn .panel-heading:hover,
+.panel-btn .panel-heading:focus {
+  box-shadow: inset 2px 67px 100px -38px rgba(255, 255, 255, 0.8);
+}
+
+/*dashbord end*/

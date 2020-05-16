@@ -1,0 +1,49 @@
+@import url('fonts.css');
+body {
+    direction: rtl;
+    font-family: franklin,yekan;
+    padding: 3px;
+    font-size: 12px;
+    margin: 5px;
+
+
+}
+button , .dis_print{display: none}
+
+h4{font-size: 15px;text-align: center;display: none}
+/*table start*/
+thead , tfoot{color: #000;background: #949494;}
+table, td, th {
+    border-bottom: 1px solid #E2E2E2;
+     text-align: center;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 11px !important;
+}
+
+
+th,td {
+    padding: 1px;
+    text-align: center
+}
+tr{height: 25px;}
+caption{font-size: 12px;border-top: 5px solid #E2E2E2}
+
+tr:nth-child(even) {background: #e2e2e2 !important}
+
+.cleartbl tr:nth-child(even) {background: #fff !important;}
+.cleartbl tr {border-bottom: solid 2px #CCCCCC}
+.cleartbl {width: 99%;}
+/*table end*/
+
+
+/*elements*/
+.col-sm-3 {width: 30%;float: right}
+.well{padding: 5px;border: 1px solid #4d4d4d}
+
+.left,.left *{direction: ltr;text-align: left}
+
+/*data tables*/
+.dataTables_length , .dataTables_filter , .dataTables_info , .dataTables_paginate{display: none}
