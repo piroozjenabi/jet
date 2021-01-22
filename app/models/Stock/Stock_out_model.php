@@ -43,7 +43,7 @@ class  Stock_out_model extends CI_Model
 
     function stack_out_alert($prd_id=null)
     {
-        $prd_id=($prd_id)?$prd_id:$this->input->post("prd_id", true);
+        $prd_id=($prd_id)?$prd_id:post("prd_id", true);
         $this->load->library("Stock_lib");
         $user_id=$this->system->get_user();
         $prd=$this->db->get_where("prd", "id=$prd_id")->row();

@@ -16,15 +16,15 @@ class Factor_sell_model extends CI_Model
     public function add_factor_sell($id = "")
     {
         $data = array();
-        $data["user_id"] = $this->input->post("user", true);
-        $data["date"] = strtotime($this->input->post("factor_date", true));
+        $data["user_id"] = post("user", true);
+        $data["date"] = strtotime(post("factor_date", true));
         if (!$id) {
             $data["maker_id"] = $this->system->get_user();
         }
-        $data["expire_date"] = $this->input->post("expire_factor", true);
-        $data["level_id"] = $this->input->post("level_id", true);
+        $data["expire_date"] = post("expire_factor", true);
+        $data["level_id"] = post("level_id", true);
         $data["expire_date"] = strtotime($data["expire_date"]);
-        $data["des"] = $this->input->post("des", true);
+        $data["des"] = post("des", true);
         if (!$id) {
             if (!$this->db->insert('factor', $data)) {
                 return false;
@@ -45,13 +45,13 @@ class Factor_sell_model extends CI_Model
             $this->db->delete("factor_prd");
         }
 
-        for ($i = 1; $i <= count($this->input->post("price", true)); $i++) {
-            $data2["radif"] = $this->input->post("radif", true)[$i];
-            $data2["id_prd"] = $this->input->post("prd", true)[$i];
+        for ($i = 1; $i <= count(post("price", true)); $i++) {
+            $data2["radif"] = post("radif", true)[$i];
+            $data2["id_prd"] = post("prd", true)[$i];
             $data2["id_factor"] = $main_factor_id;
-            $data2["takhfif"] = $this->input->post("takhfif", true)[$i] > 0 ? $this->input->post("takhfif", true)[$i] : 0;
-            $data2["price"] = $this->input->post("price", true)[$i];
-            $data2["num"] = $this->input->post("numprd", true)[$i];
+            $data2["takhfif"] = post("takhfif", true)[$i] > 0 ? post("takhfif", true)[$i] : 0;
+            $data2["price"] = post("price", true)[$i];
+            $data2["num"] = post("numprd", true)[$i];
             if ($data2["id_prd"] > 0) {
                 $res[$i] = $this->db->insert('factor_prd', $data2);
             }
@@ -59,11 +59,11 @@ class Factor_sell_model extends CI_Model
 
         // //add ezafat to factor
         // $data_ezafat["id"] = "";
-        // for ($i = 1; $i <= count($this->input->post("price_ezafat", true)); $i++) {
-        //     $data_ezafat["radif"] = $this->input->post("radif_ezafat", true)[$i];
+        // for ($i = 1; $i <= count(post("price_ezafat", true)); $i++) {
+        //     $data_ezafat["radif"] = post("radif_ezafat", true)[$i];
         //     $data_ezafat["id_factor"] = $main_factor_id;
-        //     $data_ezafat["id_ezafat"] = $this->input->post("ezafat", true)[$i];
-        //     $data_ezafat["price"] = $this->input->post("price_ezafat", true)[$i];
+        //     $data_ezafat["id_ezafat"] = post("ezafat", true)[$i];
+        //     $data_ezafat["price"] = post("price_ezafat", true)[$i];
 
         //     if ($data_ezafat["price"]) {
         //         $res_dataezafat[$i] = $this->db->insert('factor_ezafat', $data_ezafat);
@@ -73,7 +73,7 @@ class Factor_sell_model extends CI_Model
         // //render level
         // if (!$id) {
         //     $this->load->library("Factor");
-        //     $this->factor->render_level($main_factor_id, $this->input->post("level_id", true));
+        //     $this->factor->render_level($main_factor_id, post("level_id", true));
         // }
         return $main_factor_id;
 
@@ -96,7 +96,7 @@ class Factor_sell_model extends CI_Model
             $end_d = $this->system->get_current_month_timetamp("end", $mount_ago - 1);
         }
 
-        $isadminflag = ($this->permision->is_admin()) ? 1 : 0;
+        $isadminflag = ($this->permission->is_admin()) ? 1 : 0;
         $user_id_tmp = ($user_id == 0) ? $this->system->get_user() : $user_id;
         $user_id_tmp2 = $this->system->get_user();
         $this->db->select("factor.id  , ub.name ,  ub.tell  , factor.date , expire_date , ub.agent ,  ua.name as namec ");
@@ -250,24 +250,24 @@ class Factor_sell_model extends CI_Model
         $data2 = array();
         $res_data2 = array();
         $data["user_id"] = $res_factor[0]["user_id"];
-        $data["date"] = strtotime($this->input->post("factor_date", true));
+        $data["date"] = strtotime(post("factor_date", true));
 
         $data["maker_id"] = $this->system->get_user();
         $data["params"] = json_encode(array("id" => $id_factor));
-        $data["des"] = $this->input->post("des", true);
-        $data["parent_id"] = $this->input->post("parent_id", true);
+        $data["des"] = post("des", true);
+        $data["parent_id"] = post("parent_id", true);
         $this->db->insert('factor', $data);
         $main_factor_id = $this->db->insert_id();
         $c = 0;
-        for ($i = 1; $i <= count($this->input->post("num", true)); $i++) {
-            if ($this->input->post("num", true)[$i]) {
+        for ($i = 1; $i <= count(post("num", true)); $i++) {
+            if (post("num", true)[$i]) {
                 $c++;
                 $data2["radif"] = "[$c]";
-                $data2["id_prd"] = $this->input->post("prd", true)[$i];
+                $data2["id_prd"] = post("prd", true)[$i];
                 $data2["id_factor"] = $main_factor_id;
                 $data2["takhfif"] = 0;
-                $data2["price"] = $this->input->post("price", true)[$i];
-                $data2["num"] = $this->input->post("num", true)[$i];
+                $data2["price"] = post("price", true)[$i];
+                $data2["num"] = post("num", true)[$i];
                 $res_data2[$c] = $this->db->insert('factor_prd', $data2);
             }
         }
@@ -283,11 +283,11 @@ class Factor_sell_model extends CI_Model
         $res_factor = $this->edit_factor($id_factor);
         $data = array();
         $data["user_id"] = $res_factor[0]["user_id"];
-        $data["date"] = strtotime($this->input->post("date", true));
+        $data["date"] = strtotime(post("date", true));
         $data["maker_id"] = $this->system->get_user();
         $data["factor_id"] = $id_factor;
-        $data["des"] = $this->input->post("des", true);
-        $data["price"] = (int) $this->input->post("price", true);
+        $data["des"] = post("des", true);
+        $data["price"] = (int) post("price", true);
         return $this->db->insert('pay', $data);
     }
     //other_pay
@@ -297,11 +297,11 @@ class Factor_sell_model extends CI_Model
         $data = array();
         $data["user_id"] = $res_factor[0]["user_id"];
         $data["eemploy_id"] = $res_factor[0]["maker_id"];
-        $data["date"] = strtotime($this->input->post("date", true));
+        $data["date"] = strtotime(post("date", true));
         $data["maker_id"] = $this->system->get_user();
         $data["factor_id"] = $id_factor;
-        $data["des"] = $this->input->post("des", true);
-        $data["price"] = $this->input->post("price", true);
+        $data["des"] = post("des", true);
+        $data["price"] = post("price", true);
         $main_factor = $this->db->insert('factor_other_pay', $data);
         return $main_factor;
     }

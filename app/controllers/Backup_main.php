@@ -9,7 +9,7 @@ class Backup_main extends CI_Controller
 {
     function index()
     {
-        $this->permision->check("base_backup", 0, 1);
+        $this->permission->check("base_backup", 0, 1);
         $this->load->library("Backup_lib");
         $this->backup_lib->db_bkp();
         $this->system->message(_SUC_OP);

@@ -18,7 +18,7 @@ class Manage extends CI_Controller
     public function show_form()
     {
             $this->load->library("auto");
-            $id=$this->input->post("id", true);
+            $id=post("id", true);
         //            $this->auto->refer_read($id);
             $id_form=$this->auto->get_form_from_id($id)[0]["form_id"];
             $ret=$this->auto->render_form($id_form, $id, "view");

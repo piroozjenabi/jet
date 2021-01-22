@@ -31,8 +31,8 @@ class Add_form extends CI_Controller
     //save form
     public function padd()
     {
-        $form_number=$this->input->post("form_id");
-        $auto_refer=$this->input->post("auto_refer");
+        $form_number=post("form_id");
+        $auto_refer=post("auto_refer");
         $this->load->library("auto");
 
         //validate form
@@ -41,8 +41,8 @@ class Add_form extends CI_Controller
             echo json_encode($validate);
             die();
         }
-        if ($this->input->post("form_value_id", true)!= null) {
-            $form_id=$this->auto->add_forms_record($form_number, $this->input->post("form_value_id", true));
+        if (post("form_value_id", true)!= null) {
+            $form_id=$this->auto->add_forms_record($form_number, post("form_value_id", true));
             $this->auto->add_history($form_id, 2);
         }
         else{
@@ -73,8 +73,8 @@ class Add_form extends CI_Controller
     public function delete()
     {
         $this->load->library("Auto");
-        $id=$this->input->post("id");
-        if((count($this->auto->list_refer_accepted($id))==0 )|| $this->permision->check("auto_edit_after_accepted") ) {
+        $id=post("id");
+        if((count($this->auto->list_refer_accepted($id))==0 )|| $this->permission->check("auto_edit_after_accepted") ) {
             $this->load->library("auto");
             if ($this->auto->delete_form_value($id)) {
                 echo json_encode(array("status" => true));

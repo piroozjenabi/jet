@@ -53,7 +53,7 @@ class My_client extends CI_Controller
         $this->load->model('CRM/My_client_model');
 
         // add time tracks
-        $time_track= $this->input->post("date", true);
+        $time_track= post("date", true);
         if($time_track) {
             $this->My_client_model->add_track_time($time_track, $id);
         }

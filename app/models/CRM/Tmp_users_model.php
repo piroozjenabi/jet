@@ -21,24 +21,24 @@ class Tmp_users_model extends CI_Model
 
         $data = array();
         $data["id"] = $id;
-        $data["name"] = $this->input->post("name", true);
-        $data["tmp_client_peyment"] = $this->input->post("tmp_client_peyment", true);
-        $data["tmp_client_type"] = $this->input->post("tmp_client_type", true);
-        $data["email"] = $this->input->post("email", true);
-        $data["mobile"] = $this->input->post("mobile", true);
-        $data["tell"] = $this->input->post("tell", true);
+        $data["name"] = post("name", true);
+        $data["tmp_client_peyment"] = post("tmp_client_peyment", true);
+        $data["tmp_client_type"] = post("tmp_client_type", true);
+        $data["email"] = post("email", true);
+        $data["mobile"] = post("mobile", true);
+        $data["tell"] = post("tell", true);
         $data["state"] = $def_state;
 
         $data["date_modify"] = $id ? jetDate() : null;
         $data["date_expire"] = "";
-        $data["address"] = $this->input->post("address", true);
+        $data["address"] = post("address", true);
         if (!$id) {
             $data["maker_id"] = $this->system->get_user();
         }
 
-        $data["contact"] = $this->input->post("contact", true);
-        $data["extra1"] = $this->input->post("extra1", true);
-        $data["extra2"] = $this->input->post("extra2", true);
+        $data["contact"] = post("contact", true);
+        $data["extra1"] = post("extra1", true);
+        $data["extra2"] = post("extra2", true);
 
         if (!$id) {
             $res = $this->db->insert('tmp_client', $data);
@@ -55,18 +55,18 @@ class Tmp_users_model extends CI_Model
 
         $user_id = $this->system->get_user();
 
-        for ($i = 1; $i <= count($this->input->post("track", true)); $i++) {
+        for ($i = 1; $i <= count(post("track", true)); $i++) {
 
             $data = array();
             $data["id"] = "";
-            $data["message"] = $this->input->post("track", true)[$i];
+            $data["message"] = post("track", true)[$i];
             $data["from_user"] = $user_id;
             //            for replay
-            if ($this->input->post("replay", true)[1]) {
-                $data["replay"] = $this->input->post("replay", true)[1];
+            if (post("replay", true)[1]) {
+                $data["replay"] = post("replay", true)[1];
             }
             $data["tmp_user"] = $id;
-            //            die($this->input->post("track", TRUE)[$i]);
+            //            die(post("track", TRUE)[$i]);
             if ($data["message"] != "") {
                 $res = $this->db->insert('tmp_client_tracking', $data);
             }

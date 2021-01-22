@@ -59,7 +59,7 @@ $data = array('class' => $def_css_class,"style"=>"width:90%");
         var objCal1 = new AMIB.persianCalendar('pcalreject1', {
             extraInputID: 'daterej',
             extraInputFormat: 'YYYY/MM/DD ',
-            initialDate: '<?php echo $this->system->return_time_persian(); ?>'
+            initialDate: '<?= printDate(); ?>'
         });
 
 

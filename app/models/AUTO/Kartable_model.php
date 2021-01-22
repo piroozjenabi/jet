@@ -15,7 +15,7 @@ class Kartable_model extends CI_Model
 
     public function list_refers($subject_id,$type=null)
     {
-        $pf=$this->permision->check("auto_view_all");
+        $pf=$this->permission->check("auto_view_all");
         $user_id=$this->system->get_user();
         $this->db->select("*,auto_forms_value.id as mainid,auto_forms_value.form_id as f_id,auto_froms_refer.date as date ,auto_froms_refer.des as des,auto_froms_refer.id as id,auto_refer_subject.name as subject_name")
             ->from("auto_froms_refer")

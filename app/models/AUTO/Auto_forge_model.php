@@ -36,7 +36,7 @@ class Auto_forge_model extends CI_Model
         );
         $this->dbforge->add_field("id");
         $this->dbforge->add_field($fields);
-        $name_en=(isset($id))?$this->auto->render_name_en($id):$this->auto->perfix_table.$this->input->post("name_en", true);
+        $name_en=(isset($id))?$this->auto->render_name_en($id):$this->auto->perfix_table.post("name_en", true);
         $name_en=$this->rep_spc($name_en);
         return $this->dbforge->create_table($name_en, true);
     }
@@ -52,7 +52,7 @@ class Auto_forge_model extends CI_Model
     {
         $name_en=$this->auto->render_name_en($id);
         $name_en=$this->rep_spc($name_en);
-        $this->dbforge->rename_table($name_en, $this->auto->perfix_table.$this->input->post('name_en'));
+        $this->dbforge->rename_table($name_en, $this->auto->perfix_table.post('name_en'));
         return true;
     }
     //    ------------------------------table/end
@@ -61,9 +61,9 @@ class Auto_forge_model extends CI_Model
 
     function add_field($form_id=null,$arr=null)
     {
-        $name_en=$this->auto->render_name_en((isset($form_id))?$form_id:$this->input->post("form_id"));
+        $name_en=$this->auto->render_name_en((isset($form_id))?$form_id:post("form_id"));
         $name_en=$this->rep_spc($name_en);
-        $tmp=(isset($arr))?$arr:$this->input->post();
+        $tmp=(isset($arr))?$arr:post();
         if (isset($this->elements[$tmp["type"]])) {
             $field = array(
                 $this->rep_spc($tmp["name"]) => $this->rep_spc($this->elements[$tmp["type"]])
@@ -88,7 +88,7 @@ class Auto_forge_model extends CI_Model
     {
         //list of value of field
         $res=$this->db->get_where("auto_forms_fields", "id=$id")->result_array()[0];
-        $tmp=$this->input->post();
+        $tmp=post();
         $name_en=$this->auto->render_name_en($tmp["form_id"]);
         $name_en=$this->rep_spc($name_en);
         if (isset($this->elements[$tmp["type"]])) {

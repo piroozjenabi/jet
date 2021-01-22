@@ -24,13 +24,13 @@ class Report_system_log_model extends CI_Model
             $this->db->where("log.user_id", $user_id);
         }
 
-        if($this->input->post("user", true) >0  ) {
-            $this->db->where("user.id", $this->input->post("user", true));
+        if(post("user", true) >0  ) {
+            $this->db->where("user.id", post("user", true));
         }
 
-        if($this->input->post("dateh_start", true)   ) {
-            $date_rendered_start=strtotime($this->input->post("dateh_start"));
-            $date_rendered_end=strtotime($this->input->post("dateh_end"));
+        if(post("dateh_start", true)   ) {
+            $date_rendered_start=strtotime(post("dateh_start"));
+            $date_rendered_end=strtotime(post("dateh_end"));
 
                 $this->db->where("log.time >", $date_rendered_start);
                 $this->db->where("log.time <", $date_rendered_end);

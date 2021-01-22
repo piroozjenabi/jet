@@ -14,7 +14,7 @@ $attributes = array('class' => 'form', 'id' => 'form');
 $def_css_class="form-control";
 $data = array('class' => $def_css_class);
 //$where=array("user.usergroup"=>"4","user.usergroup"=>"1");
-$user= form_dropdown('user', $this->element->pselect("user_eemploy", "name"), $this->input->post("user", true), $data);
+$user= form_dropdown('user', $this->element->pselect("user_admin", "name"), post("user", true), $data);
 $date_start= form_input(array('id'=>'date_start',"name"=>"date_start", 'class'=>" $def_css_class pdate"));
 $date_end= form_input(array('id'=>'date_end',"name"=>"date_end", 'class'=>" $def_css_class pdate"));
 $date_hidden_start=form_input(array("name"=>"dateh_start","id"=>"dateh_start","type"=>"hidden"));

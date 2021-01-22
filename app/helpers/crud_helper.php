@@ -1,10 +1,4 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-/**
- * Created by piero.ir.
- * User: pirooz jenabi
- * Date: 6/26/18
- * Time: 3:01 PM
- */
 
 //get url and render url for load ajax data table
 //if no url return sam controller with list_ajax method

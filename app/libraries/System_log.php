@@ -16,9 +16,9 @@ class System_log
         $data=array();
         $data['id']=null;
         $data['des']="";
-        if ($CI->session->userdata("i") && $CI->session->userdata("u")) {
-            $data['user_id']=$CI->session->userdata("i");
-            $data['user_name']=$CI->session->userdata("u");
+        if (isset(session('user')->id) && session('user')->id ){
+            $data['user_id']=  session('user')->id;
+            $data['user_name']= session('user')->username;
         }
         else
         {

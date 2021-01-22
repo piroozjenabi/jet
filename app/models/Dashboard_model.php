@@ -13,16 +13,15 @@ class Dashboard_model extends CI_Model
         parent::__construct();
     }
 
-    function get_all_module_permision()
+    function get_all_module_permission()
     {
         $user_group=$this->system->get_user("usergroup");
-        $this->db->select("*");
-        $this->db->from("module");
-        $this->db->order_by("module.name", "asc");
-        $this->db->where("permision_usergroup.usergroup_id", $user_group);
-        $this->db->join("permision_usergroup", "permision_usergroup.permision_id=module.permision_id");
-        $res=$this->db->get()->result_array();
-        return $res;
+        return $this->db->select("*")
+                ->from("module")
+                ->order_by("module.name", "asc")
+                ->where("permision_usergroup.usergroup_id", $user_group)
+                ->join("permision_usergroup", "permision_usergroup.permision_id=module.permision_id")
+                ->get()->result_array();
     }
 
     function get_modules($id=0)

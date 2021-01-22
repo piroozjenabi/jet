@@ -82,7 +82,7 @@ class Tmp_users extends CI_Controller
         $this->crud->where="maker_id=$user_id AND state=$state";
         $this->crud->permision=$this->crud->render_permsion_crud("tmp_user");
         $this->crud->form_add=["maker_id"=>$user_id,"date_create"=>time()];
-        if ($this->permision->check("tmp_user_manage_define")) {
+        if ($this->permission->check("tmp_user_manage_define")) {
             $this->crud->actions="<a class='btn btn-info' target='_blank' href='" .  site_url("/CRM/Tmp_users/manage_state/")  ."' > <i class='fa fa-circle-o-notch'> </i> "._MANAGE.__._STATE._S." </a>".
                              "<a class='btn btn-info' target='_blank' href='" .  site_url("/CRM/Tmp_users/manage_type/")  ."'  > <i class='fa fa-circle-o-notch'> </i>  "._MANAGE.__._TYPE._S." </a> <a class='btn'>|</a> ";
         }
@@ -109,7 +109,7 @@ class Tmp_users extends CI_Controller
     //enable commenting for track on tmp client
     public function manage_state()
     {
-        $this->permision->check("tmp_user_manage_define", 0, 1);
+        $this->permission->check("tmp_user_manage_define", 0, 1);
         $this->load->library("Crud");
         $this->crud->table="tmp_client_state";
         $this->crud->title=_CRM_MANAGE_STATE;
@@ -143,7 +143,7 @@ class Tmp_users extends CI_Controller
     //manage  type of client - tmp_client_type_peyment db
     public function manage_type_payment()
     {
-        $this->permision->check("tmp_user_manage_define", 0, 1);
+        $this->permission->check("tmp_user_manage_define", 0, 1);
         $this->load->library("Crud");
         $this->crud->table="tmp_client_peyment_type";
         $this->crud->title=_MANAGE.__._TMP_PEYMENT;

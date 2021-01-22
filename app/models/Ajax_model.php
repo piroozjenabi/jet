@@ -15,7 +15,7 @@ class Ajax_model extends CI_Model
     //set editable text model
     function set_text_edit($pg,$id,$field)
     {
-        $value= (strpos($this->input->post("value", true), '"') )?$this->input->post("value", true): str_ireplace(",", "", $this->input->post("value", true));
+        $value= (strpos(post("value", true), '"') )?post("value", true): str_ireplace(",", "", post("value", true));
         $data=array($field=>$value );
         $this->db->where("id", $id);
         return $this->db->update($pg, $data);

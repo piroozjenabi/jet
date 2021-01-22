@@ -161,13 +161,13 @@ class Comission_model extends CI_Model
 
     public function add_comisions($id)
     {
-        for ($i=1;$i<=count($this->input->post("prd_id", true));$i++) {
+        for ($i=1;$i<=count(post("prd_id", true));$i++) {
             $data = array();
-            $data["prd_id"] = $this->input->post("prd_id", true)[$i];
-            $data["fromc"] = $this->input->post("fromc", true)[$i];
-            $data["toc"] = $this->input->post("toc", true)[$i];
-            $data["value_percent"] = $this->input->post("value_percent", true)[$i];
-            $data["value_num"] = $this->input->post("value_num", true)[$i];
+            $data["prd_id"] = post("prd_id", true)[$i];
+            $data["fromc"] = post("fromc", true)[$i];
+            $data["toc"] = post("toc", true)[$i];
+            $data["value_percent"] = post("value_percent", true)[$i];
+            $data["value_num"] = post("value_num", true)[$i];
             $data["groupc"] = $id;
             if($data["prd_id"]) {    $res = $this->db->insert('mali_commision', $data);
             }

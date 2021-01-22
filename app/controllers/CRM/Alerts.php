@@ -11,7 +11,7 @@ class Alerts extends CI_Controller
     //read alert json input
     function read_alert()
     {
-        $id=$this->input->post("id", true);
+        $id=post("id", true);
         if($this->alerts_lib->read_alert($id)) {
             echo json_encode(array("status" => true));
         } else {
@@ -21,7 +21,7 @@ class Alerts extends CI_Controller
     //    delete alert get id and delete
     function delete()
     {
-        $id=$this->input->post("id", true);
+        $id=post("id", true);
         if($this->alerts_lib->delete_alert($id)) {
             echo json_encode(array("status" => true));
         } else {

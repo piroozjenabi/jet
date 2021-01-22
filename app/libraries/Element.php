@@ -146,7 +146,7 @@ class Element
         $CI = &get_instance();
         $userid = $CI->system->get_user();
         $def_element = "";
-        $flagper = $CI->permision->check("user_view_all");
+        $flagper = $CI->permission->check("user_view_all");
         $select = "id , name , agent , tell , mobile ,address ";
 
         $CI->db->select($select);

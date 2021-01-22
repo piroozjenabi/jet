@@ -67,7 +67,7 @@ class Stock extends  CI_Controller
         $this->load->model('Stock/Stock_out_model');
         $this->load->library('Factor');
 
-        if($this->permision->is_admin()) {
+        if($this->permission->is_admin()) {
             $res_factor=$this->db->get_where("factor_level")->result_array();
             //                print_r($res_factor);
             foreach ($res_factor as $key => $value)
@@ -87,7 +87,7 @@ class Stock extends  CI_Controller
     {
         $this->load->helper("form");
         $user_id=$this->system->get_user();
-        $this->permision->check("stock_check", 0, 1);
+        $this->permission->check("stock_check", 0, 1);
         //load for data table
         $this->load->library("Crud");
         $this->crud->table="stock_check";
@@ -106,7 +106,7 @@ class Stock extends  CI_Controller
     //manage stock define parent and all stock
     function manage()
     {
-        $this->permision->check("stock_manage", 0, 1);
+        $this->permission->check("stock_manage", 0, 1);
         //load for data table
         $this->load->library("Crud");
         $this->crud->table="stock";
@@ -132,9 +132,9 @@ class Stock extends  CI_Controller
     {
         $this->load->model('Stock/Stock_in_model');
         $this->load->model('Stock/Stock_out_model');
-        $date=strtotime($this->input->post("date", true));
-        $this->Stock_in_model->stock_in($this->input->post("prd_dest", true), $this->input->post("num", true), $date, 0, $this->input->post("des", true), array("type"=>"transfer","prd_source"=>$this->input->post("prd_source", true)), $this->input->post("stock_dest", true), $this->input->post("lot", true), $this->input->post("proforma", true));
-        $this->Stock_out_model->stock_out($this->input->post("prd_source", true), $this->input->post("num", true), $date, 0, $this->input->post("des", true), array("type"=>"transfer","prd_source"=>$this->input->post("prd_dest", true)), $this->input->post("stock_source", true));
+        $date=strtotime(post("date", true));
+        $this->Stock_in_model->stock_in(post("prd_dest", true), post("num", true), $date, 0, post("des", true), array("type"=>"transfer","prd_source"=>post("prd_source", true)), post("stock_dest", true), post("lot", true), post("proforma", true));
+        $this->Stock_out_model->stock_out(post("prd_source", true), post("num", true), $date, 0, post("des", true), array("type"=>"transfer","prd_source"=>post("prd_dest", true)), post("stock_source", true));
         $this->system->message(_SUC_OP);
         redirect("Stock/Stock");
     }

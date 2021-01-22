@@ -26,11 +26,11 @@ class Refer extends CI_Controller
     // add refer controller view popup
     public function add_refer()
     {
-        $id = $this->input->post("id", true);
+        $id = post("id", true);
         $this->template->load_popup(
             "AUTO/refer/add_refer", _REFER, array(
             "user_id"      => $id,
-            "form_id" =>$this->input->post("form_id")
+            "form_id" =>post("form_id")
             )
         );
     }
@@ -38,12 +38,12 @@ class Refer extends CI_Controller
     public function padd_refer()
     {
         $flag=true;
-        if($this->input->post("des", true) && $this->input->post("refer", true)&& $this->input->post("subject_id", true)>=1) {
-            $form_id=$this->input->post("form_id", true);
-            $subject_id=$this->input->post("subject_id", true);
-            $des=$this->input->post("des", true);
+        if(post("des", true) && post("refer", true)&& post("subject_id", true)>=1) {
+            $form_id=post("form_id", true);
+            $subject_id=post("subject_id", true);
+            $des=post("des", true);
             $this->load->library("Auto");
-            foreach ( $this->input->post("refer", true) as $item )
+            foreach ( post("refer", true) as $item )
             {
                 if(!$this->auto->add_refer($form_id, $item, $des, $subject_id)) {
                     echo json_encode(array("status" => false));
@@ -64,8 +64,8 @@ class Refer extends CI_Controller
     public function padd_reject()
     {
         $this->load->library("Auto");
-        $refer_id=$this->input->post("refer_id", true);
-        $des=$this->input->post("des", true);
+        $refer_id=post("refer_id", true);
+        $des=post("des", true);
         if($this->auto->add_reject($refer_id, $des)) {
             echo json_encode(array("status" => true));
         } else {
@@ -77,7 +77,7 @@ class Refer extends CI_Controller
     public function accept()
     {
         $this->load->library("Auto");
-        $refer_id=$this->input->post("refer_id", true);
+        $refer_id=post("refer_id", true);
         if($this->auto->refer_accept($refer_id)) {
             echo json_encode(array("status" => true));
         } else {
@@ -91,7 +91,7 @@ class Refer extends CI_Controller
     public function read()
     {
         $this->load->library("Auto");
-        $refer_id=$this->input->post("refer_id", true);
+        $refer_id=post("refer_id", true);
         if($this->auto->refer_read($refer_id)) {
             echo json_encode(array("status" => true));
         } else {
@@ -103,8 +103,8 @@ class Refer extends CI_Controller
     public function show()
     {
         $this->load->library("Auto");
-        $refer_id=$this->input->post("refer_id", true);
-        $state=$this->input->post("show", true);
+        $refer_id=post("refer_id", true);
+        $state=post("show", true);
         if($this->auto->refer_show($refer_id, $state)) {
             echo json_encode(array("status" => true));
         } else {
@@ -114,7 +114,7 @@ class Refer extends CI_Controller
     public function delete()
     {
         $this->load->library("Auto");
-        $refer_id=$this->input->post("id", true);
+        $refer_id=post("id", true);
         if($this->auto->refer_delete($refer_id)) {
             echo json_encode(array("status" => true));
         } else {

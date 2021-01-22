@@ -10,7 +10,7 @@ class Eemploy_user_group extends CI_Controller
 
     function manage($parent=null)
     {
-        $this->permision->check("eemploy_permision", 0, 1);
+        $this->permission->check("eemploy_permision", 0, 1);
         //load for data table
         $this->load->library("Crud");
         $this->crud->table="tbl_usergroup_eemploy";
@@ -21,7 +21,7 @@ class Eemploy_user_group extends CI_Controller
         $tmp_selectdb=array("select_db","tbl_usergroup_eemploy","name");
         $this->crud->column_type=array("input","bool",json_encode($tmp_selectdb));
         $this->crud->column_search=array("name");
-        if($this->permision->check("eemploy_permision")) {
+        if($this->permission->check("eemploy_permision")) {
             $tmp_url                 = site_url("eemploy/eemploy_user_group/manage_permision/" . '[[id]]');
             $this->crud->actions_row = "<a class='btn btn-warning' data-toggle='tooltip' title='{_PERMISION}'  onclick=load_ajax_popupfull('$tmp_url','id=[[id]]')> <i class='fa fa-lock' ></i> </a>";
         }
@@ -35,13 +35,13 @@ class Eemploy_user_group extends CI_Controller
     //manage user group permision
     public function change_permision($id)
     {
-        $this->permision->check("eemploy_permision", 0, 1);
+        $this->permission->check("eemploy_permision", 0, 1);
         $this->load->model('eemploy/eemploy_model');
-        $this->system->json_out($this->eemploy_model->chnage_permision($id));
+        jsonOut((bool)$this->eemploy_model->chnage_permision($id));
     }
     public function manage_permision($id)
     {
-        $this->permision->check("eemploy_permision", 0, 1);
+        $this->permission->check("eemploy_permision", 0, 1);
         $this->template->load_popup("BasE/Permision/manage_permision", _MANAGE.__._PERMISION, array("user_group_id" => $id));
     }
 }

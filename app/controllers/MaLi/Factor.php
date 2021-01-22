@@ -5,7 +5,7 @@ class Factor extends CI_Controller
     public function add($id=null)
     {
         $this->load->model('MaLi/Factor_sell_model');
-        if($this->input->post("user")){
+        if(post("user")){
             $res = $this->Factor_sell_model->add_factor_sell($id);
             if ($res) {
                 $this->system->message(_FACTOR_ADDED_SUC);

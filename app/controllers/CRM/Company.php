@@ -22,7 +22,7 @@ class Company extends CI_Controller{
     $this->crud->column_search=array("name");
     $this->crud->actions = "<a class='btn btn-info  ' href='".site_url("CRM/Company/manage_group")."' > <i class='fa fa-users' ></i>" . _MANAGE_GROUPS. ' </a>';;
     $this->crud->actions.= "<a class='btn btn-info  ' href='".site_url("Setting/manage_country")."' > <i class='fa fa-users' ></i>" . _MANAGE_COUNTRIES. ' </a>';;
-    if($this->permision->check("media_manage")){
+    if($this->permission->check("media_manage")){
       $tmp_url= site_url("Media/manage/0/company");
       $this->crud->actions_row .= "<a class='btn btn-default' data-toggle='tooltip' title='"._UPLOAD_MANAGER."' onclick=load_ajax_popupfull('$tmp_url','id=[[id]]') > <i class='fa fa-upload' ></i> </a>";;
     }

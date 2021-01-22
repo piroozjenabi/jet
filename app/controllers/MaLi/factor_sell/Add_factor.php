@@ -17,6 +17,6 @@ class add_factor extends CI_Controller
         } else {
             $this->system->message(_FACTOR_NOT_ADDED);
         }
-        redirect("MaLi/factor_sell/manage_factor/main/" . $this->input->post("level_id", true));
+        redirect("MaLi/factor_sell/manage_factor/main/" . post("level_id", true));
     }
 }

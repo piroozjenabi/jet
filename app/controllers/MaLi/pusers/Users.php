@@ -33,7 +33,7 @@ class Users extends CI_Controller
             $tmp_url= site_url("MaLi/pusers/users/edit/" . '[[id]]');
             $this->crud->actions_row = "<a class='btn btn-default' data-toggle='tooltip' title='{_EDIT_FULLL}'  onclick=load_ajax_popupfull('".$tmp_url."','id=[[id]]') > <i class='fa fa-edit' ></i> </a>";;
         }
-        if($this->permision->check("media_manage")){
+        if($this->permission->check("media_manage")){
             $tmp_url= site_url("Media/manage/0/user");
             $this->crud->actions_row .= "<a class='btn btn-default' data-toggle='tooltip' title='"._UPLOAD_MANAGER."' onclick=load_ajax_popupfull('$tmp_url','id=[[id]]') > <i class='fa fa-upload' ></i> </a>";;
           }
@@ -45,7 +45,7 @@ class Users extends CI_Controller
     {
         $this->load->helper("form");
         $user_id=$this->system->get_user();
-        $this->permision->check("user_view_all", 0, 1);
+        $this->permission->check("user_view_all", 0, 1);
         $this->load->library("Crud");
         $this->crud->table="user";
         $this->crud->title=_MANAGE_CLIENTS;
@@ -64,7 +64,7 @@ class Users extends CI_Controller
             $tmp_url                 = site_url("MaLi/pusers/users/edit/");
             $this->crud->actions_row = "<a class='btn btn-default' data-toggle='tooltip' title='"._EDIT_FULLL."' onclick=load_ajax_popupfull('$tmp_url','id=[[id]]') > <i class='fa fa-edit' ></i> </a>";;
         }
-        if($this->permision->check("media_manage")){
+        if($this->permission->check("media_manage")){
           $tmp_url= site_url("Media/manage/0/user");
           $this->crud->actions_row .= "<a class='btn btn-default' data-toggle='tooltip' title='"._UPLOAD_MANAGER."' onclick=load_ajax_popupfull('$tmp_url','id=[[id]]') > <i class='fa fa-upload' ></i> </a>";;
         }
@@ -74,23 +74,23 @@ class Users extends CI_Controller
     //edit user full edit
     function edit()
     {
-        $this->permision->check("user_edit", 0, 1);
+        $this->permission->check("user_edit", 0, 1);
         $this->load->model('MaLi/Users_model');
-        $ret=$this->Users_model->edit_user($this->input->post("id", true));
+        $ret=$this->Users_model->edit_user(post("id", true));
         $this->template->load_popup('MaLi/users/add_p_users', _EDIT_FULLL.__._USER, array("detail_user" => $ret));
     }
     function pedit()
     {
-        $this->permision->check("user_edit", 0, 1);
-        $id=$this->input->post("id", true);
+        $this->permission->check("user_edit", 0, 1);
+        $id=post("id", true);
         $this->load->model('MaLi/Users_model');
-        $this->system->json_out($this->Users_model->pedit_user($id));
+        jsonOut((bool)$this->Users_model->pedit_user($id));
     }
 
     //list of all user group
     function manage_usergroup()
     {
-        $this->permision->check("user_view_all", 0, 1);
+        $this->permission->check("user_view_all", 0, 1);
         $this->load->library("Crud");
         $this->crud->table="usergroup";
         $this->crud->title=_MANAGE_GROUPS;
@@ -108,7 +108,7 @@ class Users extends CI_Controller
     //show details for ajazx popup
     public function show_details()
     {
-        $id=$this->input->post("id", true);
+        $id=post("id", true);
         $this->load->model('MaLi/users_model');
         $ret=$this->users_model->edit_user($id);
         $this->template->load_popup("MaLi/users/show_details", _FULL_INVOICE, array("detail_users" => $ret,"user_id" => $id,"other_pay" =>""));
@@ -117,7 +117,7 @@ class Users extends CI_Controller
     //show details for bill popup
     public function show_bill()
     {
-        $id=$this->input->post("id", true);
+        $id=post("id", true);
         $this->load->model('MaLi/users_model');
         $ret=$this->users_model->edit_user($id);
         $this->template->load_popup("MaLi/users/show_bill", _FULL_INVOICE, array("detail_users" => $ret,"user_id" => $id,"other_pay" =>""));
@@ -127,7 +127,7 @@ class Users extends CI_Controller
     //upload manager
     public function uploadManager($id=null)
     {
-      // $this->permision->check("user_upload",0,1);
+      // $this->permission->check("user_upload",0,1);
       $this->load->view("fileManager");
     }
 }

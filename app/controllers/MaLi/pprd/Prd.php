@@ -10,18 +10,18 @@ class Prd extends CI_Controller
     //edit prd
     public function edit()
     {
-        $this->permision->check("prd_edit", 0, 1);
+        $this->permission->check("prd_edit", 0, 1);
         $this->load->model('MaLi/Prd_model');
-        $ret = $this->Prd_model->edit_prd($this->input->post("id", true));
+        $ret = $this->Prd_model->edit_prd(post("id", true));
         $this->template->load_popup('MaLi/prds/add_p_prd', _EDIT_FULLL . __ . _PRD, array("detail_prd" => $ret));
     }
     public function pedit($id=null)
     {
-        $this->permision->check("prd_edit", 0, 1);
-        $id = $this->input->post("id", true);
-        $this->permision->check("user_edit", 0, 1);
+        $this->permission->check("prd_edit", 0, 1);
+        $id = post("id", true);
+        $this->permission->check("user_edit", 0, 1);
         $this->load->model('MaLi/Prd_model');
-        $this->system->json_out($this->Prd_model->add_prd($id));
+        jsonOut((bool)$this->Prd_model->add_prd($id));
     }
     //manage
     public function manage($parent_id = null)
@@ -44,7 +44,7 @@ class Prd extends CI_Controller
             $tmp_url = site_url("MaLi/pprd/prd/edit/");
             $this->crud->actions_row = "<a class='btn btn-default' data-toggle='tooltip' title='" . _EDIT_FULLL . "' onclick=load_ajax_popupfull('$tmp_url','id=[[id]]') > <i class='fa fa-edit' ></i> </a>";
         }
-        if ($this->permision->check("media_manage")) {
+        if ($this->permission->check("media_manage")) {
             $tmp_url = site_url("Media/manage/0/prd");
             $this->crud->actions_row .= "<a class='btn btn-default' data-toggle='tooltip' title='" . _UPLOAD_MANAGER . "' onclick=load_ajax_popupfull('$tmp_url','id=[[id]]') > <i class='fa fa-upload' ></i> </a>";
         }

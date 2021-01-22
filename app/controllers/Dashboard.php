@@ -1,17 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-/**
- * Created by piero.ir.
- * User: pirooz jenabi
- * Date: 6/26/18
- * Time: 3:01 PM
- */
 class Dashboard extends CI_Controller
 {
 
     function index($show_alert=false)
     {
         $this->load->model("dashboard_model");
-        $res = $this->dashboard_model->get_all_module_permision();
+        $res = $this->dashboard_model->get_all_module_permission();
         $this->render($res, $show_alert);
     }
     function render($res,$show_alert)
@@ -35,8 +29,8 @@ class Dashboard extends CI_Controller
     public function change_PASS_p()
     {
         $user_name=$this->system->get_user("username");
-        $pass_word=$this->input->post("old");
-        $npass_word=$this->input->post("neW");
+        $pass_word=post("old");
+        $npass_word=post("neW");
         $res=$this->system->check_up2($user_name, $pass_word);
         if($res) {
             if($this->system->change_pass($res, $pass_word, $npass_word)) {

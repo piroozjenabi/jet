@@ -32,8 +32,8 @@ class Report_work extends CI_Controller
         $num = range(0, 9);
         //for persian time
         $this->load->library('Piero_jdate');
-        if($this->input->post("date_start")) {
-            $def_time_start=$this->input->post("date_start", true);
+        if(post("date_start")) {
+            $def_time_start=post("date_start", true);
         } else {
             $def_time_start=$this->piero_jdate->jdate("Y/m/d");
         }
@@ -41,8 +41,8 @@ class Report_work extends CI_Controller
         $def_time_start= str_replace($persian, $num, $def_time_start);
 
         //date end
-        if($this->input->post("date_end")) {
-            $def_time_end=$this->input->post("date_end", true);
+        if(post("date_end")) {
+            $def_time_end=post("date_end", true);
         } else {
             $def_time_end=$this->piero_jdate->jdate("Y/m/d", time() + (7 * 24 * 60 * 60));
         }

@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array("Template","database","System_log","Element","System","session","Permision","Alerts_lib","Page");
+$autoload['libraries'] = array("Template", "database", "System_log", "Element", "System", "session", "Permission", "Alerts_lib","Page", "Piero_jdate");
 
 /*
 | -------------------------------------------------------------------
@@ -83,7 +83,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url','piero_main');
+$autoload['helper'] = array('url','Helper');
 
 /*
 | -------------------------------------------------------------------

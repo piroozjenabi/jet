@@ -5,7 +5,7 @@ class Setting extends CI_Controller
     //manage page for setting
     public function index()
     {
-        $this->permision->check("base_setting", 0, 1);
+        $this->permission->check("base_setting", 0, 1);
         $this->load->model("Setting_model");
         $res=$this->Setting_model->manage_group();
         $this->template->load("setting_group_view", array("db"=>$res));
@@ -13,7 +13,7 @@ class Setting extends CI_Controller
 
     public function manage($group=null)
     {
-        $this->permision->check("base_setting", 0, 1);
+        $this->permission->check("base_setting", 0, 1);
         $this->load->model("Setting_model");
         $res=$this->Setting_model->manage($group);
         $this->template->load_popup("setting_view", _EDIT.__._ADVANCED_SETTING, array("db"=>$res));

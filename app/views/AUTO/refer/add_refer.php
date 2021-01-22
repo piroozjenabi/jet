@@ -19,7 +19,7 @@ $user=form_dropdown('refer[]', $ret, null, array('class' => $def_css_class, 'mul
 $subject=form_dropdown('subject_id', $this->element->pselect("auto_refer_subject", "name", null), null, array('class' => $def_css_class,"required"=>"required"));
 $des= form_textarea(array('name' => "des",'class'=>$def_css_class,"style"=>"height:80px",'paceholder'=>_DES,"required"=>"required"));
 $refer=form_button(array('id' => "submit",'class'=>'btn-success btn-block btn  '), "<i class='fa fa-arrow-circle-o-right'> </i>"._REFER);
-$form_id=form_hidden("form_id", $this->input->post("form_id", true));
+$form_id=form_hidden("form_id", post("form_id", true));
 ?>
 <form id="refer_form">
     <?php echo $form_id ?>

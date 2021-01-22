@@ -1,10 +1,4 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-/**
- * Created by piero.ir.
- * User: pirooz jenabi
- * Date: 6/26/18
- * Time: 3:01 PM
- */
 class Update_lib
 {
 
@@ -92,7 +86,7 @@ class Update_lib
                         echo '</ul>';
                         $updated = true;
                     }
-                    else { echo '<p>'._ARE_YOU_READY_FOR_UPDATE.' <a class="btn btn-primary" href="?doUpdate=true">'._UPDATE.' </a></p>';
+                    else { echo '<p>'._ARE_YOU_READY_FOR_UPDATE.' <a class="btn btn-primary" href="?doUpdate=true">Update</a></p>';
                     }
                     break;
                 }

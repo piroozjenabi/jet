@@ -26,13 +26,13 @@ class Manage_factor extends CI_Controller
     //ajax list
     public function ajax_list()
     {
-        $type_date = ($this->input->post("type_date", true)) ? $this->input->post("type_date", true) : "date";
-        $type_in = ($this->input->post("type_in", true)) ? $this->input->post("type_in", true) : "";
-        $type = ($this->input->post("type", true)) ? $this->input->post("type", true) : "";
-        $user_id = $this->input->post("user_id", true);
-        $sort = $this->input->post("sort", true);
-        $level = $this->input->post("level", true);
-        $mont_ago = ($this->input->post("month_ago", true)) ? $this->input->post("month_ago", true) : 0;
+        $type_date = (post("type_date", true)) ? post("type_date", true) : "date";
+        $type_in = (post("type_in", true)) ? post("type_in", true) : "";
+        $type = (post("type", true)) ? post("type", true) : "";
+        $user_id = post("user_id", true);
+        $sort = post("sort", true);
+        $level = post("level", true);
+        $mont_ago = (post("month_ago", true)) ? post("month_ago", true) : 0;
         $data = $this->level($level, $type, $user_id, $mont_ago, $type_date, $type_in, $type_date, $sort);
         $this->template->load_ajax("MaLi/factor_sell/ajax_list", $data);
     }
@@ -127,12 +127,12 @@ class Manage_factor extends CI_Controller
         $this->load->model('MaLi/Factor_sell_model');
         echo $this->Factor_sell_model->add_($id);
         $this->Factor_sell_model->message(_FACTOR . _EDITED);
-        redirect("MaLi/factor_sell/manage_factor/level/" . $this->input->post("level_id", true));
+        redirect("MaLi/factor_sell/manage_factor/level/" . post("level_id", true));
     }
 
     public function add_all_factor_to_alert()
     {
-        if (!$this->permision->is_admin()) {
+        if (!$this->permission->is_admin()) {
             die("access denied !!");
         }
         $this->load->model('MaLi/Factor_sell_model');
@@ -146,7 +146,7 @@ class Manage_factor extends CI_Controller
     //reject form
     public function rejectform()
     {
-        $id = $this->input->post("id", true);
+        $id = post("id", true);
         $this->load->model('MaLi/Factor_sell_model');
         $ret = $this->Factor_sell_model->edit_factor($id);
 
@@ -165,7 +165,7 @@ class Manage_factor extends CI_Controller
     //show details
     public function view_details()
     {
-        $id = $this->input->post("id", true);
+        $id = post("id", true);
         $this->load->model('MaLi/Factor_sell_model');
         $ret = $this->Factor_sell_model->edit_factor($id);
         $retoth = $this->Factor_sell_model->list_other_pay($id);
@@ -190,7 +190,7 @@ class Manage_factor extends CI_Controller
     public function this_month_expire($user_id = 0, $mount_ago = 0)
     {
         $user_id = ($user_id) ? $user_id : $this->system->get_user();
-        $type = ($this->permision->check("dashboard_expirefactor_all")) ? "public" : "private";
+        $type = ($this->permission->check("dashboard_expirefactor_all")) ? "public" : "private";
         $this->main($this->system->get_setting("main_factor_level"), $type, $user_id, ++$mount_ago, "expire_date");
 
     }
@@ -205,7 +205,7 @@ class Manage_factor extends CI_Controller
     //factor pay
     public function get_money()
     {
-        $id = $this->input->post("id", true);
+        $id = post("id", true);
         $this->load->model('MaLi/Factor_sell_model');
         $ret = $this->Factor_sell_model->edit_factor($id);
 
@@ -224,7 +224,7 @@ class Manage_factor extends CI_Controller
     //other pay
     public function other_pay()
     {
-        $id = $this->input->post("id", true);
+        $id = post("id", true);
         $this->load->model('MaLi/Factor_sell_model');
         $ret = $this->Factor_sell_model->edit_factor($id);
         $this->template->load_popup("MaLi/factor_sell/other_pay", _OTHER_PAY, array("detail_factor" => $ret, "factor_id" => $id));

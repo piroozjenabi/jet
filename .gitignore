@@ -1,2 +1,2 @@
-_ApP_MaIn/config/database.php
-uploads/*
+ENV.php
+public/uploads/*

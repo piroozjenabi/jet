@@ -25,7 +25,7 @@ class My_employ_model extends CI_Model
 
         //        $this->db->distinct();
         $this->db->select('*');
-        $this->db->from('user_eemploy');
+        $this->db->from("user_admin");
         if($enable_admin_see_all) {
             $this->db->where("user_eemploy.maker_id", $user_id);
         }

@@ -50,9 +50,9 @@ echo $html;
     $(document).ready(function(){
 
         <?php
-        $a=$CI->session->userdata("A");
+        $a=session("A");
         if($a) {
-            $CI->session->set_userdata("A", 0);
+            session("A", 0);
         ?>
         $("#alerts").modal("show");
         <?php } ?>

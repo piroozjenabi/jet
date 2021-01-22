@@ -14,28 +14,28 @@ class Prd_model extends CI_Model
 
         $data= array( );
         $data["id"]=$id;
-        $data["name"]=$this->input->post("name", true);
-        $data["price1"]=$this->input->post("price1", true);
-        $data["price2"]=$this->input->post("price2", true);
-        $data["price3"]=$this->input->post("price3", true);
-        $data["price4"]=$this->input->post("price4", true);
-        $data["group_id"]=$this->input->post("group_id", true);
+        $data["name"]=post("name", true);
+        $data["price1"]=post("price1", true);
+        $data["price2"]=post("price2", true);
+        $data["price3"]=post("price3", true);
+        $data["price4"]=post("price4", true);
+        $data["group_id"]=post("group_id", true);
         $data["state"]="1";
-        $data["vahed_asli"]=$this->input->post("vahed_asli", true);
-        $data["url"]=$this->input->post("url", true);
-        $data["tax"]=$this->input->post("tax", true);
-        $data["company"]=$this->input->post("company_maker", true);
-        $data["pic"]=$this->input->post("pic", true);
-        $data["file"]=$this->input->post("file", true);
-        $data["fani_number"]=$this->input->post("fani_number", true);
-        $data["barcode"]=$this->input->post("barcode", true);
-        $data["country"]=$this->input->post("country_maker", true);
+        $data["vahed_asli"]=post("vahed_asli", true);
+        $data["url"]=post("url", true);
+        $data["tax"]=post("tax", true);
+        $data["company"]=post("company_maker", true);
+        $data["pic"]=post("pic", true);
+        $data["file"]=post("file", true);
+        $data["fani_number"]=post("fani_number", true);
+        $data["barcode"]=post("barcode", true);
+        $data["country"]=post("country_maker", true);
         if (!$id) {
-            $this->permision->check("prd_add", true);
+            $this->permission->check("prd_add", true);
             return $this->db->insert('prd', $data);
         }
         else{
-            $this->permision->check("prd_edit", true);
+            $this->permission->check("prd_edit", true);
             $this->db->where("id", $id);
             return $this->db->update('prd', $data);
         }
@@ -61,7 +61,7 @@ class Prd_model extends CI_Model
     //delete prd
     public function manage_delete($prd_id=0)
     {
-        $this->permision->check("prd_delete", true);
+        $this->permission->check("prd_delete", true);
         $this->db->where('id', $prd_id);
         return     $this->db->delete('prd');
     }

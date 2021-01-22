@@ -11,8 +11,8 @@ $where=["state"=>1];
 if ($user_id) { $where["maker_id"]=$user_id;
 }
 
-$num_belgove=get_count_db("tmp_client", $where);
-$num_belfel=get_count_db("user", $where);
+$num_belgove= getCountQuick("tmp_client", $where);
+$num_belfel= getCountQuick("user", $where);
 ?>
 <!-- BELGHOVE -->
 <div class="col-lg-6 col-md-6">

@@ -14,7 +14,7 @@ class  Stock_out extends CI_Controller
 
         $this->load->helper("form");
         $user_id = $this->system->get_user();
-        $this->permision->check("stock_out", 0, 1);
+        $this->permission->check("stock_out", 0, 1);
         //load for data table
         $this->load->library("Crud");
         $this->crud->table = "stock_out";
@@ -36,15 +36,15 @@ class  Stock_out extends CI_Controller
         //for render recepie in factor
     function render_recipe()
     {
-        $this->permision->check("stock_recipe", 0, 1);
-        $id=$this->input->post("id", true);
+        $this->permission->check("stock_recipe", 0, 1);
+        $id=post("id", true);
         $this->load->model('MaLi/Factor_sell_model');
         $ret=$this->Factor_sell_model->edit_factor($id);
         $this->template->load_popup("Stock/recipe", _REJECT_FORM, array("detail_factor" => $ret,"factor_id" => $id));
     }
     function prender_recipe()
     {
-        //        $this->permision->check("stock_recipe",0,1);
+        //        $this->permission->check("stock_recipe",0,1);
         //        $this->load->model('Stock/Stock_out_model');
         //        if($this->Stock_out_model->recipe())
         //            $this->system->message(_FACTOR_ADDED);

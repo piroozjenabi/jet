@@ -209,15 +209,15 @@ class My_client_model extends CI_Model
     public function add_track($id="")
     {
         $user_id=$this->system->get_user();
-        for ($i=1;$i<=count($this->input->post("track", true));$i++) {
+        for ($i=1;$i<=count(post("track", true));$i++) {
             $data = array();
             $data["id"] = "";
-            $data["message"] = $this->input->post("track", true)[$i];
+            $data["message"] = post("track", true)[$i];
             $data["date"] = time();
             $data["from_user"] = $this->system->get_user();
             //            for replay
-            if($this->input->post("replay", true)[1]) {
-                $data["replay"]=$this->input->post("replay", true)[1];
+            if(post("replay", true)[1]) {
+                $data["replay"]=post("replay", true)[1];
             }
             $data["client"] = $id;
             if($data["message"]!="") {
@@ -276,14 +276,14 @@ class My_client_model extends CI_Model
         if($this->system->get_setting("max_user_time_period")>$count ) {
             $data = array();
             $data["id"] = "";
-            $data["des"] = $this->input->post("des", true);
+            $data["des"] = post("des", true);
             $data["date"] = $time;
             $data["id_user"] = $user_id;
             $data["id_client"] = $client_id;
             if($this->db->insert('user_track_period', $data)) {
 
 
-                $mes=$this->input->post("des", true)." ".$this->system->get_user_from_id($client_id);
+                $mes=post("des", true)." ".$this->system->get_user_from_id($client_id);
                 $this->alerts_lib->add_alert(2, array('id'=>$client_id), $time, $mes, array( "0" => array("id" => $user_id)  ));
             }
         }

@@ -111,7 +111,7 @@ $allprice=0;
             <td><?php echo $this->element->edit_text($value["id"], $value["des"], "mali_bed_bes", "des", "text")  ?></td>
 
             <td <?php echo (!$this->system->get_setting("display_eemployer_on_print_client_detials"))?'class="dis_print"':''; ?> ><?php echo $this->system->get_user_eemploy_from_id($value["maker_id"]) ?></td>
-            <?php if($this->permision->check("base_accounting")) : ?>
+            <?php if($this->permission->check("base_accounting")) : ?>
             <td><?php
 
                 $edit_link= site_url("MaLi/Bed_bes/ajax_get/");

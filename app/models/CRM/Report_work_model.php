@@ -14,12 +14,12 @@ class Report_work_model extends CI_Model
 
     function add_report_work()
     {
-        for ($i=1;$i<=count($this->input->post("name", true));$i++) {
+        for ($i=1;$i<=count(post("name", true));$i++) {
 
             $data["id"] = "";
             $data["user_id"] = $this->system->get_user();
             $data["date"] = time();
-            $data["des"] = $this->input->post("name", true)[$i];
+            $data["des"] = post("name", true)[$i];
 
 
             if($data["des"] != null) {
@@ -39,13 +39,13 @@ class Report_work_model extends CI_Model
             $this->db->where("user_employ_report.user_id", $user_id);
         }
 
-        if($this->input->post("user", true) >0  ) {
-            $this->db->where("user.id", $this->input->post("user", true));
+        if(post("user", true) >0  ) {
+            $this->db->where("user.id", post("user", true));
         }
 
-        if($this->input->post("dateh_start", true)   ) {
-            $date_rendered_start=strtotime($this->input->post("dateh_start"));
-            $date_rendered_end=strtotime($this->input->post("dateh_end"));
+        if(post("dateh_start", true)   ) {
+            $date_rendered_start=strtotime(post("dateh_start"));
+            $date_rendered_end=strtotime(post("dateh_end"));
 
                 $this->db->where("user_employ_report.date >", $date_rendered_start);
                 $this->db->where("user_employ_report.date <", $date_rendered_end);

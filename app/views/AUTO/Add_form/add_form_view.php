@@ -12,7 +12,6 @@ $list_tree=$this->auto->list_tree();
 $def_css_class="form-control";
 $data = array('class' => $def_css_class,"ng-change"=>"make_forms()" , "id" => "form_id" ,"ng-model"=>"formId");
 $form=form_dropdown('form_id',$this->element->pselect("auto_forms","name","des",null,"enable=1"), -1,$data);
-echo $this->template->load_angular();
 ?>
 <!--//drop down enter form-->
 <div ng-app="formApp" style="display: none" id="searchabe_input"  ng-controller="formController">
@@ -90,7 +89,7 @@ echo $this->template->load_angular();
                     //as accepted refer
                     $flag_accept=(count($this->auto->list_refer_accepted($main_id))>0)?true:false;
                     //edit link
-                    if((!$flag_accept) || $this->permision->check("auto_edit_after_accepted") )
+                    if((!$flag_accept) || $this->permission->check("auto_edit_after_accepted") )
                     {
                         $edit_link=site_url("/AUTO/add_form/edit/$form_id/$main_id");
 //                        $op[]= anchor_popup($edit_link, "<i class='fa fa-edit' ></i> ". _EDIT, $atts);
@@ -106,7 +105,7 @@ echo $this->template->load_angular();
                     $op[]="<a class='btn btn-link' onclick=load_ajax_popupfull('$show_link','id=$main_id')> <i class='fa fa-eye' ></i> "  . _VIEW. ' </a>';
 
                     //ajax show
-                    if($this->permision->check("auto_refer")){
+                    if($this->permission->check("auto_refer")){
                         $refer_link= site_url("AUTO/Refer/add_refer") ;
                         $op[]="<a class='btn btn-link' onclick=load_ajax_popup('$refer_link','form_id=$main_id')> <i class='fa fa-link' ></i> "  . _REFER. ' </a>';
                     } ?>
@@ -131,15 +130,6 @@ echo $this->template->load_angular();
     </table>
 </div>
 <script type="text/javascript" >
-    var formApp=angular.module("formApp",[]);
-    formApp.controller("formController", function ($scope) {
-        $scope.formId='-1';
-        $scope.make_forms=function () {
-            window.open('<?= site_url("AUTO/add_form/add") ?>'+'/'+$scope.formId);
-            $scope.formId='-1';
-        }
-    });
-
     //delete aleret
     function del(_id) {
         $.ajax({

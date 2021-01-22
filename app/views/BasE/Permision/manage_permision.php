@@ -6,7 +6,7 @@
  * Time: 5:33 PM
  */
 $this->load->helper('form');
-$list_permision_usergroup=$this->permision->list_cat_permision();
+$list_permision_usergroup=$this->permission->list_cat_permision();
 echo form_open('eemploy/eemploy_user_group/change_permision/'.$user_group_id); ?>
 <div class="container">
     <div class="col-md-3">
@@ -46,7 +46,7 @@ echo form_open('eemploy/eemploy_user_group/change_permision/'.$user_group_id); ?
             <div id="<?php echo $value["name"] ?>" class="tab-pane fade in <?php echo $active ?>" style="width: 100%;background-color: <?php echo $bgcolor ?>;color:<?php echo $color ?>;border-radius: 3px;padding: 10px; ">
                 <h3><?php echo $value["des"] ?></h3>
                 <div class="container" >
-                <?php foreach ($this->permision->list_permision_usergroup($user_group_id, $value["id"])as $key2 => $value2): ?>
+                <?php foreach ($this->permission->list_permision_usergroup($user_group_id, $value["id"])as $key2 => $value2): ?>
                     <div> <label> <input type="checkbox" name="perm[<?php echo $value2["id"] ?>]"   <?php echo ($value2["active"])? "checked='checked'":"" ?>> <?php echo $value2["des"] ?>
 
                             <?php
@@ -55,7 +55,7 @@ echo form_open('eemploy/eemploy_user_group/change_permision/'.$user_group_id); ?
                                 echo " <span class='label label-success'>"._MENU." </span> ";
                             }
                             //if have dashboard
-                            if(count($this->permision->is_module($value2["id"]))) {
+                            if(count($this->permission->is_module($value2["id"]))) {
                                 echo " <span class='label label-primary'>"._DASHBOARD." </span> ";
                             }
                                 ?>

@@ -79,7 +79,7 @@ class Manage extends CI_Controller
     public function add_field_data()
     {
         $this->load->library("auto");
-        $group = $this->input->post("group_id", true);
+        $group = post("group_id", true);
         $data = array('db' => $this->auto->list_field_data($group), "id" => $group);
         $this->template->load_popup('AUTO/manage_form/add_field_data', _LIST . __ . _FIELD_DATA, $data);
     }
@@ -130,8 +130,8 @@ class Manage extends CI_Controller
 
     public function del_cr_forms()
     {
-        $this->permision->check("auto_manage_form", 0, 1);
-        $id = $this->input->post("id", true);
+        $this->permission->check("auto_manage_form", 0, 1);
+        $id = post("id", true);
         $this->load->model("AUTO/Auto_forge_model");
         if ($this->Auto_forge_model->del_cr_forms($id)) {
             echo json_encode(array("status" => true));
@@ -152,7 +152,7 @@ class Manage extends CI_Controller
         $this->crud->column_title = array(_STATE, _USER, _FORM, _DES);
         $this->crud->column_require = array(0, 1, 1, 0);
         $tmp_selectdb = array("select_db", "auto_forms", "name");
-        $tmp_selectdb2 = array("select_db", "user_eemploy", "name");
+        $tmp_selectdb2 = array("select_db", "user_admin", "name");
         $this->crud->column_type = array("bool", json_encode($tmp_selectdb2), json_encode($tmp_selectdb), "input");
         $this->crud->column_search = array("des");
         $this->crud->actions = '<a href="' . site_url("/AUTO/manage_form/manage/") . '" class=" btn btn-primary" > <i class="fa fa-sitemap "></i> ' . _MANAGE . _FORM . _S . ' </a> ';

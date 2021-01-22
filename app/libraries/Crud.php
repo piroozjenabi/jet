@@ -162,7 +162,7 @@ class Crud
 
     public function save($data)
     {
-        if ($this->permision["add"]) {
+        if ($this->permission["add"]) {
             $data["id"] = null;
 
             $CI = &get_instance();
@@ -173,7 +173,7 @@ class Crud
 
     public function update($where, $data)
     {
-        if ($this->permision["edit"]) {
+        if ($this->permission["edit"]) {
             //            for delete updates in form add
             foreach ($this->form_add as $key => $value) {
                 unset($data[$key]);
@@ -186,7 +186,7 @@ class Crud
 
     public function delete_by_id($id)
     {
-        if ($this->permision["delete"]) {
+        if ($this->permission["delete"]) {
             $CI = &get_instance();
             $CI->db->where('id', $id);
             return $CI->db->delete($this->table);
@@ -195,7 +195,7 @@ class Crud
 
     public function delete_group_by_id($ids)
     {
-        if ($this->permision["delete"]) {
+        if ($this->permission["delete"]) {
             $CI = &get_instance();
             $CI->db->where_in('id', $ids);
             return $CI->db->delete($this->table);
@@ -352,7 +352,7 @@ class Crud
         ?>
     <title> <?php echo $this->title ?> </title>
     <div class="btn-group" style="padding: 5px;">
-        <?php if ($this->permision["add"]): ?>
+        <?php if ($this->permission["add"]): ?>
 
             <button class="btn btn-success" onclick="_add_()"><i class="fa fa-plus"></i> <?php echo _ADD ?> </button>
         <?php endif;?>
@@ -362,7 +362,7 @@ class Crud
         <button class="btn btn-default" onclick="reload_table()"><i class="fa fa-refresh"></i> <?php echo _REFRESH ?> </button>
         <button class="btn btn-info" id="select-btn"><i class="fa fa-check"></i> <?php echo _SELECT ?> </button>
 
-        <?php if ($this->permision["delete"]): ?>
+        <?php if ($this->permission["delete"]): ?>
             <button class="btn btn-warning" id="delete_group" onclick="_delete_group()"><i class="fa fa-close"></i> <?php echo _DELETE ?> </button>
         <?php endif;?>
         <?php if (0): ?>
@@ -387,7 +387,7 @@ class Crud
 		                        <th><?php echo $k ?></th>
 		                    <?php endif;
         endforeach;?>
-                <?php if ($this->permision["edit"] || $this->permision["delete"]): ?>
+                <?php if ($this->permission["edit"] || $this->permission["delete"]): ?>
                     <th><?php echo _OP ?></th>
                 <?php endif;?>
             </tr>
@@ -401,7 +401,7 @@ class Crud
                 <?php foreach ($this->column_title as $k): if ($this->checkList($k, 'title')): ?>
 		                    <th><?php echo $k ?></th>
 		                 <?php endif;endforeach;?>
-                <?php if ($this->permision["edit"] || $this->permision["delete"]): ?>
+                <?php if ($this->permission["edit"] || $this->permission["delete"]): ?>
                     <th><?php echo _OP ?>
                     </th>
                 <?php endif;?>
@@ -1126,10 +1126,10 @@ class Crud
                 $c++;
             }
             $tmp = '<div class="btn-group">';
-            $tmp .= ($this->permision["view"]) ? '<a class="btn  btn-default" href="javascript:void(0)"   data-toggle="tooltip" title=' . _VIEW . '   onclick="_view_(' . "'" . $k->id . "'" . ')"><i class="fa fa-eye"></i> </a>' : null;
-            $tmp .= ($this->permision["copy"]) ? '<a class="btn  btn-warning" href="javascript:void(0)"   data-toggle="tooltip" title=' . _COPY . '   onclick="_copy_(' . "'" . $k->id . "'" . ')"><i class="fa fa-copy"></i> </a>' : null;
-            $tmp .= ($this->permision["edit"]) ? '<a class="btn btn-primary" href="javascript:void(0)"   data-toggle="tooltip" title=' . _EDIT . '   onclick="_edit_(' . "'" . $k->id . "'" . ')"><i class="fa fa-edit"></i> </a>' : null;
-            $tmp .= ($this->permision["delete"]) ? '<a class="btn  btn-danger" href="javascript:void(0)" data-toggle="tooltip" title=' . _DELETE . ' onclick="_delete_(' . "'" . $k->id . "'" . ')"><i class="fa fa-close"></i> </a>' : null;
+            $tmp .= ($this->permission["view"]) ? '<a class="btn  btn-default" href="javascript:void(0)"   data-toggle="tooltip" title=' . _VIEW . '   onclick="_view_(' . "'" . $k->id . "'" . ')"><i class="fa fa-eye"></i> </a>' : null;
+            $tmp .= ($this->permission["copy"]) ? '<a class="btn  btn-warning" href="javascript:void(0)"   data-toggle="tooltip" title=' . _COPY . '   onclick="_copy_(' . "'" . $k->id . "'" . ')"><i class="fa fa-copy"></i> </a>' : null;
+            $tmp .= ($this->permission["edit"]) ? '<a class="btn btn-primary" href="javascript:void(0)"   data-toggle="tooltip" title=' . _EDIT . '   onclick="_edit_(' . "'" . $k->id . "'" . ')"><i class="fa fa-edit"></i> </a>' : null;
+            $tmp .= ($this->permission["delete"]) ? '<a class="btn  btn-danger" href="javascript:void(0)" data-toggle="tooltip" title=' . _DELETE . ' onclick="_delete_(' . "'" . $k->id . "'" . ')"><i class="fa fa-close"></i> </a>' : null;
             $tmp .= (str_replace("[[id]]", $k->id, $this->actions_row));
             $tmp .= "</div>";
             $row[] = $tmp;
@@ -1159,8 +1159,8 @@ class Crud
         }
 
         //render defual permision
-        $this->permision["copy"] = $this->permision["copy"] ?? $this->permision["add"];
-        $this->permision["view"] = $this->permision["view"] ?? !empty($this->column_list);
+        $this->permission["copy"] = $this->permission["copy"] ?? $this->permission["add"];
+        $this->permission["view"] = $this->permission["view"] ?? !empty($this->column_list);
 
         $this->tableId = "taBle" . rand(0, 1000);
         if ($CI->input->post("where", true)) {
@@ -1312,7 +1312,7 @@ class Crud
     public function render_permsion_crud($per)
     {
         $CI = get_instance();
-        return array("add" => ($CI->permision->check($per . "_add")) ? 1 : 0, "edit" => ($CI->permision->check($per . "_edit")) ? 1 : 0, "delete" => ($CI->permision->check($per . "_delete")) ? 1 : 0);
+        return array("add" => ($CI->permission->check($per . "_add")) ? 1 : 0, "edit" => ($CI->permission->check($per . "_edit")) ? 1 : 0, "delete" => ($CI->permission->check($per . "_delete")) ? 1 : 0);
     }
 
     //---------------------------------------------------------------------oth end

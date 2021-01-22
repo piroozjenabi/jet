@@ -184,7 +184,7 @@ class Crud_auto
 
     public function save($data)
     {
-        if($this->permision["add"]) {
+        if($this->permission["add"]) {
             $data["id"]=null;
             $CI =& get_instance();
             $CI->db->insert($this->table, $data);
@@ -194,7 +194,7 @@ class Crud_auto
 
     public function update($where, $data)
     {
-        if($this->permision["edit"]) {
+        if($this->permission["edit"]) {
             $CI =& get_instance();
             $CI->db->update($this->table, $data, $where);
             return $CI->db->affected_rows();
@@ -205,7 +205,7 @@ class Crud_auto
 
     public function delete_by_id($id)
     {
-        if($this->permision["delete"]) {
+        if($this->permission["delete"]) {
             $CI=&get_instance();
             $CI->db->where('id', $id);
             $CI->db->delete($this->table);
@@ -267,7 +267,7 @@ class Crud_auto
                     <?php echo $k?>
                 </th>
                 <?php endforeach; ?>
-                <?php if ($this->permision["edit"] || $this->permision["delete"]) : ?>
+                <?php if ($this->permission["edit"] || $this->permission["delete"]) : ?>
                     <th><?php echo _OP ?></th>
                 <?php endif; ?>
             </tr>
@@ -282,7 +282,7 @@ class Crud_auto
                 <?php foreach ($this->column_title as $k): ?>
                     <th><?php echo $k?></th>
                 <?php endforeach; ?>
-                <?php if ($this->permision["edit"] || $this->permision["delete"]) : ?>
+                <?php if ($this->permission["edit"] || $this->permission["delete"]) : ?>
                 <th><?php echo _OP ?>
                 </th>
                 <?php endif; ?>

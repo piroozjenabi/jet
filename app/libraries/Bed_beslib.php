@@ -25,7 +25,7 @@ class Bed_beslib
             $data["params"]  = json_encode($params);
 
 
-        $CI->permision->check("base_accounting", 0, 1);
+        $CI->permission->check("base_accounting", 0, 1);
 //        if edit
         if ($id) {
             $CI->db->where("id",$id);
@@ -38,7 +38,7 @@ class Bed_beslib
     function del($id)
     {
         $CI =& get_instance();
-        $CI->permision->check("base_accounting", 0, 1);
+        $CI->permission->check("base_accounting", 0, 1);
         $CI->db->where('id',$id);
         return 	$CI->db->delete('mali_bed_bes');
     }

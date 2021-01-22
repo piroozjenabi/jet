@@ -76,7 +76,7 @@ $c=0;
         $show_link_bill= site_url("MaLi/pusers/Users/show_bill") ;
         $opbill="<a class=' btn btn-danger ' onclick=load_ajax_popupfull('$show_link_bill','id=".$value["id"]."','full')> <i class='fa fa-eye' ></i> "  ._BILL. ' </a>';
         //pardakht ajax
-        if($this->permision->check("base_accounting"))
+        if($this->permission->check("base_accounting"))
         {
             $get_link= site_url("MaLi/Bed_bes/ajax_get/") ;
             $opp="<a class=' btn btn-danger ' onclick=load_ajax_popup('$get_link','group_id=0&user_id=".$value["id"]."')> <i class='fa fa-dollar' ></i>  </a>";

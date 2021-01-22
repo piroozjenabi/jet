@@ -15,10 +15,10 @@ class Add_form_model extends CI_Model
     
     public function add_field_group($id)
     {
-        for ($i=1;$i<=count($this->input->post("name", true));$i++) {
+        for ($i=1;$i<=count(post("name", true));$i++) {
             $data = array();
-            $data["name"] = $this->input->post("name", true)[$i];
-            $data["value"] = ($this->input->post("value", true)[$i])?$this->input->post("value", true)[$i]:$this->input->post("name", true)[$i];
+            $data["name"] = post("name", true)[$i];
+            $data["value"] = (post("value", true)[$i])?post("value", true)[$i]:post("name", true)[$i];
             $data["group_id"] = $id;
 
             if($data["name"]) {    $res = $this->db->insert('auto_forms_field_data', $data);

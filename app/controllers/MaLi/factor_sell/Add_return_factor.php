@@ -35,15 +35,15 @@ class add_return_factor extends CI_Controller
             // add alerts expire
             if($this->system->get_setting("enabel_alert_expire_factor")) {
                 // alert add new factor
-                $client_id = $this->input->post("user", true);
+                $client_id = post("user", true);
                 $mes=$this->system->get_user_from_id($client_id)." | ".$this->system->get_user_from_id($client_id, "tell")." ".$this->system->get_user_from_id($client_id, "mobile");
                 $def_users=$this->system->get_users_from_usergroup(json_decode($this->system->get_setting("new_factor_alerts_users_group")));
                 $this->alerts_lib->add_alert(3, array("id"=>$main_factor_id), time(), $mes, $def_users);
 
-                if ($this->input->post("factor_date", true) != $this->input->post("expire_factor", true)) {
+                if (post("factor_date", true) != post("expire_factor", true)) {
                     //alert expire time
                     $def_users=$this->system->get_users_from_usergroup(json_decode($this->system->get_setting("expire_alerts_users_group")));
-                    $this->alerts_lib->add_alert(1, array("id"=>$main_factor_id), strtotime($this->input->post("expire_factor", true)), $mes, $def_users);
+                    $this->alerts_lib->add_alert(1, array("id"=>$main_factor_id), strtotime(post("expire_factor", true)), $mes, $def_users);
 
                 }
             }

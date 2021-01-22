@@ -18,7 +18,7 @@ class Users_model extends CI_Model
     {
         $data= array();
 
-        foreach ($this->input->post() as $key => $value)
+        foreach (post() as $key => $value)
         {
             if ($value) {
                 $data[$key]=$value;

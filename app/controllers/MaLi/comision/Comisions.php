@@ -17,7 +17,7 @@ class Comisions extends CI_Controller
 
         $user_id=$this->system->get_user();
         //get list of month
-        $arr_month=$this->system->curent_months();
+        $arr_month=$this->system->current_months();
         $res=$this->My_employ_model->my_client_list($user_id);
 
         $out=array();

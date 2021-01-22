@@ -826,7 +826,7 @@ class Auto{
 	{
 		$CI=&get_instance();
 		$user_id=$CI->system->get_user();
-		if( ($this->get_refer($refer_id)->from_user_id != $user_id) && ! $CI->permision->check("auto_refer_delete"))
+		if( ($this->get_refer($refer_id)->from_user_id != $user_id) && ! $CI->permission->check("auto_refer_delete"))
 		    return 0;
 
 		$CI->db->where("id",$refer_id);
@@ -847,7 +847,7 @@ class Auto{
          $in[]=$value["id"];
         }
         $CI->db->select("*")
-            ->from("user_eemploy")
+            ->from("user_admin")
             ->where_in("usergroup",$in);
         return $CI->db->get()->result_array() ;
 
@@ -891,22 +891,22 @@ class Auto{
         $flag_mine=($data->from_user_id==$user_id)?true:false;
         $flag_accept=(count($CI->auto->list_refer_accepted($main_id))>0)?true:false;
 
-        if (($flag_mine && $CI->permision->check("auto_accept") && !$flag_accept) || ($CI->permision->check("auto_accept_all") && !$flag_accept) )
+        if (($flag_mine && $CI->permission->check("auto_accept") && !$flag_accept) || ($CI->permission->check("auto_accept_all") && !$flag_accept) )
             $op[]=" <a class='$style_btn' id='accept_refer_$refer_id' onclick=\"accept_refer('$refer_id')\"'> <i class='fa fa-check'></i> "._ACCEPT."  </a>";
         //for reject
         //if not accepted and is mine and have permission reject
-        if ((!$flag_accept && $flag_mine) || ($CI->permision->check("auto_reject"))  )
+        if ((!$flag_accept && $flag_mine) || ($CI->permission->check("auto_reject"))  )
             $op[]="<a class='$style_btn' id='reject_$refer_id' onclick=\"reject_refer('$refer_id')\" > <i class='fa fa-share'></i> "._AUTO_REJECT ." </a>";
 
         //for refer
         //if not accepted and is mine and have permission refer
-        if ((!$flag_accept && $flag_mine )|| $CI->permision->check("auto_refer") ){
+        if ((!$flag_accept && $flag_mine )|| $CI->permission->check("auto_refer") ){
             $refer_link = site_url("AUTO/Refer/add_refer");
             $op[] = "<a class='$style_btn' id='refer' onclick=load_ajax_popup('$refer_link','form_id=$main_id')> <i class='fa fa-link' ></i> " . _REFER . ' </a>';
 
         }
         // for edit and delete
-        if(($flag_mine && !$flag_accept) || $CI->permision->check("auto_edit_after_accepted") )
+        if(($flag_mine && !$flag_accept) || $CI->permission->check("auto_edit_after_accepted") )
         {
             //delete
             $op[]= "<a class='$style_btn' id='delete_$refer_id' onclick='piero_confirm(del_refer,$refer_id)' > <i class='fa fa-close' ></i> "._DELETE. '</a>';
@@ -914,7 +914,7 @@ class Auto{
         }
 
         //            for exit kartable
-        if(($flag_mine && $flag_accept ) || $CI->permision->check("auto_edit_after_accepted") )
+        if(($flag_mine && $flag_accept ) || $CI->permission->check("auto_edit_after_accepted") )
             if( $type != "exited")
                 $op[]="<a class='$style_btn'  onclick=exit_kartable('$refer_id') > <i class='fa fa-close'></i> "._EXIT_FROM_KARTABLE ." </a>";
 
@@ -1082,13 +1082,13 @@ class Auto{
             $flag_accept=(count($CI->auto->list_refer_accepted($main_id))>0)?true:false;
             //for refer
             //if not accepted and is mine and have permission refer
-            if ((!$flag_accept && $flag_mine )|| $CI->permision->check("auto_refer") ){
+            if ((!$flag_accept && $flag_mine )|| $CI->permission->check("auto_refer") ){
                 $refer_link = site_url("AUTO/Refer/add_refer");
                 $op[] = "<a class='$style_btn' id='refer' onclick=load_ajax_popup('$refer_link','form_id=$main_id')> <i class='fa fa-link' ></i> " . _REFER . ' </a>';
 
             }
             // for edit and delete
-            if(($flag_mine && !$flag_accept) || $CI->permision->check("auto_edit_after_accepted") )
+            if(($flag_mine && !$flag_accept) || $CI->permission->check("auto_edit_after_accepted") )
             {
 
                 $edit_link = site_url("/AUTO/add_form/edit/$f_id/$main_id");

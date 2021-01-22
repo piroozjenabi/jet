@@ -27,7 +27,7 @@ echo  $CI->element->quick_add("Stock/Stock/padd", array("0"=>array("name"=>"name
         <?php echo $this->element->edit_text($value["id"], $value["des"], "stock", "des", "text") ?>
     </td>
 
-        <td><?php echo ($value["parent"])?$this->system->get_db("stock", $value["parent"]):""  ?></td>
+        <td><?php echo ($value["parent"])?getQuick("stock", $value["parent"], 'name'):""  ?></td>
         <td>
 
         </td>

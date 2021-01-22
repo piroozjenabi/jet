@@ -12,7 +12,7 @@ class  Stock_in extends CI_Controller
     {
         $this->load->helper("form");
         $user_id=$this->system->get_user();
-        $this->permision->check("stock_check", 0, 1);
+        $this->permission->check("stock_check", 0, 1);
         //load for data table
         $this->load->library("Crud");
         $this->crud->table="stock_in";

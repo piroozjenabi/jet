@@ -11,19 +11,19 @@ class Media extends CI_Controller
      */
     public function manage($maker = 0, $type = 0, $id = 0)
     {
-        $this->permision->check("media_manage", 0, 1);
-        $permision = array(
-            "add" => $this->permision->check("media_add"),
-            "edit" => $this->permision->check("media_edit"),
+        $this->permission->check("media_manage", 0, 1);
+        $permission = array(
+            "add" => $this->permission->check("media_add"),
+            "edit" => $this->permission->check("media_edit"),
         );
-        $maker = ($maker) ? $maker : $this->input->post("maker", true);
-        $id = ($id) ? $id : $this->input->post("id", true);
-        $type = ($type) ? $type : $this->input->post("type", true);
+        $maker = ($maker) ? $maker : post("maker");
+        $id = ($id) ? $id : post("id");
+        $type = ($type) ? $type : post("type");
         //set zerp
         $maker = intval($maker);
         $id = intval($id);
-        $data =array( "permision" => $permision, "maker" => $maker, "id" => $id, "type" => $type );
-        if ( $this->input->post("noheader") == true) $this->template->load_popup("media/manage",_MANAGE_MEDIA, $data );
+        $data =array( "permision" => $permission, "maker" => $maker, "id" => $id, "type" => $type );
+        if ( post("noheader") == true) $this->template->load_popup("media/manage",_MANAGE_MEDIA, $data );
         else $this->template->load("media/manage", $data );
     }
 
@@ -38,7 +38,7 @@ class Media extends CI_Controller
     public function load($maker = 0, $type = 0, $id = 0)
     {
         $this->load->helper('text');
-        $this->permision->check("media_manage", 0, 1);
+        $this->permission->check("media_manage", 0, 1);
         $this->load->model("Media_model");
         $res = $this->Media_model->manage($maker, $type, $id);
         foreach ($res as $key => $value) {
@@ -64,7 +64,7 @@ class Media extends CI_Controller
     {
         $this->load->model('Media_model');
         if ($op == "edit") {
-            if ($this->Media_model->edit_media($id, $this->input->post())) {
+            if ($this->Media_model->edit_media($id, post())) {
                 jsonOut(true);
             } else {
                 jsonOut(false);
@@ -78,7 +78,7 @@ class Media extends CI_Controller
     //------------------------ manage group of media
     public function manage_group()
     {
-        $this->permision->check("media_manage_group", 0, 1);
+        $this->permission->check("media_manage_group", 0, 1);
         $user_id = $this->system->get_user();
         //load for data table
         $this->load->library("Crud");

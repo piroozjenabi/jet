@@ -32,7 +32,7 @@ class Manage_comision extends CI_Controller
     public function add_comision()
     {
         $this->load->library("comision");
-        $group=$this->input->post("id", true);
+        $group=post("id", true);
         $data = array('db' => $this->comision->list_comision($group) ,"id"=>$group);
         $this->template->load_popup('MaLi/comision/add_comision', _LIST.__._FIELD_DATA, $data);
     }

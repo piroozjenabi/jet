@@ -9,7 +9,7 @@ class Rival extends  CI_Controller
 {
     function manage()
     {
-        $this->permision->check("rival_manage", 0, 1);
+        $this->permission->check("rival_manage", 0, 1);
         $this->load->helper("form");
         $user_id=$this->system->get_user();
         //load for data table
@@ -26,7 +26,7 @@ class Rival extends  CI_Controller
         $this->crud->permision=$this->crud->render_permsion_crud("rival");
         $this->crud->form_add=["maker_id"=>$user_id,"date"=>time()];
         $this->crud->actions= "<a class='btn btn-info  ' href='".site_url("MaLi/pprd/prd/manage_group")."' > <i class='fa fa-users' ></i>" . _MANAGE_PRD_GROUP. ' </a>';;
-        if($this->permision->check("media_manage")){
+        if($this->permission->check("media_manage")){
             $tmp_url= site_url("Media/manage/0/rival");
             $this->crud->actions_row .= "<a class='btn btn-default' data-toggle='tooltip' title='"._UPLOAD_MANAGER."' onclick=load_ajax_popupfull('$tmp_url','id=[[id]]') > <i class='fa fa-upload' ></i> </a>";;
           }

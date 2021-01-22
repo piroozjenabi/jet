@@ -12,14 +12,14 @@ class Bed_bes extends CI_Controller
     {
         $arr=array();
 
-        $arr["user_id"] = $this->input->post("user_id");
-        $arr["factor_id"] =($this->input->post("factor_id"))? $this->input->post("factor_id"):"";
-        $arr["group_id"] =($this->input->post("group_id"))? $this->input->post("group_id"):"0";
+        $arr["user_id"] = post("user_id");
+        $arr["factor_id"] =(post("factor_id"))? post("factor_id"):"";
+        $arr["group_id"] =(post("group_id"))? post("group_id"):"0";
 
         //for edit
-        if($this->input->post("id")) {
+        if(post("id")) {
             $this->load->library("bed_beslib", "bed");
-            $arr["detail"] =$this->bed_beslib->get($this->input->post("id"));
+            $arr["detail"] =$this->bed_beslib->get(post("id"));
         }
 
         $this->template->load_popup("MaLi/Bed_bes/ajax_get", _PAY.__._CLIENT, $arr);
@@ -28,12 +28,12 @@ class Bed_bes extends CI_Controller
     function ajax_getp($id=null)
     {
         $this->load->library("Bed_beslib");
-        $group=$this->input->post("group_id", true);
-        if(strtotime($this->input->post("datecheck", true)) >= time() ) {
+        $group=post("group_id", true);
+        if(strtotime(post("datecheck", true)) >= time() ) {
 
-            $message=_ALERT.__._CHECKOU.__.$this->system->get_user_from_id($this->input->post("user_id", true)).__.number_format($this->input->post("price", true));
+            $message=_ALERT.__._CHECKOU.__.$this->system->get_user_from_id(post("user_id", true)).__.number_format(post("price", true));
             $users=$this->system->get_users_from_usergroup(json_decode($this->system->get_setting("def_usergroup_recive_checku_alert")));
-            $this->alerts_lib->add_alert(4, array("price" =>$this->input->post("price", true),"user_id"=>$this->input->post("user_id", true),"date" =>strtotime($this->input->post("date", true))), strtotime($this->input->post("datecheck", true)), $message, $users);
+            $this->alerts_lib->add_alert(4, array("price" =>post("price", true),"user_id"=>post("user_id", true),"date" =>strtotime(post("date", true))), strtotime(post("datecheck", true)), $message, $users);
             $group= ($group)?$group:$this->system->get_setting("deafult_checku_group");
         }
         else
@@ -41,18 +41,18 @@ class Bed_bes extends CI_Controller
             $group= ($group)?$group:$this->system->get_setting("deafult_pay_client_group");
         }
         $checku=array();
-        if($this->input->post("flagcheck")) {
+        if(post("flagcheck")) {
             $group= $this->system->get_setting("deafult_checku_group");
             $checku["flagcheck"] = true;
-            $checku["datecheck"] = strtotime($this->input->post("datecheck", true));
-            $checku["bankcheck"] = $this->input->post("bankcheck", true);
-            $checku["serialcheck"] = $this->input->post("serialcheck", true);
-            $checku["branchcheck"] = $this->input->post("branchcheck", true);
-            $checku["accnumbercheck"] = $this->input->post("accnumbercheck", true);
-            $checku["reciverbankcheck"] = $this->input->post("reciverbankcheck", true);
+            $checku["datecheck"] = strtotime(post("datecheck", true));
+            $checku["bankcheck"] = post("bankcheck", true);
+            $checku["serialcheck"] = post("serialcheck", true);
+            $checku["branchcheck"] = post("branchcheck", true);
+            $checku["accnumbercheck"] = post("accnumbercheck", true);
+            $checku["reciverbankcheck"] = post("reciverbankcheck", true);
 
         }
-        $this->bed_beslib->padd($id, $this->input->post("price", true), $group, $this->input->post("user_id", true), $this->input->post("factor_id", true), $this->input->post("des", true), strtotime($this->input->post("date", true)), $checku);
+        $this->bed_beslib->padd($id, post("price", true), $group, post("user_id", true), post("factor_id", true), post("des", true), strtotime(post("date", true)), $checku);
         $this->system->message(_SUC_OP);
         redirect("CRM/my_client/acounting");
 

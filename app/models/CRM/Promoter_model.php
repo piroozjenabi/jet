@@ -20,28 +20,28 @@ class Promoter_model extends CI_Model
 
         $data= array( );
         $data["id"]=$id;
-        $data["name"]=$this->input->post("name", true);
-        $data["meli_id"]=$this->input->post("meli_id", true);
-        $data["group_id"]=$this->input->post("group_id", true);
-        $data["email"]=$this->input->post("email", true);
-        $data["mobile"]=$this->input->post("mobile", true);
-        $data["tell"]=$this->input->post("tell", true);
-        $data["address"]=$this->input->post("address", true);
-        $data["sallari"]=$this->input->post("sallari", true);
-        $data["user_id"]=$this->input->post("user_id", true);
-        $data["hour_daily"]=$this->input->post("hour_daily", true);
+        $data["name"]=post("name", true);
+        $data["meli_id"]=post("meli_id", true);
+        $data["group_id"]=post("group_id", true);
+        $data["email"]=post("email", true);
+        $data["mobile"]=post("mobile", true);
+        $data["tell"]=post("tell", true);
+        $data["address"]=post("address", true);
+        $data["sallari"]=post("sallari", true);
+        $data["user_id"]=post("user_id", true);
+        $data["hour_daily"]=post("hour_daily", true);
 
         //        $data["date_modify"]=time();
         if (!$id) {//edit mode
             $data["datecreate"]=time();
         }
-        $data["address"]=$this->input->post("address", true);
+        $data["address"]=post("address", true);
         if (!$id) {
             $data["maker_id"] = $user_id;
         }
-        $data["extra1"]=$this->input->post("extra1", true);
-        $data["extra2"]=$this->input->post("extra2", true);
-        $data["extra3"]=$this->input->post("extra3", true);
+        $data["extra1"]=post("extra1", true);
+        $data["extra2"]=post("extra2", true);
+        $data["extra3"]=post("extra3", true);
 
         if (!$id) {
             $res=$this->db->insert('crm_Promoter', $data);
@@ -59,19 +59,19 @@ class Promoter_model extends CI_Model
 
         $user_id=$this->system->get_user();
 
-        for ($i=1;$i<=count($this->input->post("track", true));$i++) {
+        for ($i=1;$i<=count(post("track", true));$i++) {
 
             $data = array();
             $data["id"] = "";
-            $data["text"] = $this->input->post("track", true)[$i];
+            $data["text"] = post("track", true)[$i];
             $data["date"] = time();
             $data["user_id"] = $user_id;
             //            for replay
-            if($this->input->post("replay", true)[1]) {
-                $data["replay"]=$this->input->post("replay", true)[1];
+            if(post("replay", true)[1]) {
+                $data["replay"]=post("replay", true)[1];
             }
             $data["Promoter_id"] = $id;
-            //            die($this->input->post("track", TRUE)[$i]);
+            //            die(post("track", TRUE)[$i]);
             if($data["message"]!="") {
                 $res = $this->db->insert('Promoter_track', $data);
             }

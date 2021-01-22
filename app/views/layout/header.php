@@ -7,7 +7,6 @@
  */
 $CI = &get_instance();
 $CI->load->library('Piero_jdate');
-$CI->load->library('permision');
 $user_id = $this->system->get_user();
 $alertslist = $this->alerts_lib->type_list();
 @$title = ($title != null) ? $title : $this->system->get_setting('login_title');
@@ -46,14 +45,14 @@ $alertslist = $this->alerts_lib->type_list();
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-plus"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
-                            <?php if ($this->permision->check("factor_add")): ?>
+                            <?php if ($this->permission->check("factor_add")): ?>
                             <li>
                                <a href="<?php echo site_url('MaLi/factor/add') ?>" accesskey="n" target="_blank" >  <i class="fa fa-money"></i> <?php echo _ADD . __ . _FACTOR ?></a>
                             </li>
                             <?php endif;?>
                         <?php
 //for auto add form
-if ($this->permision->check("auto_form_add")) {
+if ($this->permission->check("auto_form_add")) {
     echo "<li> <hr/> </li>";
     $CI->load->library("Auto");
     foreach ($CI->auto->list_forms() as $k => $v) {
@@ -66,14 +65,14 @@ if ($this->permision->check("auto_form_add")) {
                     </ul>
                 </li>
 <!--            setting-->
-    <?php if ($this->permision->check("base_setting")): ?>
+    <?php if ($this->permission->check("base_setting")): ?>
             <li class="dropdown ">
             <a href="<?php echo site_url("Setting") ?>" class="dropdown-toggle"> <i class="fa fa-gears"> </i>  </a>
             </li>
     <?php endif;?>
 
 <!--                backup-->
-                <?php if ($this->permision->check("base_backup")): ?>
+                <?php if ($this->permission->check("base_backup")): ?>
             <li class="dropdown ">
             <a href="<?php echo site_url("Backup_main") ?>" class="dropdown-toggle"> <i class="fa fa-database "> </i>  </a>
             </li>
@@ -129,9 +128,9 @@ echo $CI->system->get_user("name");
                    <a> <i class="fa fa-search"></i> <input type="search" style="background: transparent;border: 0px"  placeholder="<?php echo _SEARCH ?>" > </a>
             </li>
 <!--                 load for menus-->
-                <?php foreach ($CI->permision->list_main_permision() as $k => $v): ?>
+                <?php foreach ($CI->permission->list_main_permision() as $k => $v): ?>
                     <?php
-$tmp = $CI->permision->list_menu_permision($v["id"]);
+$tmp = $CI->permission->list_menu_permision($v["id"]);
 if (count($tmp)): ?>
                     <li>
                     <a href="javascript:;" data-toggle="collapse" data-target="#PIERO_MNU<?php echo $v["id"] ?>" > <i class="<?php echo $v["icon"] ?> "> </i> <?php echo $v["des"] ?><span class="caret"></span></a>

@@ -16,7 +16,7 @@ $savebtn= form_button(array('type' => "submit",'id' => 'submit','class'=>'btn bt
 $CI =& get_instance();
 $CI->load->library('Piero_jdate');
 $tmp_tracks=$tracks;
-if($this->permision->check("user_edit")) {
+if($this->permission->check("user_edit")) {
     $edit_link="<a class='btn btn-info' style='font-size:12px !important ;' onclick=areyousure('link','".site_url("MaLi/pusers/users/edit/".$id_user)."')> <i class=\"fa fa-edit\"></i> "  . _EDIT.'</a>';
 } else {
     $edit_link="<a class='btn btn-default' style='font-size:12px !important ;' ></i> "  . _EDIT.'</a>';

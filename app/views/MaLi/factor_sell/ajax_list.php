@@ -70,31 +70,31 @@ $CI->load->library('Page');
     }
     // stock out or stock in end
 
-    if ($level_pro["show_pdf"] || $this->permision->is_admin()) {
+    if ($level_pro["show_pdf"] || $this->permission->is_admin()) {
         $op[]=anchor_popup("MaLi/factor_preview/Factor_sell_pre/index/".$id_factor, "<i class='fa fa-file-pdf-o' ></i> "._PRINT.__._FACTOR, $atts);
     }
 
-    if ($level_pro["stock_in_recepie"] || $this->permision->is_admin()) {
+    if ($level_pro["stock_in_recepie"] || $this->permission->is_admin()) {
         $op[]=anchor_popup("MaLi/factor_preview/Factor_sell_pre/index/$id_factor/4", "<i class='fa fa-file-pdf-o' ></i> "._PRINT.__._GHABZ.__._STOCK, $atts);
     }
 
-    if ($level_pro["show_details"] || $this->permision->is_admin()) {
+    if ($level_pro["show_details"] || $this->permission->is_admin()) {
         $show_link= site_url("MaLi/factor_sell/manage_factor/view_details");
         $op[]="<a class=' btn  ' onclick=load_ajax_popup('$show_link','id=$id_factor')> <i class='fa fa-table' ></i> "  . _VIEW_FACTOR. ' </a>';
     }
-    if ($level_pro["editable"] ||  $this->permision->check("factor_edit")) {
+    if ($level_pro["editable"] ||  $this->permission->check("factor_edit")) {
         $op[]="<a class='btn ' onclick=areyousure('link','$edilink')> <i class='fa fa-edit' ></i>  "  ._EDIT. '</a>';
     }
-    if ($level_pro["removable"] || $this->permision->is_admin()) {
+    if ($level_pro["removable"] || $this->permission->is_admin()) {
         $op[]="<a class='btn ' onclick=areyousure('link','$dellink')><i class='fa fa-close' ></i>"  ._DELETE. '</a>';
     }
     //daryaft pool
-    if ($this->permision->is_admin()  ) {
+    if ($this->permission->is_admin()  ) {
         $get_link= site_url("MaLi/factor_sell/manage_factor/get_money");
         $op[]="<a class=' btn  ' onclick=load_ajax_popup('$get_link','id=$id_factor')> <i class='fa fa-dollar' ></i> " . _GET.' </a>';
     }
     //saier pardakhtha
-    if ($this->permision->is_admin() || $this->permision->user_permision() ) {
+    if ($this->permission->is_admin() || $this->permission->user_permision() ) {
         $other_pay_link= site_url("MaLi/factor_sell/manage_factor/other_pay");
         $op[]="<a class=' btn  ' onclick=load_ajax_popup('$other_pay_link','id=$id_factor')> <i class='fa fa-car' ></i> " . _OTHER_PAY.' </a>';
     }
@@ -144,7 +144,7 @@ $CI->load->library('Page');
 
         <?php if ($this->system->get_setting("show_pay_on_factor_list")) : ?>
         <td>
-            <?php if($this->permision->is_admin()) : ?>
+            <?php if($this->permission->is_admin()) : ?>
                 <a class=' btn  btn-default ' onclick=load_ajax_popup('<?php echo $get_link?>','id=<?php echo $id_factor?>')> <i class='fa fa-dollar' ></i>  </a>
             <?php endif; ?>
             <?php echo number_format($value["get"])  ?></td>

@@ -71,7 +71,7 @@ echo $this->template->load_custom_css("js-persian-cal");
         var objCal1 = new AMIB.persianCalendar('pcalreject', {
             extraInputID: 'daterej',
             extraInputFormat: 'YYYY/MM/DD ',
-            initialDate: '<?php echo $this->system->return_time_persian(); ?>'
+            initialDate: '<?= printDate(); ?>'
         });
 
 

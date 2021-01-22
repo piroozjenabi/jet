@@ -15,7 +15,7 @@ class Project extends CI_Controller
         $this->load->library("project_lib");
     }
     function manage(){
-        $this->permision->check("project_manage", 0, 1);
+        $this->permission->check("project_manage", 0, 1);
         $user_id = $this->system->get_user();
         //load for data table
         $this->load->library("Crud");
@@ -24,7 +24,7 @@ class Project extends CI_Controller
         $this->crud->column_order = array("id", "name", "status", "des","point_date" ,"maker_id", "todo_date", "doing_date", "done_date");
         $this->crud->column_title = array(_ID, _NAME, _STATE, _DES,_POINT_DATE, _MAKER, _TODO, _DOING, _DONE,);
         $this->crud->column_require = array(2, 1, 2, 0,0,2,2,2,2,2);
-        $this->crud->column_type = array("hide", "input", json_encode(["array",$this->project_lib->status_array]), "text","date", json_encode(["select_db","user_eemploy","name"]), "date","date","date");
+        $this->crud->column_type = array("hide", "input", json_encode(["array",$this->project_lib->status_array]), "text","date", json_encode(["select_db","user_admin","name"]), "date","date","date");
         $this->crud->column_search = array("name","des");
         $this->crud->permision = ["add"=>false,"edit"=>true,"delete"=>true];
         $this->crud->form_add = ["maker_id" => $user_id];
@@ -35,19 +35,19 @@ class Project extends CI_Controller
         $this->crud->actions_row .= "<a class='btn btn-info' data-toggle='tooltip' title='" . _MANAGE . "' onclick=load_ajax_popupfull('$tmp_url','id=[[id]]') > <i class='fa fa-cog' ></i> </a>";;
 
         //media manager
-        if ($this->permision->check("media_manage")) {
+        if ($this->permission->check("media_manage")) {
             $tmp_url = site_url("Media/manage/0/project");
             $this->crud->actions_row .= "<a class='btn btn-default' data-toggle='tooltip' title='" . _UPLOAD_MANAGER . "' onclick=load_ajax_popupfull('$tmp_url','id=[[id]]') > <i class='fa fa-upload' ></i> </a>";;
         }
 
         //comments manager
-        if ($this->permision->check("project_comments")) {
+        if ($this->permission->check("project_comments")) {
             $tmp_url = site_url("Project/comments");
             $this->crud->actions_row .= "<a class='btn btn-default' data-toggle='tooltip' title='" . _COMMENT_MANAGER. "' onclick=load_ajax_popup('$tmp_url','id=[[id]]') > <i class='fa fa-comments' ></i> </a>";;
         }
 
         //todo list manager
-        if ($this->permision->check("project_todo")) {
+        if ($this->permission->check("project_todo")) {
             $tmp_url = site_url("Project/todolist");
             $this->crud->actions_row .= "<a class='btn btn-default' data-toggle='tooltip' title='" . _TODO_MANAGER . "' onclick=load_ajax_popup('$tmp_url','id=[[id]]') > <i class='fa fa-list-ol' ></i> </a>";;
         }
@@ -61,33 +61,33 @@ class Project extends CI_Controller
 
     function addp(){
         $this->load->model("Project_model");
-        $res = $this->Project_model->add_project($this->input->post(null,true));
+        $res = $this->Project_model->add_project(post(null));
         jsonOut($res);
     }
 
     //main function for config and view project-----------------------------------------------------
     function view(){
-        $id = $this->input->post("id");
+        $id = post("id");
         $this->load->model("Project_model","model");
         $db=$this->model->get_project_full($id);
         $this->template->load_popup("project/view",_PROJECT_VIEW,["db"=>$db]);
     }
 
     function op_project($op,$id=0){
-        if(!$id) $id=$this->input->post("id");
+        if(!$id) $id=post("id");
         if(!$id) jsonOut(false);
         switch ($op){
             case "add_user":
-                jsonOut($this->project_lib->add_user_project($id,$this->input->post("user",true)));
+                jsonOut($this->project_lib->add_user_project($id,post("user")));
             break;    
             case "add_prd":
-                jsonOut($this->project_lib->add_prd_project($id,$this->input->post("prd",true)));
+                jsonOut($this->project_lib->add_prd_project($id,post("prd")));
             break;    
             case "add_company":
-                jsonOut($this->project_lib->add_company_project($id,$this->input->post("company",true)));
+                jsonOut($this->project_lib->add_company_project($id,post("company")));
             break;
             case "set_status":
-                jsonOut($this->project_lib->set_status_project($id,$this->input->post("status",true)));
+                jsonOut($this->project_lib->set_status_project($id,post("status")));
             break;
 
             default:jsonOut(false);break;
@@ -98,13 +98,13 @@ class Project extends CI_Controller
 
     //for comments-----------------------------------------------------
     function comments(){
-        $id = $this->input->post("id", true);
+        $id = post("id", true);
         $db = $this->project_lib->list_comments(["project_id" => $id]);
         $msg = [];
         //add 
-        if ($this->input->post("comment")) {
+        if (post("comment")) {
             $flg = $this->project_lib->add_comment([
-                "comment" => $this->input->post("comment"),
+                "comment" => post("comment"),
                 "project_id" => $id,
                 "maker_id" => $this->system->get_user()
             ]);
@@ -117,7 +117,7 @@ class Project extends CI_Controller
     }
 
     function list_todo(){
-        $this->permision->check("project_todo", 0, 1);
+        $this->permission->check("project_todo", 0, 1);
         $user_id=$this->system->get_user();
         //load for data table
         $this->load->library("Crud");
@@ -126,8 +126,8 @@ class Project extends CI_Controller
         $this->crud->column_order=array("id","name","des","date","project_id","to_user","maker_id");
         $this->crud->column_title=array(_ID,_NAME,_DES,_DATE,_PROJECT,_USER,_MAKER);
         $this->crud->column_require=array(2,1,0,0,0,0,0);
-        $tmp_selectdb=array("select_db","user_eemploy","name");
-        $tmp_selectdb2=array("select_db","user_eemploy","name");
+        $tmp_selectdb=array("select_db","user_admin","name");
+        $tmp_selectdb2=array("select_db","user_admin","name");
         $tmp_selectdb3=array("select_db","project","name");
         $this->crud->column_type=array("hide","input","input","date",json_encode($tmp_selectdb3),json_encode($tmp_selectdb),json_encode($tmp_selectdb2));
         $this->crud->column_search=array("name","des");
@@ -137,7 +137,7 @@ class Project extends CI_Controller
     }
     //list of comments-----------------------------------------------------
     function list_comments(){
-        $this->permision->check("project_comments", 0, 1);
+        $this->permission->check("project_comments", 0, 1);
         $user_id=$this->system->get_user();
         //load for data table
         $this->load->library("Crud");
@@ -146,7 +146,7 @@ class Project extends CI_Controller
         $this->crud->column_order=array("id","comment","date","project_id","maker_id");
         $this->crud->column_title=array(_ID,_COMMENT,_DATE,_PROJECT,_MAKER);
         $this->crud->column_require=array(2,1,0,0,0);
-        $tmp_selectdb2=array("select_db","user_eemploy","name");
+        $tmp_selectdb2=array("select_db","user_admin","name");
         $tmp_selectdb3=array("select_db","project","name");
         $this->crud->column_type=array("hide","text","date",json_encode($tmp_selectdb3),json_encode($tmp_selectdb2));
         $this->crud->column_search=array("comment");
@@ -156,14 +156,14 @@ class Project extends CI_Controller
     }
     //for to list-----------------------------------------------------
     function todolist(){
-        $this->permision->check("project_todo", 0, 1);
-        $id = $this->input->post("id", true);
+        $this->permission->check("project_todo", 0, 1);
+        $id = post("id", true);
         $db = $this->project_lib->list_todo(["project_id"=>$id]);
         $msg=[];
         //add 
-        if($this->input->post("todo")){
+        if(post("todo")){
             $flg = $this->project_lib->add_todo([
-                "name"=> $this->input->post("todo"),
+                "name"=> post("todo"),
                 "project_id" => $id,
                 "maker_id" => $this->system->get_user()    
             ]);
@@ -177,7 +177,7 @@ class Project extends CI_Controller
     }
     //list of operation todo-----------------------------------------------------
     function op_todo($op,$id){
-        $this->permision->check("project_todo", 0, 1);
+        $this->permission->check("project_todo", 0, 1);
         switch ($op) {
             case 'done':
                 jsonOut($this->project_lib->set_todo_done($id)) ;
