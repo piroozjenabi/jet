@@ -6,7 +6,6 @@
  * Time: 3:01 PM
  */
 $CI =& get_instance();
-$CI->load->library("Search");
 $CI->load->library("Factor");
 $CI->load->library('Piero_jdate');
 $CI->load->library('Page');

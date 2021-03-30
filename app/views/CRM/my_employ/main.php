@@ -52,8 +52,8 @@ $last_factor=0;
 
 
         <a TARGET="<?php echo $this->system->get_setting("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/factor_sell/manage_factor/this_month/'.$value['id']); ?>" >
-        <?php $limit_sell= number_format($value['sell_price']- $this->system->get_user_eemploy_from_id($value['id'], "limit_sell"));
-        $strng_title=_REMIND.__._MIN_LIMIT_SELL." = ".$limit_sell." | "._MIN_LIMIT_SELL."=".number_format($this->system->get_user_eemploy_from_id($value['id'], "limit_sell"));
+        <?php $limit_sell= number_format($value['sell_price']- $this->system->get_user_admin_from_id($value['id'], "limit_sell"));
+        $strng_title=_REMIND.__._MIN_LIMIT_SELL." = ".$limit_sell." | "._MIN_LIMIT_SELL."=".number_format($this->system->get_user_admin_from_id($value['id'], "limit_sell"));
         $strng_title.=($this->system->get_setting("salary_this_mount_percent")>0)?'|' . _SALARY_THIS_MOUNTH.$value['sell_price']*$this->system->get_setting("salary_this_mount_percent"):"";
         echo "<p data-toggle='tooltip' data-placement='bottom' title='$strng_title' > <i class='fa fa-dot-circle-o' > </i> ".number_format($value['sell_price'])." </p> ";
         ?>

@@ -30,7 +30,7 @@ class Comission_model extends CI_Model
     {
         $user_id=($user_id)?$user_id:$this->system->get_user();
         $ret=$this->system->get_setting("def_comision_group");
-        $params=$this->system->get_user_eemploy_from_id($user_id, "params");
+        $params=$this->system->get_user_admin_from_id($user_id, "params");
         if($params) {
             $params=json_decode($params);
             $tmp=$params->comision;
@@ -45,7 +45,7 @@ class Comission_model extends CI_Model
     {
         $ret=0;
         $user_id=($user_id)?$user_id:$this->system->get_user();
-        $params=$this->system->get_user_eemploy_from_id($user_id, "params");
+        $params=$this->system->get_user_admin_from_id($user_id, "params");
         if($params) {
             $params=json_decode($params);
             $tmp=$params->uncomision_user;

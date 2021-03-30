@@ -102,10 +102,7 @@ class Factor_sell_model extends CI_Model
         $this->db->select("factor.id  , ub.name ,  ub.tell  , factor.date , expire_date , ub.agent ,  ua.name as namec ");
         $this->db->from('factor');
         $this->db->join('user ub', 'ub.id=factor.user_id');
-        $this->db->join('user_eemploy ua', 'ua.id=factor.maker_id');
-        //load search
-        $this->load->library("Search");
-        $this->search->result_db();
+        $this->db->join('user_admin ua', 'ua.id=factor.maker_id');
         //load pagation
         $this->page->result_db();
         //for this mounth
@@ -160,7 +157,7 @@ class Factor_sell_model extends CI_Model
         $this->db->where('id', $factor_id);
         return $this->db->delete('factor');
     }
-    public function manage_changelevel($factor_id = 0)
+    public function manage_change_level($factor_id = 0)
     {
         //setfactor id
         $this->db->select_max('factor_id');
@@ -305,10 +302,7 @@ class Factor_sell_model extends CI_Model
         $main_factor = $this->db->insert('factor_other_pay', $data);
         return $main_factor;
     }
-    public function list_other_pay($id_factor)
-    {
-        return $this->db->get_where('factor_other_pay', "factor_id=$id_factor")->result_array();
-    }
+   
     public function getAdditions(){
         return $this->db->get("factor_additions")->result();
     }

@@ -16,7 +16,7 @@ class Manage_factor extends CI_Controller
         $this->main($level, $type, $user_id);
     }
 
-    public function main($level, $type = "private", $user_id = 0, $month_ago = 0, $type_date = "date", $type_in = "", $output = "", $sort = "")
+    public function main($level = 1, $type = "private", $user_id = 0, $month_ago = 0, $type_date = "date", $type_in = "", $output = "", $sort = "")
     {
         $this->load->library("Factor");
         $data = array("level" => $level, "month_ago" => $month_ago, "user_id" => $user_id, "type_date" => $type_date, "type_in" => $type_in, "type" => $type);
@@ -96,7 +96,7 @@ class Manage_factor extends CI_Controller
         }
         redirect("/MaLi/factor_sell/manage_factor");
     }
-    public function manage_changelevel($factor_id = 0, $level = 0)
+    public function manage_change_level($factor_id = 0, $level = 0)
     {
         $this->load->model('MaLi/Factor_sell_model');
         $this->load->library("Factor");
@@ -168,8 +168,8 @@ class Manage_factor extends CI_Controller
         $id = post("id", true);
         $this->load->model('MaLi/Factor_sell_model');
         $ret = $this->Factor_sell_model->edit_factor($id);
-        $retoth = $this->Factor_sell_model->list_other_pay($id);
-        $this->template->load_popup("MaLi/factor_sell/show_details", _VIEW_DETAILS . __ . _FACTOR, array("detail_factor" => $ret, "factor_id" => $id, "other_pay" => $retoth));
+
+        $this->template->load_popup("MaLi/factor_sell/show_details", _VIEW_DETAILS . __ . _FACTOR, array("detail_factor" => $ret, "factor_id" => $id, "other_pay" => []));
     }
 
     //show factor this month

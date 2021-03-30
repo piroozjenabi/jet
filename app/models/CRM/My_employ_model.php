@@ -27,12 +27,12 @@ class My_employ_model extends CI_Model
         $this->db->select('*');
         $this->db->from("user_admin");
         if($enable_admin_see_all) {
-            $this->db->where("user_eemploy.maker_id", $user_id);
+            $this->db->where("user_admin.maker_id", $user_id);
         }
 
-        $this->db->where_in("user_eemploy.usergroup", $def_usergroup_seller);
+        $this->db->where_in("user_admin.usergroup", $def_usergroup_seller);
 
-        $this->db->order_by('user_eemploy.name', 'DESC');
+        $this->db->order_by('user_admin.name', 'DESC');
 
         $res=$this->db->get()->result_array();
 

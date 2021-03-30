@@ -352,7 +352,7 @@ class Crud
         ?>
     <title> <?php echo $this->title ?> </title>
     <div class="btn-group" style="padding: 5px;">
-        <?php if ($this->permission["add"]): ?>
+        <?php if (isset($this->permission["add"]) && $this->permission["add"] ): ?>
 
             <button class="btn btn-success" onclick="_add_()"><i class="fa fa-plus"></i> <?php echo _ADD ?> </button>
         <?php endif;?>
@@ -362,7 +362,7 @@ class Crud
         <button class="btn btn-default" onclick="reload_table()"><i class="fa fa-refresh"></i> <?php echo _REFRESH ?> </button>
         <button class="btn btn-info" id="select-btn"><i class="fa fa-check"></i> <?php echo _SELECT ?> </button>
 
-        <?php if ($this->permission["delete"]): ?>
+        <?php if (isset($this->permission["delete"]) && $this->permission["delete"]): ?>
             <button class="btn btn-warning" id="delete_group" onclick="_delete_group()"><i class="fa fa-close"></i> <?php echo _DELETE ?> </button>
         <?php endif;?>
         <?php if (0): ?>
@@ -386,8 +386,8 @@ class Crud
                 <?php foreach ($this->column_title as $k): if ($this->checkList($k, 'title')): ?>
 		                        <th><?php echo $k ?></th>
 		                    <?php endif;
-        endforeach;?>
-                <?php if ($this->permission["edit"] || $this->permission["delete"]): ?>
+                endforeach;?>
+                <?php if(@$this->permission["edit"] || @$this->permission["delete"]): ?>
                     <th><?php echo _OP ?></th>
                 <?php endif;?>
             </tr>
@@ -401,7 +401,7 @@ class Crud
                 <?php foreach ($this->column_title as $k): if ($this->checkList($k, 'title')): ?>
 		                    <th><?php echo $k ?></th>
 		                 <?php endif;endforeach;?>
-                <?php if ($this->permission["edit"] || $this->permission["delete"]): ?>
+                <?php if (@$this->permission["edit"] || @$this->permission["delete"]): ?>
                     <th><?php echo _OP ?>
                     </th>
                 <?php endif;?>
@@ -1126,10 +1126,10 @@ class Crud
                 $c++;
             }
             $tmp = '<div class="btn-group">';
-            $tmp .= ($this->permission["view"]) ? '<a class="btn  btn-default" href="javascript:void(0)"   data-toggle="tooltip" title=' . _VIEW . '   onclick="_view_(' . "'" . $k->id . "'" . ')"><i class="fa fa-eye"></i> </a>' : null;
-            $tmp .= ($this->permission["copy"]) ? '<a class="btn  btn-warning" href="javascript:void(0)"   data-toggle="tooltip" title=' . _COPY . '   onclick="_copy_(' . "'" . $k->id . "'" . ')"><i class="fa fa-copy"></i> </a>' : null;
-            $tmp .= ($this->permission["edit"]) ? '<a class="btn btn-primary" href="javascript:void(0)"   data-toggle="tooltip" title=' . _EDIT . '   onclick="_edit_(' . "'" . $k->id . "'" . ')"><i class="fa fa-edit"></i> </a>' : null;
-            $tmp .= ($this->permission["delete"]) ? '<a class="btn  btn-danger" href="javascript:void(0)" data-toggle="tooltip" title=' . _DELETE . ' onclick="_delete_(' . "'" . $k->id . "'" . ')"><i class="fa fa-close"></i> </a>' : null;
+            $tmp .= (isset($this->permission["view"]) && $this->permission["view"]) ? '<a class="btn  btn-default" href="javascript:void(0)"   data-toggle="tooltip" title=' . _VIEW . '   onclick="_view_(' . "'" . $k->id . "'" . ')"><i class="fa fa-eye"></i> </a>' : null;
+            $tmp .= (isset($this->permission["copy"]) && $this->permission["copy"]) ? '<a class="btn  btn-warning" href="javascript:void(0)"   data-toggle="tooltip" title=' . _COPY . '   onclick="_copy_(' . "'" . $k->id . "'" . ')"><i class="fa fa-copy"></i> </a>' : null;
+            $tmp .= (isset($this->permission["edit"]) && $this->permission["edit"]) ? '<a class="btn btn-primary" href="javascript:void(0)"   data-toggle="tooltip" title=' . _EDIT . '   onclick="_edit_(' . "'" . $k->id . "'" . ')"><i class="fa fa-edit"></i> </a>' : null;
+            $tmp .= (isset($this->permission["delete"]) && $this->permission["delete"]) ? '<a class="btn  btn-danger" href="javascript:void(0)" data-toggle="tooltip" title=' . _DELETE . ' onclick="_delete_(' . "'" . $k->id . "'" . ')"><i class="fa fa-close"></i> </a>' : null;
             $tmp .= (str_replace("[[id]]", $k->id, $this->actions_row));
             $tmp .= "</div>";
             $row[] = $tmp;
@@ -1159,8 +1159,8 @@ class Crud
         }
 
         //render defual permision
-        $this->permission["copy"] = $this->permission["copy"] ?? $this->permission["add"];
-        $this->permission["view"] = $this->permission["view"] ?? !empty($this->column_list);
+        $this->permission["copy"] = isset($this->permission["copy"]) && $this->permission["copy"] ?? $this->permission["add"];
+        $this->permission["view"] = isset($this->permission["view"]) && $this->permission["view"] ?? !empty($this->column_list);
 
         $this->tableId = "taBle" . rand(0, 1000);
         if ($CI->input->post("where", true)) {

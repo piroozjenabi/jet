@@ -35,7 +35,7 @@ $all_price=0;
             </td>
             <td><?= number_format($value['total_price'])._R ?></td>
             <td><?=$this->piero_jdate->jdate("Y/m/d",$value['last_date']);  ?></td>
-            <td><?= $this->system->get_user_eemploy_from_id($value['maker_id']) ;  ?></td>
+            <td><?= $this->system->get_user_admin_from_id($value['maker_id']) ;  ?></td>
             <td><a class='btn btn-info' href='<?= site_url("CRM/my_client/tracks/".$value["id"]) ?>'> <i class="fa fa-list-alt"></i> <?= _PEIGIRI._S ?> </a></td>
         </tr>
 

@@ -18,6 +18,7 @@ define("_R", "$");
 
 
 ####################################### -- GENERALS--
+define("_DEFAULT", "default");
 define("_HELLO", "hello");
 define("_TITLE_TEXT", "title text");
 define("_SPACE", "space");

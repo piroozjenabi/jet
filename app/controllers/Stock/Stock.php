@@ -112,7 +112,7 @@ class Stock extends  CI_Controller
         $this->crud->table="stock";
         $this->crud->title=_MANAGE_STOCK;
         $this->crud->column_order=array("name","def","des","parent");
-        $this->crud->column_title=array(_NAME,_DEFULT,_DES,_VALED);
+        $this->crud->column_title=array(_NAME,_DEFAULT,_DES,_VALED);
         $this->crud->column_require=array(1,1,0,0);
         $tmp_selectdb=array("select_db","stock","name");
         $this->crud->column_type=array("input","bool","input",json_encode($tmp_selectdb));

@@ -127,6 +127,7 @@ function jsonOut($in, $die = true)
  */
 function printDate($time = null, $format = "Y-m-d")
 {
+    if($time == 0) return '---';
     $CI = &get_instance();
     $time = is_string($time)
         ? strtotime($time)

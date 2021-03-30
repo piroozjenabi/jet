@@ -37,7 +37,7 @@ $tmp_html="";
 </div>
     <div class="label label-primary"  >
         <?php echo _DATE_CREATE ." : ". $CI->piero_jdate->jdate("Y/m/d", $tmp_user[0]["date_create"])?>|
-        <?php echo _MAKER ." : ". $this->system->get_user_eemploy_from_id($tmp_user[0]["maker_id"]) ?>
+        <?php echo _MAKER ." : ". $this->system->get_user_admin_from_id($tmp_user[0]["maker_id"]) ?>
     </div>
     <div class="label label-danger" style="margin-top: -150px;width: 100%" >  <?php echo _CURRENT_STATE." : ". $cur_value["name"] ?> </div>
     <br/><br/>
@@ -59,7 +59,7 @@ $tmp_html="";
     <?php if(!$value["replay"]) : ?>
 
     <div class="panel panel-primary">
-        <div class="panel-heading"  > <i class="fa fa-user fa-1x"> </i> <?php echo $CI->system->get_user_eemploy_from_id($value["from_user"]);  ?>   |  <small  > <i class="fa fa-clock-o fa-1x"> </i>  <?php echo $CI->piero_jdate->jdate("Y/m/d   H:m   ", $value["date"]);?></small>
+        <div class="panel-heading"  > <i class="fa fa-user fa-1x"> </i> <?php echo $CI->system->get_user_admin_from_id($value["from_user"]);  ?>   |  <small  > <i class="fa fa-clock-o fa-1x"> </i>  <?php echo $CI->piero_jdate->jdate("Y/m/d   H:m   ", $value["date"]);?></small>
             <button  class="btn btn-default btn-xs"  style="float: left" onclick="show_rep(<?php echo $value["id"]?>)" >
                 <span class="fa fa-reply fa-1x"></span> <?php echo _REPLAY ?>
             </button>

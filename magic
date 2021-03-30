@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+
+<?php
+    require 'ENV.php';
+    echo "Welcome to magic jet [ php magic help ] for more info \r\n";
+
+    $command = $argv[1];
+    $help="---- backup --> for get database backup and write to jet sql \r\n";
+
+    switch($command){
+        case 'help': 
+            echo $help;
+        break;
+        case 'dev':
+            shell_exec('cd public;php -S localhost:8000');
+        break;    
+        case 'tailer':
+            echo "--- begin debug \r\n";
+            shell_exec('tail -f logs/log-'.date('Y-m-d').'.ini');
+        break;    
+        case 'install':
+            shell_exec('mysql -h ' . DB_HOST . ' -u ' . DB_USERNAME . ' -p' . DB_PASSWORD . ' ' . DB_DATABASE . ' < install/database.sql');
+            shell_exec('mv install .install');
+            echo "for more security delete .install folder";
+        break;    
+        case 'make_installer':
+            shell_exec('mv .install install');
+            shell_exec('mkdir install');
+            shell_exec('mysqldump -h '.DB_HOST.' -u '.DB_USERNAME.' -p'.DB_PASSWORD.' '.DB_DATABASE. ' > install/database.sql');
+        break;
+        case 'backup':
+            shell_exec('mysqldump -h '.DB_HOST.' -u '.DB_USERNAME.' -p'.DB_PASSWORD.' '.DB_DATABASE.' > jet.sql');
+        break;
+        // case 'help': break;
+        // case 'help': break;
+        default:echo "command not found for more info type help\r\n";break;
+    }
+?>

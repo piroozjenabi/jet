@@ -8,7 +8,7 @@
 $this->load->helper('form');
 echo form_open("Dashboard/fill_profilep");
 $def_class = 'form-control';
-$res = $this->system->get_user_eemploy_from_id($this->system->get_user(), "*");?>
+$res = $this->system->get_user_admin_from_id($this->system->get_user(), "*");?>
 <div class="col-sm-12" >
     <label><?php echo _NAME ?></label>
     <?php echo form_input(array('value' => $res->name, 'name' => "name", 'class' => $def_class, 'required' => 'required')) ?>

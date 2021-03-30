@@ -55,8 +55,8 @@ foreach ($forms as $key => $value): ?>
             </div>
         </td>
         <td><?= $this->piero_jdate->jdate("Y/m/d", $value["date"])  ?></td>
-        <td><?= $this->system->get_user_eemploy_from_id($value["from_user_id"]) ?></td>
-        <td><?= $this->system->get_user_eemploy_from_id($to_user_id) ?></td>
+        <td><?= $this->system->get_user_admin_from_id($value["from_user_id"]) ?></td>
+        <td><?= $this->system->get_user_admin_from_id($to_user_id) ?></td>
         <td><?= $this->auto->get_form_from_value_id($form_id)[0]["name"] ?></td>
         <td><?= $value["subject_name"] ?></td>
         <td><?= $this->auto->show_list($value["mainid"]) ?></td>

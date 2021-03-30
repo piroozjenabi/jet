@@ -25,11 +25,11 @@ $op=$CI->auto->render_op_form($detail_form[0],"btn btn-default");
 <hr>
 <br>
 <div class="row well  " >
-    <div class="col-sm-3">    <?= _MAKER ?> :<?= $this->system->get_user_eemploy_from_id($detail_form[0]["maker_id"],"name")  ?></div>
+    <div class="col-sm-3">    <?= _MAKER ?> :<?= $this->system->get_user_admin_from_id($detail_form[0]["maker_id"],"name")  ?></div>
     <div class="col-sm-3">   <?= _DATE.__._MAKE?> : <?= $CI->piero_jdate->jdate("Y/m/d",$detail_form[0]["date"]);  ?></div>
     <div class="col-sm-2">   <?= _NUMBER.__._FORM ?> :<?= $detail_form[0]["id"] ?> </div>
     <div class="col-sm-2">   <?= _EDIT?> : <?= (isset($detail_form[0]["modify_date"]))?$CI->piero_jdate->jdate("Y/m/d",$detail_form[0]["modify_date"]):null  ?></div>
-    <div class="col-sm-2">    <?= _EDITOR ?> :<?= (isset($detail_form[0]["modifire_id"]))?$this->system->get_user_eemploy_from_id($detail_form[0]["modifire_id"],"name"):null  ?></div>
+    <div class="col-sm-2">    <?= _EDITOR ?> :<?= (isset($detail_form[0]["modifire_id"]))?$this->system->get_user_admin_from_id($detail_form[0]["modifire_id"],"name"):null  ?></div>
 
 </div>
 <div class="row well col-sm-12">
@@ -64,14 +64,14 @@ $op=$CI->auto->render_op_form($detail_form[0],"btn btn-default");
             <td>
                 <?= $this->element->drop_down_menu($op) ?>
             </td>
-            <td> <?=$this->system->get_user_eemploy_from_id($value["from_user_id"])  ?> </td>
-            <td> <?=$this->system->get_user_eemploy_from_id($value["to_user_id"])  ?> </td>
+            <td> <?=$this->system->get_user_admin_from_id($value["from_user_id"])  ?> </td>
+            <td> <?=$this->system->get_user_admin_from_id($value["to_user_id"])  ?> </td>
             <td> <?= $CI->piero_jdate->jdate("Y/m/d",$value["date"])  ?> </td>
             <td> <?= $value["des"] ?> </td>
             <td> <?= $CI->auto->print_state ($value["state"]) ?> </td>
-            <td> <?= (isset($tmp->user_accept))?$this->system->get_user_eemploy_from_id($tmp->user_accept):null  ?> </td>
+            <td> <?= (isset($tmp->user_accept))?$this->system->get_user_admin_from_id($tmp->user_accept):null  ?> </td>
             <td> <?= (isset($tmp->date_accept))?$CI->piero_jdate->jdate("Y/m/d",$tmp->date_accept):null  ?> </td>
-            <td> <?= (isset($tmp->user_reject))?$this->system->get_user_eemploy_from_id($tmp->user_reject):null  ?> </td>
+            <td> <?= (isset($tmp->user_reject))?$this->system->get_user_admin_from_id($tmp->user_reject):null  ?> </td>
             <td> <?= (isset($tmp->date_reject))?$CI->piero_jdate->jdate("Y/m/d",$tmp->date_reject):null  ?> </td>
             <td> <?= (isset($tmp->des_reject))?$tmp->des_reject:null  ?> </td>
 
@@ -96,7 +96,7 @@ $op=$CI->auto->render_op_form($detail_form[0],"btn btn-default");
         <tbody>
             <?php foreach ($history as $key => $value): ?>
                 <tr>
-                <td> <?=$this->system->get_user_eemploy_from_id($value["user_id"])  ?></td>
+                <td> <?=$this->system->get_user_admin_from_id($value["user_id"])  ?></td>
                 <td> <?=$CI->piero_jdate->jdate("Y/m/d",$value["date"])  ?> </td>
                 <td> <?=$CI->auto->get_auto_history_type($value["type"])  ?> </td>
                 </tr>

@@ -114,7 +114,7 @@ class Tmp_users extends CI_Controller
         $this->crud->table="tmp_client_state";
         $this->crud->title=_CRM_MANAGE_STATE;
         $this->crud->column_order=array("id","order_by","deafult","name","enable_edit","enable_commenting","disable_converting","limit","submit");
-        $this->crud->column_title=array(_ID,_ORDER_BY,_DEFULT,_NAME,_ENABLE_EDITING,_ENABLE_COMMENTING,_DISABLE_CONVERTING,_CRM_LIMIT,_CRM_SUBMIT);
+        $this->crud->column_title=array(_ID,_ORDER_BY,_DEFAULT,_NAME,_ENABLE_EDITING,_ENABLE_COMMENTING,_DISABLE_CONVERTING,_CRM_LIMIT,_CRM_SUBMIT);
         $this->crud->column_require=array(2,1,1,1,0,0,0,0,0);
         $this->crud->column_type=array("hide","number","bool","input","bool","bool","bool","number","bool");
         $this->crud->column_search=array("name");

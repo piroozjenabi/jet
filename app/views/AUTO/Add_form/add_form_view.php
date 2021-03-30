@@ -123,7 +123,7 @@ $form=form_dropdown('form_id',$this->element->pselect("auto_forms","name","des",
                 </td>
                 <td><?= $this->piero_jdate->jdate("Y/m/d",$value["date"])  ?></td>
                 <td><?= $value["name"]  ?></td>
-                <td><?= @$this->system->get_user_eemploy_from_id($value["maker_id"]) ?></td>
+                <td><?= @$this->system->get_user_admin_from_id($value["maker_id"]) ?></td>
             </tr>
             <?php $c++; endforeach; ?>
         </tbody>

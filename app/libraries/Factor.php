@@ -2,7 +2,6 @@
 /**
  * Created by piero.ir.
  * User: pirooz jenabi
- * Date: 6/26/18
  * Time: 3:01 PM
  */
 class Factor
@@ -199,25 +198,10 @@ class Factor
 
         }
 
-        //for ezafat
-        $CI->db->select("price");
-        $CI->db->where('id_factor', $id_factor);
-        $res_ezafat = $CI->db->get("factor_ezafat")->result_array();
-        $total_ezafat = 0;
-        foreach ($res_ezafat as $key => $value) {
-            $total_ezafat += $value['price'];
-        }
+        $total_inc = $CI->db->select_sum("price")->where(['factor_id' => $id_factor, 'mode' => '+' ]) ->get('pay')->row()->price;
+        $total_dec = $CI->db->select_sum("price")->where(['factor_id' => $id_factor, 'mode' => '-' ]) ->get('pay')->row()->price;
 
-        //for kosoorat
-        $CI->db->select("price");
-        $CI->db->where('id_factor', $id_factor);
-        $res_kosoorat = $CI->db->get("factor_kosoorat")->result_array();
-        $total_kosoorat = 0;
-        foreach ($res_kosoorat as $key => $value) {
-            $total_kosoorat += $value['price'];
-        }
-
-        $main_total = $total_factor + $total_ezafat - $total_kosoorat;
+        $main_total = $total_factor + $total_inc - $total_dec;
         $main_total = ($bes) ? $main_total * -1 : $main_total;
         return $main_total;
 

@@ -1,16 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-/**
- * Created by piero.ir.
- * User: pirooz jenabi
- * Date: 6/26/18
- * Time: 3:01 PM
- */
-$radif=0;
-//print_r($detail_factor);
 $CI =& get_instance();
+
+$radif=0;
 $CI->load->model('MaLi/Factor_sell_model');
 $CI->load->model('MaLi/Comission_model');
-$CI->load->library('Piero_jdate');
 $CI->load->library("Factor");
 $tprice=0;
 $tnum=0;
@@ -33,13 +26,10 @@ $atts = array(
 );
 $id_factor=$factor_id;
 $dellink=site_url("MaLi/factor_sell/Manage_factor/manage_delete/".$id_factor);
-$levlink=site_url("MaLi/factor_sell/Manage_factor/manage_changelevel/".$id_factor);
+$levlink=site_url("MaLi/factor_sell/Manage_factor/manage_change_level/".$id_factor);
 $edilink=site_url("MaLi/factor_sell/Manage_factor/edit/".$id_factor);
 $op=array();
 $level_pro=$CI->factor->get_level_info_from_factor_id($id_factor);
-if ($level_pro["show_pdf"] || $this->permission->is_admin()) {
-    $op[]=anchor_popup("MaLi/factor_preview/Factor_sell_pre/index/".$id_factor, "<i class='fa fa-file-pdf-o' ></i> "._PRINT.__._FACTOR, $atts);
-}
 
 if ($level_pro["stock_in_recepie"] || $this->permission->is_admin()) {
     $op[]=anchor_popup("MaLi/factor_preview/Factor_sell_pre/index/$id_factor/4", "<i class='fa fa-file-pdf-o' ></i> "._PRINT.__._GHABZ.__._STOCK, $atts);
@@ -66,13 +56,8 @@ if ($this->permission->is_admin() || $this->permission->user_permision() ) {
     $op[]="<a class=' btn btn-link ' onclick=load_ajax_popup('$other_pay_link','id=$id_factor')> <i class='fa fa-car' ></i> " . _OTHER_PAY.' </a>';
 }
 
-
-
-
-
-$params=$detail_factor[0]["params"];
-if($params) {
-    $paramstmp=json_decode($params);
+if(isset($detail_factor[0]["params"])){
+    $paramstmp=json_decode($detail_factor[0]["params"]);
 }
 ?>
 
@@ -91,14 +76,14 @@ if($params) {
         </div>
 
 
-    <div class="col-lg-3">    <?php echo _FACTOR_NUM?> :<?php echo $detail_factor[0]["factor_id"]  ?></div>
-    <div class="col-lg-3">    <?php echo _DATE.__. _FACTOR  ?> :<?php echo $CI->piero_jdate->jdate("Y/m/d", $detail_factor[0]["date"]) ?></div>
-    <div class="col-lg-3">    <?php echo _EXPIRE?> :<?php echo $CI->piero_jdate->jdate("Y/m/d", $detail_factor[0]["expire_date"])  ?></div>
+    <div class="col-lg-3">    <?php echo _FACTOR_NUM?> :<?php echo $detail_factor[0]["id"]  ?></div>
+    <div class="col-lg-3">    <?php echo _DATE.__. _FACTOR  ?> :<?= printDate($detail_factor[0]["date"]) ?></div>
+    <div class="col-lg-3">    <?php echo _EXPIRE?> :<?= printDate($detail_factor[0]["expire_date"])  ?></div>
 
 
 </div>
 <div class="row well col-sm-12">
-    <div class="col-lg-4">    <?php echo _MAKER ?> :<?php echo $this->system->get_user_eemploy_from_id($detail_factor[0]["maker_id"], "name")  ?></div>
+    <div class="col-lg-4">    <?php echo _MAKER ?> :<?php echo $this->system->get_user_admin_from_id($detail_factor[0]["maker_id"], "name")  ?></div>
     <div class="col-lg-4">   <?php echo _TOTAL_PLUS?> : <?php echo number_format($CI->Factor_sell_model->show_total_price($factor_id)). _R  ?></div>
     <div class="col-lg-4">  <?php if(1) :?>  <?php echo _COMMISSION ?> :<?php echo number_format($CI->Comission_model->commison_factor($factor_id)). _R  ?> <?php
    endif; ?></div>

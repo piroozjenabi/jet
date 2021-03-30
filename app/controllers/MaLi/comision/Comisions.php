@@ -2,7 +2,6 @@
 /**
  * Created by piero.ir.
  * User: pirooz jenabi
- * Date: 6/26/18
  * Time: 3:01 PM
  */
 class Comisions extends CI_Controller

@@ -24,6 +24,7 @@ define("_R", " (ریال) ");
 
 
 ####################################### -- GENERALS--
+define("_DEFAULT", "پیش فرض");
 define("_HELLO", "سلام");
 define("_TITLE_TEXT", "سرتیتر");
 define("_SPACE", "فاصله");

@@ -53,7 +53,7 @@ foreach ($forms as $key => $value):
             <?php echo ($value["state"]==2)?"<br>"._DES.__._AUTO_REJECT.":".json_decode($value["params"])->des_reject." --- "._DATE.__._AUTO_REJECT.":".$this->piero_jdate->jdate("Y/m/d", json_decode($value["params"])->date_reject):null; ?>
         </td>
         <td><?php echo $this->piero_jdate->jdate("Y/m/d", $value["date"])  ?></td>
-        <td><?php echo $this->system->get_user_eemploy_from_id($value["to_user_id"]) ?></td>
+        <td><?php echo $this->system->get_user_admin_from_id($value["to_user_id"]) ?></td>
         <td><?php echo $this->auto->get_form_from_value_id($form_id)[0]["name"] ?></td>
         <td><?php echo $value["subject_name"] ?></td>
         <td><?php echo $this->auto->print_state($value["state"]) ?></td>

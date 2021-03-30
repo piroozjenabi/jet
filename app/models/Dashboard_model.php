@@ -69,7 +69,7 @@ class Dashboard_model extends CI_Model
     {
         $this->load->library("Factor");
         $user_id=$this->system->get_user();
-        $lim=$this->system->get_user_eemploy_from_id($user_id, "limit_sell");
+        $lim=$this->system->get_user_admin_from_id($user_id, "limit_sell");
         $ret=array(
             "user_limit"=>$lim,
             "user_selled"=>$this->factor->render_limit_pay($user_id)

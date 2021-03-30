@@ -1,16 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-/**
- * Created by piero.ir.
- * User: pirooz jenabi
- * Date: 6/26/18
- * Time: 3:01 PM
- */
-$radif=0;
-//print_r($detail_factor);
 $CI =& get_instance();
+
+$radif=0;
 $CI->load->model('MaLi/Factor_sell_model');
 $CI->load->model('MaLi/Comission_model');
-$CI->load->library('Piero_jdate');
 $CI->load->library('factor');
 $CI->load->library('bed_beslib');
 //get levels
@@ -59,7 +52,7 @@ $allprice=0;
             <td><?php echo $CI->piero_jdate->jdate("Y/m/d", $value["date"])        ?></td>
             <?php if($v["expirable"]) :?> <td><?php echo $CI->piero_jdate->jdate("Y/m/d", $value["expire_date"])?></td> <?php
             endif; ?>
-            <td <?php echo (!$this->system->get_setting("display_eemployer_on_print_client_detials"))?'class="dis_print"':''; ?> ><?php echo $this->system->get_user_eemploy_from_id($value["maker_id"]) ?></td>
+            <td <?php echo (!$this->system->get_setting("display_eemployer_on_print_client_detials"))?'class="dis_print"':''; ?> ><?php echo $this->system->get_user_admin_from_id($value["maker_id"]) ?></td>
             <td class="dis_print" ><?php echo $op ?></td>
         </tr>
     <?php endforeach; ?>
@@ -110,7 +103,7 @@ $allprice=0;
 
             <td><?php echo $this->element->edit_text($value["id"], $value["des"], "mali_bed_bes", "des", "text")  ?></td>
 
-            <td <?php echo (!$this->system->get_setting("display_eemployer_on_print_client_detials"))?'class="dis_print"':''; ?> ><?php echo $this->system->get_user_eemploy_from_id($value["maker_id"]) ?></td>
+            <td <?php echo (!$this->system->get_setting("display_eemployer_on_print_client_detials"))?'class="dis_print"':''; ?> ><?php echo $this->system->get_user_admin_from_id($value["maker_id"]) ?></td>
             <?php if($this->permission->check("base_accounting")) : ?>
             <td><?php
 

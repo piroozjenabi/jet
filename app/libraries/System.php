@@ -90,7 +90,7 @@ class System
      * @param string $type
      * @return any
      */
-    public function get_user_eemploy_from_id($id, $type = "name")
+    public function get_user_admin_from_id($id, $type = "name")
     {
         $CI = &get_instance();
         $CI->db->select($type)
@@ -124,7 +124,7 @@ class System
             return false;
         }
         $CI->db->select("*")
-            ->where(array('password' => encrypt($password), "username" => $username))
+            ->where(['password' => encrypt($password), "username" => $username, "is_active" => true])
             ->from("user_admin");
         $result = $CI->db->get()->row();
         $this->setLogin($result);
@@ -166,7 +166,7 @@ class System
      */
     function setLogin($data)
     {
-        return $data->id
+        return isset($data->id) && $data->id
         ? session('user', $data)
         : session('user', false);
     }
