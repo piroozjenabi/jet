@@ -18,8 +18,8 @@ class Eemploy_user_group extends CI_Controller
         $this->crud->column_order=array("name","state","parent");
         $this->crud->column_title=array(_NAME,_STATE,_VALED);
         $this->crud->column_require=array(1,0,0);
-        $tmp_selectdb=array("select_db","tbl_usergroup_eemploy","name");
-        $this->crud->column_type=array("input","bool",json_encode($tmp_selectdb));
+        $tmp_selectDb=array("select_db","tbl_usergroup_eemploy","name");
+        $this->crud->column_type=array("input","bool",json_encode($tmp_selectDb));
         $this->crud->column_search=array("name");
         if($this->permission->check("eemploy_permision")) {
             $tmp_url                 = site_url("eemploy/eemploy_user_group/manage_permision/" . '[[id]]');
@@ -31,8 +31,8 @@ class Eemploy_user_group extends CI_Controller
         $this->crud->render();
     }
 
-    //    ---------------------------------permisioion
-    //manage user group permision
+    //    ---------------------------------permission
+    //manage user group permission
     public function change_permision($id)
     {
         $this->permission->check("eemploy_permision", 0, 1);

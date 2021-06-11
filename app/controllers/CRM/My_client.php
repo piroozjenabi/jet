@@ -14,7 +14,7 @@ class My_client extends CI_Controller
     {
         $this->load->model("CRM/My_client_model");
         $res=$this->My_client_model->acounting_list($type, $renge, $user_id);
-        $this->template->load("CRM/my_client/accounting", array("res" => $res));
+        loadV("CRM/my_client/accounting", array("res" => $res));
     }
 
     function index($user_id=0)
@@ -23,7 +23,7 @@ class My_client extends CI_Controller
         $this->load->model("CRM/My_client_model");
         $res=$this->My_client_model->my_client_list($user_id);
 
-        $this->template->load("CRM/my_client/main", array("user_id"=>$user_id,"belfel"=>$res), array("title"=>_MY_CLIENT));
+        loadV("CRM/my_client/main", array("user_id"=>$user_id,"belfel"=>$res), array("title"=>_MY_CLIENT));
     }
 
     function belfel($user_id=0)
@@ -34,7 +34,7 @@ class My_client extends CI_Controller
         $this->load->model("CRM/My_client_model");
         $res=$this->My_client_model->my_client_list($user_id);
 
-        $this->template->load("CRM/my_client/belfel", array("res" => $res));
+        loadV("CRM/my_client/belfel", array("res" => $res));
     }
 
 
@@ -92,7 +92,7 @@ class My_client extends CI_Controller
 
 
         $res_array=array("id_user"=>$id,"tracks" => $res,"tmp_user"=>$ret_tmpuser,"cur"=>$curent_time,"des_cur"=>$des_curent_time,"last"=>$last_time,"des_last"=>$des_last_time,'def_time' => $def_time ,"period" => $next );
-        $this->template->load("CRM/my_client/tracks", $res_array);
+        loadV("CRM/my_client/tracks", $res_array);
     }
 
     public function add_tracks($id)

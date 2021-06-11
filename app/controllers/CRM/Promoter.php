@@ -10,7 +10,7 @@ class Promoter extends CI_Controller
 
     function add()
     {
-        $this->template->load('CRM/Promoter/add_p_users');
+        loadV('CRM/Promoter/add_p_users');
     }
 
     //add users too database
@@ -42,7 +42,7 @@ class Promoter extends CI_Controller
     {
         $this->load->model('CRM/Promoter_model');
         $ret=$this->Promoter_model->edit_user($id);
-        $this->template->load('CRM/Promoter/add_p_users', array("detail_user" => $ret));
+        loadV('CRM/Promoter/add_p_users', array("detail_user" => $ret));
     }
 
     function pedit($id)
@@ -60,7 +60,7 @@ class Promoter extends CI_Controller
         $result= $this->Promoter_model->manage_user($my_id, $state);
         $state= $this->Promoter_model->list_state();
         $data = array('user_details' => $result ,'state'=>$state , "my_id"=>$my_id );
-        $this->template->load('CRM/Promoter/manage_user_view', $data);
+        loadV('CRM/Promoter/manage_user_view', $data);
     }
 
     public function tracks($id=0)
@@ -70,7 +70,7 @@ class Promoter extends CI_Controller
         $res=$this->Promoter_model->list_track($id);
         $ret_tmpuser=$this->Promoter_model->edit_user($id);
         $state= $this->Promoter_model->list_state();
-        $this->template->load("CRM/Promoter/tracks", array("id_user"=>$id,"tracks" => $res,"tmp_user"=>$ret_tmpuser,"state"=>$state));
+        loadV("CRM/Promoter/tracks", array("id_user"=>$id,"tracks" => $res,"tmp_user"=>$ret_tmpuser,"state"=>$state));
     }
 
     public function add_tracks($id)

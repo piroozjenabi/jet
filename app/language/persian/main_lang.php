@@ -489,7 +489,9 @@ define("_FACTOR_BES", "بستانکار");
 define("_FACTOR_PREVID", "نمایش شناسه");
 define("_FACTOR_REJECTABLE", "برگشت پذیر");
 define("_FACTOR_OTHER_PAY", "اضافات و کسورات");
-define("_FACTOR_STOCK_RECEPIE", "رسد انبار");
+define("_FACTOR_STOCK_RECEPIE", "رسید انبار");
+define("_FACTOR_ADDED_SUC", "فاکتور با موفقیت اضافه گردید");
+define("_FACTOR_ADDED_FAIL", "خطا در ثبت فاکتور");
 
 
 

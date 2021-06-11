@@ -100,7 +100,7 @@ class Factor_sell_pre_model extends CI_Model
         @$type= $value['propertis']->type;
         $temp=$this->factor_data[0]["date"];
         if ($type=="shamsi") {
-            return  $this->piero_jdate->jdate("Y/m/d", $temp);
+            return  printDate("Y/m/d", $temp);
         }
 
         return date("Y/m/d", $temp);
@@ -110,7 +110,7 @@ class Factor_sell_pre_model extends CI_Model
     public function expire_factor($value,$id_factor)
     {
         $this->load->library('Piero_jdate');
-        $this->piero_jdate->jdate("Y/m/d");
+        printDate("Y/m/d");
         @$type= $value['propertis']->type;
         $temp=$this->factor_data[0]["expire_date"];
         //if time expire 0
@@ -118,7 +118,7 @@ class Factor_sell_pre_model extends CI_Model
         }
         //        if shamsi
         if ($type=="shamsi") {
-            return  $this->piero_jdate->jdate("Y/m/d", $temp);
+            return  printDate("Y/m/d", $temp);
         }
         //        if miladi or other
         return date("Y/m/d", $temp);

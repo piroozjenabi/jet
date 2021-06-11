@@ -19,7 +19,7 @@ class Tmp_users extends CI_Controller
     //add tmp user
     function add()
     {
-        $this->template->load('CRM/tmp_users/add_p_users');
+        loadV('CRM/tmp_users/add_p_users');
     }
 
 
@@ -52,7 +52,7 @@ class Tmp_users extends CI_Controller
     {
         $this->load->model('CRM/Tmp_users_model');
         $ret=$this->Tmp_users_model->edit_user($id);
-        $this->template->load('CRM/tmp_users/add_p_users', array("detail_user" => $ret));
+        loadV('CRM/tmp_users/add_p_users', array("detail_user" => $ret));
     }
 
     function pedit($id)
@@ -100,7 +100,7 @@ class Tmp_users extends CI_Controller
         $this->crud->render();
         //        $result= $this->Tmp_users_model->manage_user($user_id,$state);
         //        $data = array('user_details' => $result ,'state'=>$state,"my_id"=>$my_id );
-        //        $this->template->load('CRM/tmp_users/manage_user_view',$data);
+        //        loadV('CRM/tmp_users/manage_user_view',$data);
     }
 
     //manage state of tmp client - tmp_client_state db
@@ -164,7 +164,7 @@ class Tmp_users extends CI_Controller
         $res=$this->Tmp_users_model->list_track($id);
         $ret_tmpuser=$this->Tmp_users_model->edit_user($id);
         $state= $this->Tmp_users_model->list_state();
-        $this->template->load("CRM/tmp_users/tracks", array("id_user"=>$id,"tracks" => $res,"tmp_user"=>$ret_tmpuser,"state"=>$state,"user_id"=>$user_id));
+        loadV("CRM/tmp_users/tracks", array("id_user"=>$id,"tracks" => $res,"tmp_user"=>$ret_tmpuser,"state"=>$state,"user_id"=>$user_id));
     }
 
     public function add_tracks($id)

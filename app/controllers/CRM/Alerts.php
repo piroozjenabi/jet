@@ -6,7 +6,7 @@ class Alerts extends CI_Controller
     {
         $res=$this->alerts_lib->menu_list($type_id);
         $res=$this->alerts_lib->render($res);
-        $this->template->load("CRM/alerts/main_list", ["db"=>$res,"type_id"=>$type_id]);
+        loadV("CRM/alerts/main_list", ["db"=>$res,"type_id"=>$type_id]);
     }
     //read alert json input
     function read_alert()

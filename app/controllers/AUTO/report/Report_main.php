@@ -11,7 +11,7 @@ class Report_main extends CI_Controller
     {
 
         if(!$form_id) {
-            $this->template->load("AUTO/report/report_main", array("form_id"=>$form_id));
+            loadV("AUTO/report/report_main", array("form_id"=>$form_id));
         } else
         {
             $this->load->model("AUTO/Report_model", "model");

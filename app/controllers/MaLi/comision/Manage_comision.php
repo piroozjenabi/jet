@@ -14,7 +14,7 @@ class Manage_comision extends CI_Controller
     {
         $this->load->library("comision");
         $res=$this->comision->list_group();
-        $this->template->load('MaLi/comision/manage_view', array('db' => $res ));
+        loadV('MaLi/comision/manage_view', array('db' => $res ));
     }
 
     //add group too database

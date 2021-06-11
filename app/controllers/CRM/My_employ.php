@@ -26,7 +26,7 @@ class My_employ extends CI_Controller
             $value["total_pay"]=$this->Factor_sell_model->get_user_totalpay($value["id"]);
 
         }
-        $this->template->load("CRM/my_employ/main", array("res" => $res,"type"=>$type));
+        loadV("CRM/my_employ/main", array("res" => $res,"type"=>$type));
 
     }
 }

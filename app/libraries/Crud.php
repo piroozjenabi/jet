@@ -344,7 +344,7 @@ class Crud
 
     private function load_header()
     {
-        echo "<h2 class='page-header'> {$this->title}  </h2>";
+        // echo "<h2 class='page-header'> {$this->title}  </h2>";
     }
 
     private function load_action()

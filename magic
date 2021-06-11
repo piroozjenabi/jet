@@ -5,7 +5,12 @@
     echo "Welcome to magic jet [ php magic help ] for more info \r\n";
 
     $command = $argv[1];
-    $help="---- backup --> for get database backup and write to jet sql \r\n";
+    $help ="---- backup --> for get database backup and write to jet sql \r\n";
+    $help.="---- dev --> for development mode run server in 8000 port \r\n";
+    $help.="---- tailer --> watch show error logs \r\n";
+    $help.="---- install --> install and fetch database \r\n";
+    $help.="---- duplicator --> make duplicate for run in another device \r\n";
+    $help.="---- backup --> backup database \r\n";
 
     switch($command){
         case 'help': 
@@ -19,17 +24,20 @@
             shell_exec('tail -f logs/log-'.date('Y-m-d').'.ini');
         break;    
         case 'install':
+            echo "first setup database connection in ENV.php";
             shell_exec('mysql -h ' . DB_HOST . ' -u ' . DB_USERNAME . ' -p' . DB_PASSWORD . ' ' . DB_DATABASE . ' < install/database.sql');
             shell_exec('mv install .install');
             echo "for more security delete .install folder";
         break;    
-        case 'make_installer':
+        case 'duplicator':
             shell_exec('mv .install install');
             shell_exec('mkdir install');
             shell_exec('mysqldump -h '.DB_HOST.' -u '.DB_USERNAME.' -p'.DB_PASSWORD.' '.DB_DATABASE. ' > install/database.sql');
         break;
         case 'backup':
             shell_exec('mysqldump -h '.DB_HOST.' -u '.DB_USERNAME.' -p'.DB_PASSWORD.' '.DB_DATABASE.' > jet.sql');
+            shell_exec('tar -czvf backup/bkp-'.date('y-m-d-H:i').'.tar.gz jet.sql');
+            shell_exec('rm jet.sql');
         break;
         // case 'help': break;
         // case 'help': break;

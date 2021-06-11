@@ -57,7 +57,7 @@ class Stock extends  CI_Controller
                 $c++;
             }
         }
-            $this->template->load("Stock/stock", array("db" => $fill));
+            loadV("Stock/stock", array("db" => $fill));
     }
 
         //for reset stock

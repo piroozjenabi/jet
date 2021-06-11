@@ -217,3 +217,15 @@ function session($key = null , $value = false){
     }
 }
 
+/**
+ * function for load view
+ *
+ * @param string $view
+ * @param array $params
+ * @return void
+ */
+function loadV($view, $params = [], $paramsHeder = [], $paramsFooter = []){
+    $ci = &get_instance();
+    $ci->template->load($view, $params, $paramsHeder, $paramsFooter);
+}
+

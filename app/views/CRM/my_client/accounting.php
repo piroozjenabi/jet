@@ -99,8 +99,8 @@ $c=0;
             <td><?= number_format($value['total_price']) ?></td>
             <td><?= number_format($value['total_dariafti']) ?></td>
             <td><?= number_format($value['remind']) ?></td>
-            <td><?=$this->piero_jdate->jdate("Y/m/d",$value['last_date']);  ?></td>
-            <td> <p  data-toggle="tooltip" data-placement="bottom"  title="<?=number_format($value['last_get_price']) ._R ?> " > <?= ($value['last_get_date'])?$this->piero_jdate->jdate("Y/m/d",$value['last_get_date']):null;  ?> </p></td>
+            <td><?=printDate("Y/m/d",$value['last_date']);  ?></td>
+            <td> <p  data-toggle="tooltip" data-placement="bottom"  title="<?=number_format($value['last_get_price']) ._R ?> " > <?= ($value['last_get_date'])?printDate("Y/m/d",$value['last_get_date']):null;  ?> </p></td>
             <td><?= @$this->system->get_user_admin_from_id($value['maker_id']) ;  ?></td>
             <td class="dis_print" >
                 <?=$opp  ?>

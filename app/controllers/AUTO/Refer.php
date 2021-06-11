@@ -19,7 +19,7 @@ class Refer extends CI_Controller
         $this->load->library("auto");
         $this->load->model("AUTO/refer_model");
         $res = $this->refer_model->list_refers($subject_id);
-        $this->template->load("AUTO/refer/refer_view", array( "forms" => $res ,"subject_id"=>$subject_id ));
+        loadV("AUTO/refer/refer_view", array( "forms" => $res ,"subject_id"=>$subject_id ));
 
     }
 

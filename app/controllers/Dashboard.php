@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller
                 $html .= $this->load->view("mod/" . $value["load_type"], $value, true);
             }
         }
-        $this->template->load("Dashboard_view", array("html"=>$html,"show_alert"=>$show_alert), array("title"=>_DASHBOARD));
+        loadV("Dashboard_view", ["html"=>$html,"show_alert"=>$show_alert], ["title"=>_DASHBOARD]);
     }
     ///change password
     public function change_pass_view()

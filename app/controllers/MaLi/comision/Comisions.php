@@ -39,7 +39,7 @@ class Comisions extends CI_Controller
             $out[$k]["tot_com"]=$tot_com;
             $out[$k]["tot_sell"]=$tot_sell;
         }
-        $this->template->load("MaLi/comision/comision_view", array("res" => $out));
+        loadV("MaLi/comision/comision_view", array("res" => $out));
 
     }
 

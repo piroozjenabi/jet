@@ -629,7 +629,7 @@ class Auto{
         return $CI->db->get()->result_array();
     }
 
-    //get value filled // لیست مقادیر فیلدها
+    //get value filled 
     function get_value_fields($form_id,$field_id=null)
     {
         $CI =& get_instance();

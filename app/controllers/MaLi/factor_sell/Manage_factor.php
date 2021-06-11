@@ -20,7 +20,7 @@ class Manage_factor extends CI_Controller
     {
         $this->load->library("Factor");
         $data = array("level" => $level, "month_ago" => $month_ago, "user_id" => $user_id, "type_date" => $type_date, "type_in" => $type_in, "type" => $type);
-        $this->template->load('MaLi/factor_sell/manage_list', $data);
+        loadV('MaLi/factor_sell/manage_list', $data,['title'=>_MANAGE_INVOICE]);
 
     }
     //ajax list
@@ -84,7 +84,7 @@ class Manage_factor extends CI_Controller
         if ($output == "data") {
             return $data;
         }
-        $this->template->load('MaLi/factor_sell/manage_list', $data);
+        loadV('MaLi/factor_sell/manage_list', $data);
     }
 
     //delete factor
@@ -111,8 +111,8 @@ class Manage_factor extends CI_Controller
         $ret = $this->Factor_sell_model->edit_factor($id);
         //        time
         $this->load->library('Piero_jdate');
-        $def_time = $this->piero_jdate->jdate("Y/m/d", $ret[0]["date"]);
-        $def_time_expire = $this->piero_jdate->jdate("Y/m/d", $ret[0]["expire_date"]);
+        $def_time = printDate("Y/m/d", $ret[0]["date"]);
+        $def_time_expire = printDate("Y/m/d", $ret[0]["expire_date"]);
         //convert persian number to english
         $persian = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹');
         $num = range(0, 9);
@@ -120,7 +120,7 @@ class Manage_factor extends CI_Controller
         $ret[0]["expire_date"] = str_replace($persian, $num, $def_time_expire);
         @$ret[0]["delivery_address1"] = json_decode($ret[0]["params"])->delivery_address1;
         @$ret[0]["delivery_address2"] = json_decode($ret[0]["params"])->delivery_address2;
-        $this->template->load('MaLi/factor_sell/add_main', array("detail_factor" => $ret));
+        loadV('MaLi/factor_sell/add_main', array("detail_factor" => $ret));
     }
     public function pedit($id)
     {

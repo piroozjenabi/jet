@@ -10,12 +10,12 @@ class Factor extends CI_Controller
             if ($res) {
                 $this->system->message(_FACTOR_ADDED_SUC);
             } else {
-                $this->system->message(_FACTOR_NOT_ADDED);
+                $this->system->message(_FACTOR_ADDED_FAIL);
             }
             redirect("MaLi/factor_sell/manage_factor/main/", true);
         } else{
             $additions=$this->Factor_sell_model->getAdditions(); //get list of incement of factor
-            $this->template->load('MaLi/factor_sell/add_main',["additions"=>$additions]);
+            loadV('MaLi/factor_sell/add_main',["additions"=>$additions], ["title" => _ADD_FACTOR]);
         }
     }
     ###############################################manage factor

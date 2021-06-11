@@ -5,7 +5,7 @@ class add_factor extends CI_Controller
     public function index($level = 0)
     {
         $level = ($level) ? $level : $this->system->get_setting("deafult_factor_level");
-        $this->template->load('MaLi/factor_sell/add_main', ["level" => $level]);
+        loadV('MaLi/factor_sell/add_main', ["level" => $level]);
     }
     ###############################################aff factor to database
     public function padd($id = "")

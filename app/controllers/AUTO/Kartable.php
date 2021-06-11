@@ -13,7 +13,7 @@ class Kartable extends CI_Controller
         $this->load->library("auto");
         $this->load->model("AUTO/kartable_model");
         $res = $this->kartable_model->list_refers($subject_id, $type);
-        $this->template->load("AUTO/kartable/kartable_view", ["forms" => $res ,"subject_id"=>$subject_id ,"type"=>$type]);
+        loadV("AUTO/kartable/kartable_view", ["forms" => $res ,"subject_id"=>$subject_id ,"type"=>$type]);
 
     }
 }

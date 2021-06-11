@@ -13,16 +13,6 @@ $def_css_class="form-control";
 $data = array('class' => $def_css_class,"ng-change"=>"make_forms()" , "id" => "form_id" ,"ng-model"=>"formId");
 $form=form_dropdown('form_id',$this->element->pselect("auto_forms","name","des",null,"enable=1"), -1,$data);
 ?>
-<!--//drop down enter form-->
-<div ng-app="formApp" style="display: none" id="searchabe_input"  ng-controller="formController">
-    <div class="row well"  >
-        <label> <?= _ADD_FORM_SEARCHABLE?> </label>
-        <div class="col-sm-12 modal-body" >
-            <?= $form ?>
-        </div>
-    </div>
-</div>
-
 <!--//list add-->
 <div class=" row  " >
     <ul class="nav nav-tabs">
@@ -33,7 +23,6 @@ $form=form_dropdown('form_id',$this->element->pselect("auto_forms","name","des",
             <li <?= $flag_active ?> ><a data-toggle="tab"  href="#<?= $value["id"] ?>"><?= $value["name"] ?></a></li>
             <?php $flag_active=null; endforeach; ?>
 
-        <li ><a onclick="$('#searchabe_input').toggle(200)" > <i class="fa fa-search-plus"></i> </a></li>
     </ul>
     <div class="tab-content">
         <?php
@@ -121,7 +110,7 @@ $form=form_dropdown('form_id',$this->element->pselect("auto_forms","name","des",
                     </div>
 
                 </td>
-                <td><?= $this->piero_jdate->jdate("Y/m/d",$value["date"])  ?></td>
+                <td><?= printDate("Y/m/d",$value["date"])  ?></td>
                 <td><?= $value["name"]  ?></td>
                 <td><?= @$this->system->get_user_admin_from_id($value["maker_id"]) ?></td>
             </tr>

@@ -15,8 +15,8 @@ class add_return_factor extends CI_Controller
         $ret=$this->Factor_sell_model->edit_factor($id);
         //        time
         $this->load->library('Piero_jdate');
-        $def_time=$this->piero_jdate->jdate("Y/m/d", $ret[0]["date"]);
-        $def_time_expire=$this->piero_jdate->jdate("Y/m/d", $ret[0]["date"]);
+        $def_time=printDate("Y/m/d", $ret[0]["date"]);
+        $def_time_expire=printDate("Y/m/d", $ret[0]["date"]);
         //convert persian number to english
         $persian = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹');
         $num = range(0, 9);
@@ -24,7 +24,7 @@ class add_return_factor extends CI_Controller
         $ret[0]["expire_date"]= str_replace($persian, $num, $def_time_expire);
 
 
-        $this->template->load('MaLi/factor_sell/add_main', array("detail_factor" => $ret));
+        loadV('MaLi/factor_sell/add_main', array("detail_factor" => $ret));
     }
     public function padd($id="")
     {

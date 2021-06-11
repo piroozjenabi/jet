@@ -24,7 +24,7 @@ class Media extends CI_Controller
         $id = intval($id);
         $data =array( "permision" => $permission, "maker" => $maker, "id" => $id, "type" => $type );
         if ( post("noheader") == true) $this->template->load_popup("media/manage",_MANAGE_MEDIA, $data );
-        else $this->template->load("media/manage", $data );
+        else loadV("media/manage", $data , ["title" => _MANAGE_MEDIA]);
     }
 
     /**

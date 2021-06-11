@@ -18,7 +18,7 @@ class Add_form extends CI_Controller
         $this->load->library("auto");
         $res=$this->auto->list_value_form();
         //load for data table
-        $this->template->load("AUTO/Add_form/add_form_view", array("forms" =>$res));
+        loadV("AUTO/Add_form/add_form_view", ["forms" =>$res], ["title" => _AUTOM]);
 
     }
     //load add
@@ -26,7 +26,7 @@ class Add_form extends CI_Controller
     {
         $this->load->library("auto");
         $tmp=$this->db->get_where("auto_forms", "id=$form_number")->result_array()[0];
-        $this->template->load("AUTO/Add_form/form", array("form_id"=>$form_number,'out' =>$this->auto->render_form($form_number),"title"=>_AUTO_ADD_FORM.__.$tmp["name"]."<small>".$tmp["des"]."</small>"));
+        loadV("AUTO/Add_form/form", array("form_id"=>$form_number,'out' =>$this->auto->render_form($form_number),"title"=>_AUTO_ADD_FORM.__.$tmp["name"]."<small>".$tmp["des"]."</small>"),["title"=>_AUTO_ADD_FORM]);
     }
     //save form
     public function padd()
@@ -67,7 +67,7 @@ class Add_form extends CI_Controller
     public function edit($form_number,$id)
     {
         $this->load->library("auto");
-        $this->template->load("AUTO/Add_form/form", array('out' =>$this->auto->render_form($form_number, $id),"title"=>_EDIT ));
+        loadV("AUTO/Add_form/form", array('out' =>$this->auto->render_form($form_number, $id),"title"=>_EDIT ));
     }
     //delete form from id
     public function delete()

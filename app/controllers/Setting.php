@@ -8,7 +8,7 @@ class Setting extends CI_Controller
         $this->permission->check("base_setting", 0, 1);
         $this->load->model("Setting_model");
         $res=$this->Setting_model->manage_group();
-        $this->template->load("setting_group_view", array("db"=>$res));
+        loadV("setting_group_view", ["db"=>$res], ["title" => _ADVANCED_SETTING]);
     }
 
     public function manage($group=null)
