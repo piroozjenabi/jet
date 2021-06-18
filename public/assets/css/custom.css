@@ -98,25 +98,36 @@ body {
 
 .side-nav {
   height: 100%;
-  width: 70px;
+fix  width: 45px;
   border-top: 0px;
   background-color: #2a3f54;
-  transition: 0.4s ease;
+  transition: 0.3s ease;
   box-shadow: 0px 0px 5px #263238;
 }
 .side-nav li {
-  padding-right: 15%;
+  padding-right: 0px;
   list-style: none;
+}
+.side-nav li a{
+  padding:10px;
+  border-bottom: 1px solid #ccc;
+
+}
+.side-nav li  .collapse li a {
+  background-color: #ebe5e5f2 !important;
+  font-size:11px !important;
+}
+.side-nav li  .collapse li a:hover {
+  background-color: #4d4d4d !important;
 }
 .side-nav li a:hover,
 .side-nav li a:focus {
-  border-radius: 0 15px 15px 0;
+  
 }
 .side-nav:hover,
 .side-nav:focus {
-  width: 350px;
-  background-color: rgba(250, 250, 250, 0.95);
-  border-left: 4px solid #ccc;
+  width: 250px;
+  background-color: #fafafaf2;
 }
 .navbar-inverse {
   background-color: #2a3f54;
@@ -126,7 +137,7 @@ body {
   color: #2a3f54 !important;
 }
 .side-nav i {
-  font-size: large;
+  font-size:13px;
   color: #fff !important;
   width: 10%;
   margin: 0 0 0 6%;
@@ -483,4 +494,33 @@ tr:hover .hover_show {
 .card img {
   width: 100%;
   height: auto;
+}
+
+
+/* bottom nav */
+.btm-nav{
+    overflow: hidden;
+    background-color: #ccc;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    z-index: 990;
+    width: 100%;
+    border-top:1px #aaa solid;
+    box-shadow: 1px 1px 5px #ccc;
+}
+
+.btm-nav a {
+  float: left;
+  display: block;
+  color: #4d4d4d;
+  text-align: center;
+  padding: 8px 10px;
+  text-decoration: none;
+  font-size: 14px;
+  border-right:1px #aaa solid;
+}
+.btm-nav a:hover {
+  color: #ccc;
+  background-color: #4d4d4d;
 }

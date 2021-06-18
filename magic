@@ -12,8 +12,10 @@
     $help.="---- duplicator --> make duplicate for run in another device \r\n";
     $help.="---- backup --> backup database \r\n";
 
+    
     switch($command){
         case 'help': 
+        case  null : 
             echo $help;
         break;
         case 'dev':

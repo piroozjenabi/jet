@@ -6,13 +6,8 @@
  * Time: 3:01 PM
  */?>
 </div></div>
-<?php
-// ci render element
-if ($this->system->get_setting("shpw_ci_render_time")): ?>
-<div class="ci_render_time">
-<i class="fa fa-bar-chart " > </i> <em style="text-align: center">  <strong>{elapsed_time}</strong> <?php echo _SECEND ?></em>
-</div>
-<?php endif;?>
+
+
 <!-- ajax Modal full-->
 <div id="myModalfull" class="modal fade" role="dialog" data-backdrop="static"  >
     <div class="modal-dialog mdlfull">

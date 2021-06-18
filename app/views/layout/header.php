@@ -3,7 +3,7 @@ $CI = &get_instance();
 $CI->load->library('Piero_jdate');
 $user_id = $this->system->get_user();
 $alertsList = $this->alerts_lib->type_list();
-$titleNav = isset($title) && $title?" | <b style='color:#fff'>$title</b>":"";
+$titleNav = isset($title) && $title ? " | <b style='color:#fff'>$title</b>" : "";
 $title = (isset($title) && $title) ? $title : $this->system->get_setting('login_title');
 ?>
 <!DOCTYPE html>
@@ -50,8 +50,8 @@ $title = (isset($title) && $title) ? $title : $this->system->get_setting('login_
                             <?php
                             //for auto add form
                             if ($this->permission->check("auto_form_add")) {
-                                echo "<li> <hr/> </li>";
                                 $CI->load->library("Auto");
+                                echo count($CI->auto->list_forms())?"<li> <hr/> </li>":" ";
                                 foreach ($CI->auto->list_forms() as $k => $v) {
                                     $add_link = site_url("/AUTO/add_form/add/" . $v["id"]);
                                     echo "<li><a href='$add_link'  accesskey='n' target='_blank' > <i class='fa fa-plus-square' ></i> " . $v["name"] . " </a> </li>";
@@ -103,10 +103,7 @@ $title = (isset($title) && $title) ? $title : $this->system->get_setting('login_
 
                     <!--            my profile -->
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php
-                                                                                                                $CI = &get_instance();
-                                                                                                                echo $CI->system->get_user("name");
-                                                                                                                ?> <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= $CI->system->get_user("name") ?> <b class="caret"></b> </a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="#" onclick=load_ajax_popup("<?php echo site_url("Dashboard/change_pass_view") ?>")><i class="fa fa-fw fa-key"></i> <?php echo _CHANGE_PASSWORD ?></a>
@@ -114,16 +111,15 @@ $title = (isset($title) && $title) ? $title : $this->system->get_setting('login_
                             <li>
                                 <a href="#" onclick=load_ajax_popup("<?php echo site_url("Dashboard/fill_profile") ?>")><i class="fa fa-fw fa-user"></i> <?php echo _FILL_PROFILE ?></a>
                             </li>
+                            <li>
+                                <a href="#" onclick=areyousure('link','<?php echo site_url("login/logout") ?>')> <i class="fa fa-close"></i> <?php echo _LOGOUT ?> </li> </a>
                         </ul>
                     </li>
-                    <li><a class="btn-danger piero_close" onclick=areyousure('link','<?php echo site_url("login/logout") ?>')> <i class="fa fa-close"></i> <?php echo _LOGOUT ?> </li> </a>
                 </ul>
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse piero-menu">
                     <ul class="nav navbar-nav side-nav">
-                        <li>
-                            <a> <i class="fa fa-search"></i> <input type="search" style="background: transparent;border: 0px" placeholder="<?php echo _SEARCH ?>"> </a>
-                        </li>
+
                         <!--                 load for menus-->
                         <?php foreach ($CI->permission->list_main_permision() as $k => $v) : ?>
                             <?php
@@ -140,17 +136,24 @@ $title = (isset($title) && $title) ? $title : $this->system->get_setting('login_
                                 </li>
                             <?php endif; ?>
                         <?php endforeach; ?>
-                        <li class="dropdown">
-                            <a> <i class="fa fa-calendar"></i> <?php echo _TODAY . " : " . $CI->piero_jdate->jdate("Y/m/d", time()) ?></a>
-                        </li>
-
                         <!-- /.navbar-collapse -->
                 </div>
             </div>
         </nav>
+
+        <!-- bottom navigation -->
+        <div class="btm-nav">
+            <?php
+            if ($this->system->get_setting("shpw_ci_render_time")) : ?>
+                <a> <i class="fa fa-bar-chart "> </i> <em style="text-align: center"> <strong>{elapsed_time}</strong> <?php echo _SECEND ?></em> </a>
+            <?php endif; ?>
+            <a> <i class="fa fa-calendar"></i> <?= _TODAY . " : " . $CI->piero_jdate->jdate("Y/m/d H:i", time()) ?></a>
+
+        </div>
+
         <div id="page-wrapper">
             <div class="container-fluid">
 
-                <?php if (@$message) : ?>
-                    <div class="alert alert-warning fade in"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong><?php echo _MESSAGE ?></strong> <?php echo $message ?></div>
-                <?php endif ?>
+        <?php if (@$message) : ?>
+            <div class="alert alert-warning fade in"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong><?php echo _MESSAGE ?></strong> <?php echo $message ?></div>
+        <?php endif ?>

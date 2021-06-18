@@ -44,14 +44,14 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
     </div>
   </div>
   <div class="row well" id="desInvoice" style="display:none">
-    <?php echo $des ?>
+    <?= $des ?>
   </div>
   <div class="row well">
-    <div class="col-sm-4"><label for="type"><?php echo _FACTOR_CLIENT ?> </label><?php echo $factor_client ?></div>
-    <div class="col-sm-4"><label for="type"><?php echo _FACTORـTYPE ?></label><?php echo $level_factor ?> </div>
-    <div class="col-sm-2"><label for="type"><?php echo _FACTORـDATE ?></label><?= $factor_date ?></div>
+    <div class="col-sm-4"><label for="type"><?= _FACTOR_CLIENT ?> </label><?= $factor_client ?></div>
+    <div class="col-sm-4"><label for="type"><?= _FACTORـTYPE ?></label><?= $level_factor ?> </div>
+    <div class="col-sm-2"><label for="type"><?= _FACTORـDATE ?></label><?= $factor_date ?></div>
     <?php if ($this->system->get_setting("enable_factor_expire_date")) : ?>
-      <div class="col-sm-2"><label for="type"><?php echo _EXPIRE_FACTOR ?></label><?= $factor_date_expire ?></div>
+      <div class="col-sm-2"><label for="type"><?= _EXPIRE_FACTOR ?></label><?= $factor_date_expire ?></div>
     <?php endif; ?>
     <div class="col-sm-12" id="user_details" style="text-align: center;padding-top: 15px"> </div>
 
@@ -61,11 +61,11 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
     <table id="prd_tbl" class="table table-striped table-bordered">
       <tr style="background-color: #1f1f1f;color: #ffffee;text-align: center">
         <td style="width: 5%">#</td>
-        <td style="width: 30%"><?php echo _NAME . ' ' . _PRD ?></td>
-        <td style="width: 5%"> <?php echo _NUM ?></td>
-        <td><?php echo _PRICE_MAIN . _R ?></td>
-        <td><?php echo _TAKHFIF_KHATI ?></td>
-        <td><?php echo _PRICE_TOTAL . _R ?></td>
+        <td style="width: 30%"><?= _NAME . ' ' . _PRD ?></td>
+        <td style="width: 5%"> <?= _NUM ?></td>
+        <td><?= _PRICE_MAIN . _R ?></td>
+        <td><?= _TAKHFIF_KHATI ?></td>
+        <td><?= _PRICE_TOTAL . _R ?></td>
       </tr>
       <?php if (isset($mode) && @$mode = "edit" && @$detail_factor[0]["id"]) {
         $c = 1;
@@ -84,23 +84,23 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
       } else {
       ?>
         <tr id="prd_row">
-          <td><?php echo $radif_prd ?></td>
-          <td><?php echo $name_prd ?></td>
-          <td><?php echo $num_prd ?></td>
-          <td><?php echo $price_prd ?></td>
-          <td><?php echo $takhfif_prd ?><div id="perfix_takhfif"> </div>
+          <td><?= $radif_prd ?></td>
+          <td><?= $name_prd ?></td>
+          <td><?= $num_prd ?></td>
+          <td><?= $price_prd ?></td>
+          <td><?= $takhfif_prd ?><div id="perfix_takhfif"> </div>
           </td>
-          <td><?php echo $total_prd_main ?></td>
+          <td><?= $total_prd_main ?></td>
         <?php } ?>
         </tr>
     </table>
     <table class="table table-striped table-bordered">
       <tr>
 
-        <td><?php echo _NUM_TOTAL ?></td>
-        <td><?php echo $total_num_end ?> </td>
-        <td><?php echo _PRICE_TOTAL . _R ?></td>
-        <td><?php echo $total_prd_end ?> </td>
+        <td><?= _NUM_TOTAL ?></td>
+        <td><?= $total_num_end ?> </td>
+        <td><?= _PRICE_TOTAL . _R ?></td>
+        <td><?= $total_prd_end ?> </td>
       </tr>
 
     </table>
@@ -114,8 +114,8 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
           <div class="panel-body">
             <table id="prd_tbl" class="table table-striped table-bordered">
               <tr>
-                <td> <?php echo _NAME . _R ?> </td>
-                <td> <?php echo _PRICE_TOTAL . _R ?> </td>
+                <td> <?= _NAME . _R ?> </td>
+                <td> <?= _PRICE_TOTAL . _R ?> </td>
               </tr>
               <?php foreach ($additions as $key => $value) : if ($value->mode == '-') { ?>
                   <tr>
@@ -141,8 +141,8 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
           <div class="panel-body">
             <table id="prd_tbl" class="table table-striped table-bordered">
               <tr>
-                <td> <?php echo _NAME . _R ?> </td>
-                <td> <?php echo _PRICE_TOTAL . _R ?> </td>
+                <td> <?= _NAME . _R ?> </td>
+                <td> <?= _PRICE_TOTAL . _R ?> </td>
               </tr>
               <?php foreach ($additions as $key => $value) : if ($value->mode == '+') { ?>
                   <tr>
@@ -160,7 +160,7 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
       </div>
     <?php endif; ?>
   </div>
-  <?php echo form_close(); ?>
+  <?= form_close(); ?>
 </div>
 
 <script type="text/javascript">
