@@ -4,10 +4,11 @@ html {
   font-family: vazir;
   background-color: #fff;
 }
+
 body {
   font-family: vazir;
   background-color: #fff;
-  padding-right: 5%;
+  padding-right: 2%;
 }
 
 .page-header {
@@ -15,21 +16,24 @@ body {
   font-size: 20px;
   font-weight: bolder;
 }
+
 .ci_render_time {
   position: fixed;
   bottom: 3px;
   left: 3px;
   opacity: 0.2;
 }
+
 #wrapper {
   padding: 0px;
 }
+
 .left-nav {
   float: left;
 }
 
 .piero_close {
-  color: #fff !important  ;
+  color: #fff !important;
   cursor: pointer;
 }
 
@@ -41,6 +45,7 @@ body {
   text-decoration: none;
   border-right: 5px solid #fff;
 }
+
 .alert-first:hover {
   border-right: 5px solid #3accc7;
 }
@@ -48,6 +53,7 @@ body {
 .modal-body * {
   margin: 0px;
 }
+
 .modal {
   background: rgba(0, 0, 0, 0.8);
 }
@@ -56,6 +62,7 @@ body {
   border: 4px solid #b71c1c !important;
   border-radius: 10px !important;
 }
+
 .expire_prd_red .exp {
   color: #b71c1c;
   font-weight: bolder;
@@ -65,6 +72,7 @@ body {
   border: 2px solid #ffa800 !important;
   border-radius: 10px !important;
 }
+
 .expire_prd_orange .exp {
   color: #ffa800;
   font-weight: bolder;
@@ -80,8 +88,9 @@ body {
 }
 
 .picker {
-  position: fixed !important ;
+  position: fixed !important;
 }
+
 .piero_nav {
   background-color: #006758;
   border-radius: 3px;
@@ -91,6 +100,7 @@ body {
   cursor: pointer;
   color: #fff;
 }
+
 .piero_nav:hover {
   background-color: #005344;
   color: #fff;
@@ -98,66 +108,79 @@ body {
 
 .side-nav {
   height: 100%;
-fix  width: 45px;
+  width: 45px;
   border-top: 0px;
   background-color: #2a3f54;
   transition: 0.3s ease;
   box-shadow: 0px 0px 5px #263238;
 }
+
 .side-nav li {
   padding-right: 0px;
   list-style: none;
 }
-.side-nav li a{
-  padding:10px;
+
+.side-nav li a {
+  padding: 10px;
   border-bottom: 1px solid #ccc;
 
 }
-.side-nav li  .collapse li a {
+
+.side-nav li .collapse li a {
   background-color: #ebe5e5f2 !important;
-  font-size:11px !important;
 }
-.side-nav li  .collapse li a:hover {
+
+.side-nav li .collapse li a:hover,
+.side-nav li .collapse li a.active {
   background-color: #4d4d4d !important;
+  color:#fff !important;
 }
+
 .side-nav li a:hover,
-.side-nav li a:focus {
-  
-}
+.side-nav li a:focus {}
+
 .side-nav:hover,
 .side-nav:focus {
   width: 250px;
   background-color: #fafafaf2;
 }
+
 .navbar-inverse {
   background-color: #2a3f54;
   box-shadow: 0px 0px 5px #2a3f54;
 }
+
 .side-nav * {
   color: #2a3f54 !important;
 }
+
 .side-nav i {
-  font-size:13px;
+  font-size: 13px;
   color: #fff !important;
   width: 10%;
   margin: 0 0 0 6%;
 }
+
 .side-nav i {
   font-size: x-large;
   color: #fff !important;
   width: 10%;
   margin: 0 0 0 6%;
 }
+
 .side-nav:hover i {
   color: #006064 !important;
 }
+
 .side-nav a:hover i {
   color: #fff !important;
 }
+
 div.dt-buttons {
   position: relative;
   float: right !important;
 }
+
 .side-nav *:hover,
 .side-nav *:focus {
   color: #fff !important;
@@ -167,29 +190,29 @@ div.dt-buttons {
   float: none;
   margin: 0 auto;
 }
+
 /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-general end*/
 /*table*/
 thead,
 tfoot {
   color: #fff;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#78909c+1,546e7a+100 */
-  background: rgb(120, 144, 156); /* Old browsers */
-  background: -moz-linear-gradient(
-    top,
-    rgba(120, 144, 156, 1) 1%,
-    rgba(84, 110, 122, 1) 100%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    top,
-    rgba(120, 144, 156, 1) 1%,
-    rgba(84, 110, 122, 1) 100%
-  ); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    rgba(120, 144, 156, 1) 1%,
-    rgba(84, 110, 122, 1) 100%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#78909c', endColorstr='#546e7a',GradientType=0 ); /* IE6-9 */
+  background: rgb(120, 144, 156);
+  /* Old browsers */
+  background: -moz-linear-gradient(top,
+      rgba(120, 144, 156, 1) 1%,
+      rgba(84, 110, 122, 1) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,
+      rgba(120, 144, 156, 1) 1%,
+      rgba(84, 110, 122, 1) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,
+      rgba(120, 144, 156, 1) 1%,
+      rgba(84, 110, 122, 1) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#78909c', endColorstr='#546e7a', GradientType=0);
+  /* IE6-9 */
 }
 
 /*//exelcell*/
@@ -202,9 +225,11 @@ tfoot {
   margin: 0px;
   border-radius: 5px;
 }
+
 .spcell:hover {
   border: 1px solid #a3a3a3;
 }
+
 .spcell:focus {
   border: 1px solid #222222;
 }
@@ -213,6 +238,7 @@ tfoot {
   float: left !important;
   margin-top: 8px !important;
 }
+
 .dataTables_filter input {
   padding: 4px;
   height: 33px;
@@ -222,6 +248,7 @@ tfoot {
   margin: -5px 5px 0px 5px;
   font-family: franklin, yekan;
 }
+
 .dataTables_filter input:hover,
 .dataTables_filter input:focus {
   background-color: #77beff;
@@ -235,6 +262,7 @@ tfoot {
   opacity: 0.2;
   float: right;
 }
+
 .edit-text:hover i {
   opacity: 1;
 }
@@ -246,6 +274,7 @@ tfoot {
   padding: 3px;
   width: 80%;
 }
+
 .edit-text button {
   margin-top: 1px;
   position: absolute;
@@ -256,9 +285,11 @@ tfoot {
   padding: 4px 15px;
   height: 26px;
 }
+
 .edit-text button:hover {
   background-color: #1b5e20;
 }
+
 .edit-text textarea {
   direction: ltr;
   text-align: left;
@@ -271,22 +302,25 @@ tfoot {
   width: 160px;
   height: 34px;
 }
+
 /* Hide default HTML checkbox */
 .switch input {
   display: none;
 }
+
 .switch span {
   position: absolute;
   padding: 5px;
   color: #212121;
   text-indent: 10px;
 }
+
 /*elements end*/
 
 /*print*/
 
-@media print {
-}
+@media print {}
+
 /*print end*/
 
 /* The slider */
@@ -314,15 +348,15 @@ tfoot {
   transition: 0.4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #4dd0e1;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #4dd0e1;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(66px);
   -ms-transform: translateX(66px);
   transform: translateX(66px);
@@ -336,6 +370,7 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
 /*slide bar end*/
 
 /*bar loading start----------------------*/
@@ -400,46 +435,55 @@ input:checked + .slider:before {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
+
 @-moz-keyframes pace-spinner {
   0% {
     -moz-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     -moz-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
+
 @-o-keyframes pace-spinner {
   0% {
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
+
 @-ms-keyframes pace-spinner {
   0% {
     -ms-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
+
 @keyframes pace-spinner {
   0% {
     transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
     transform: rotate(360deg);
@@ -455,6 +499,7 @@ input:checked + .slider:before {
 .modal-body .select2 {
   width: 100% !important;
 }
+
 .modal-footer {
   border: 0 !important;
 }
@@ -463,6 +508,7 @@ input:checked + .slider:before {
 .ui-pnotify {
   direction: rtl;
 }
+
 .ui-pnotify-text {
   text-align: justify;
 }
@@ -470,9 +516,11 @@ input:checked + .slider:before {
 .hover_show {
   visibility: hidden;
 }
+
 tr:hover .hover_show {
   visibility: visible;
 }
+
 /*persian date piker*/
 .datepicker-plot-area {
   z-index: 9999 !important;
@@ -498,16 +546,16 @@ tr:hover .hover_show {
 
 
 /* bottom nav */
-.btm-nav{
-    overflow: hidden;
-    background-color: #ccc;
-    position: fixed;
-    bottom: 0;
-    left:0;
-    z-index: 990;
-    width: 100%;
-    border-top:1px #aaa solid;
-    box-shadow: 1px 1px 5px #ccc;
+.btm-nav {
+  overflow: hidden;
+  background-color: #ccc;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 990;
+  width: 100%;
+  border-top: 1px #aaa solid;
+  box-shadow: 1px 1px 5px #ccc;
 }
 
 .btm-nav a {
@@ -518,8 +566,9 @@ tr:hover .hover_show {
   padding: 8px 10px;
   text-decoration: none;
   font-size: 14px;
-  border-right:1px #aaa solid;
+  border-right: 1px #aaa solid;
 }
+
 .btm-nav a:hover {
   color: #ccc;
   background-color: #4d4d4d;

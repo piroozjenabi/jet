@@ -28,8 +28,8 @@ class Users extends CI_Controller
         $this->crud->column_type=array("bool","input","input","input","input","input",json_encode($tmp_selectdb2),json_encode($tmp_selectdb),"date");
         $this->crud->column_search=array("name","comerical_id","agent","tell");
         $this->crud->form_add=["maker_id"=>$user_id,"date_create"=>time()];
-        $this->crud->permision=$this->crud->render_permsion_crud("user");
-        if($this->crud->permision["edit"]) {
+        $this->crud->permission=$this->crud->render_permsion_crud("user");
+        if($this->crud->permission["edit"]) {
             $tmp_url= site_url("MaLi/pusers/users/edit/" . '[[id]]');
             $this->crud->actions_row = "<a class='btn btn-default' data-toggle='tooltip' title='{_EDIT_FULLL}'  onclick=load_ajax_popupfull('".$tmp_url."','id=[[id]]') > <i class='fa fa-edit' ></i> </a>";;
         }
@@ -59,8 +59,8 @@ class Users extends CI_Controller
         $this->crud->column_type=array("hide","bool","boolYN","date","input","input","input",json_encode($tmp_selectdb2),json_encode($tmp_selectdb),"input","date");
         $this->crud->column_search=array("name","comerical_id","agent","tell");
         $this->crud->form_add=["maker_id"=>$user_id];
-        $this->crud->permision=$this->crud->render_permsion_crud("user");
-        if($this->crud->permision["edit"]) {
+        $this->crud->permission=$this->crud->render_permsion_crud("user");
+        if($this->crud->permission["edit"]) {
             $tmp_url                 = site_url("MaLi/pusers/users/edit/");
             $this->crud->actions_row = "<a class='btn btn-default' data-toggle='tooltip' title='"._EDIT_FULLL."' onclick=load_ajax_popupfull('$tmp_url','id=[[id]]') > <i class='fa fa-edit' ></i> </a>";;
         }
@@ -100,7 +100,7 @@ class Users extends CI_Controller
         $tmp_selectdb=array("select_db","usergroup","name");
         $this->crud->column_type=array("bool","input",json_encode($tmp_selectdb));
         $this->crud->column_search=array("name");
-        //        $this->crud->permision=$this->crud->render_permsion_crud("user");
+        //        $this->crud->permission=$this->crud->render_permsion_crud("user");
         $this->crud->actions= "<a class='btn btn-info  ' href='".site_url("MaLi/pusers/users/manage")."' > <i class='fa fa-users' ></i>" . _MANAGE_CLIENTS. ' </a>';;
         $this->crud->render();
     }

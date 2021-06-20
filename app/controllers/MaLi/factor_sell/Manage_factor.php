@@ -249,7 +249,7 @@ class Manage_factor extends CI_Controller
         $this->crud->join[] = array("factor_prd", "factor.id = factor_prd.id_factor","left");
         $this->crud->join[] = array("factor_additions", "factor.id = factor_additions.id_factor","left");
         $this->crud->group_by = "factor.id";
-        $this->crud->permision = array("add" => false, "edit" => false, "delete" => false);
+        $this->crud->permission = array("add" => false, "edit" => false, "delete" => false);
         $tmp_selectdb = array("select_db", "user", "name");
         $tmp_selectdbtype = array("select_db", "factor_level", "name");
         $this->crud->column_type = array("hide", json_encode($tmp_selectdbtype), json_encode($tmp_selectdb), "date", "date", "number", "number", "number","number");
@@ -267,7 +267,7 @@ class Manage_factor extends CI_Controller
         $this->crud->column_list    = array("name", "des", "next_levels", "get_id", "expirable", "removable", "editable","show_details","bed","bes");
         $this->crud->column_require = array(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         $this->crud->column_title   = array(_NAME, _DES, _FACTOR_NEXT_LEVEL, _FACTOR_GET_ID, _FACTOR_EXPIREABLE,_FACTOR_REMOVABLE, _FACTOR_EDITABLE, _FACTOR_PRINTABLE, _FACTOR_ALERT_SELF, _FACTOR_ALERT_SELF_GROUP, _FACTOR_EXPIRE_ALERT_SELF, _FACTOR_EXPIRE_ALERT_SELF_GROUP, _FACTOR_STOCK_IN, _FACTOR_STOCK_OUT, _FACTOR_BED, _FACTOR_BES, _FACTOR_PREVID, _FACTOR_REJECTABLE, _FACTOR_OTHER_PAY, _FACTOR_STOCK_RECEPIE);
-        $this->crud->permision      = array("add" => true, "edit" => true, "delete" => true);
+        $this->crud->permission      = array("add" => true, "edit" => true, "delete" => true);
         $this->crud->column_type    = array( "input", "input", json_encode(["select_db", "factor_level", "name"]), "bool", "bool", "bool", "bool", "bool", "bool","bool", "bool", "bool", "bool", "bool","bool", "bool", "bool", "bool", "bool","bool","bool");
         $this->crud->actions        = "<a class='btn btn-info  ' href='" . site_url("MaLi/factor_sell/manage_factor/manage_level") . "' >" . _MANAGE_INVOICE . ' </a>';
         $this->crud->order          = array("factor.date", "DESC");

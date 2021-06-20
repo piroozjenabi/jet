@@ -1,10 +1,4 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-/**
- * Created by piero.ir.
- * User: pirooz jenabi
- * Date: 6/26/18
- * Time: 3:01 PM
- */
 class Eemploy extends CI_Controller
 {
     // list of manage  eemploy user
@@ -19,14 +13,14 @@ class Eemploy extends CI_Controller
         $this->load->library("Piero_jdate");
         $this->crud->table="user_admin";
         $this->crud->title=_MANAGE_EEMPLOYS;
-        $this->crud->column_order=array("state","meli_id","name","username","mobile","usergroup","birthday","extra");
-        $this->crud->column_title=array(_STATE,_MELI_ID,_NAME,_USERNAME,_MOBILE,_GROUP,_BIRTH,_ACCOUNT_NUMBER_BANK);
-        $this->crud->column_require=array(1,1,1,1,1,1,0,0);
-        $tmp_selectdb=array("select_db","usergroup_eemploy","name");
-        $this->crud->column_type=array("bool","input","input","input","input",json_encode($tmp_selectdb),"date",'input');
+        $this->crud->column_order=array("state","meli_id","name","username","mobile","email","usergroup","birthday","extra");
+        $this->crud->column_title=array(_STATE,_NATIONAL_ID,_NAME,_USERNAME,_MOBILE,_EMAIL,_GROUP,_BIRTH,_ACCOUNT_NUMBER_BANK);
+        $this->crud->column_require=array(1,0,1,1,0,0,1,0,0);
+        $selectDb=array("select_db","usergroup_eemploy","name");
+        $this->crud->column_type=array("bool","input","input","input","input", "input",json_encode($selectDb),"date",'input');
         $this->crud->column_search=array("name","meli_id","username");
-        $this->crud->permision=$this->crud->render_permsion_crud("eemploy");
-        if($this->crud->permision["edit"]) {
+        $this->crud->permission=$this->crud->render_permsion_crud("eemploy");
+        if($this->crud->permission["edit"]) {
             $this->crud->actions_row = "<a class='btn btn-default' data-toggle='tooltip' title='{_EDIT_FULLL}' onclick=load_ajax_popup('".site_url("eemploy/eemploy/edit/")."','id=[[id]]')><i class='fa fa-edit' ></i></a>" ;
         }
         if($this->permission->check("media_manage")){

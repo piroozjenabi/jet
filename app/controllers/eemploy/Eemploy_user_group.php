@@ -13,12 +13,12 @@ class Eemploy_user_group extends CI_Controller
         $this->permission->check("eemploy_permision", 0, 1);
         //load for data table
         $this->load->library("Crud");
-        $this->crud->table="tbl_usergroup_eemploy";
+        $this->crud->table="usergroup_eemploy";
         $this->crud->title=_MANAGE_USER_GROUP_EMPLOY;
         $this->crud->column_order=array("name","state","parent");
         $this->crud->column_title=array(_NAME,_STATE,_VALED);
         $this->crud->column_require=array(1,0,0);
-        $tmp_selectDb=array("select_db","tbl_usergroup_eemploy","name");
+        $tmp_selectDb=array("select_db","usergroup_eemploy","name");
         $this->crud->column_type=array("input","bool",json_encode($tmp_selectDb));
         $this->crud->column_search=array("name");
         if($this->permission->check("eemploy_permision")) {

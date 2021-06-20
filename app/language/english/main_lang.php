@@ -354,7 +354,7 @@ define("_CLIENT_PRICE_EN", "CONSUMER");
 
 ####################################### -- USERS --
 define("_FULL_NAME", "full name");
-define("_MELI_ID", "national number");
+define("_NATIONAL_ID", "national number");
 define("_REAGENT", "reagent");
 define("_ACTION", "actions");
 define("_AGENT", "agent");

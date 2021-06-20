@@ -12,7 +12,7 @@
 //param 3 : name of col
 //param 4 : where
 //param 5 : order
-//exam  $tmp_selectdb=array("select_db","tbl_usergroup_eemploy","name");
+//exam  $tmp_selectdb=array("select_db","usergroup_eemploy","name");
 //$this->crud->column_type=array("input","bool","boolYN","text",json_encode($tmp_selectdb));
 // info for select_db ----------------------- end
 class Crud
@@ -33,7 +33,7 @@ class Crud
     public $column_title = array(); //columns to load in header and footer
     public $column_type = array(); //columns type for add and edit and view
     public $column_require = array(); //for search
-    public $permision = array("add" => true, "edit" => true, "delete" => true, "copy" => null, "view" => true); //permisions
+    public $permission = array("add" => true, "edit" => true, "delete" => true, "copy" => null, "view" => true); 
     public $data = null; // data of table
     public $datatable_options = null; // data table option for load in java script
     public $tableId = null; //table id for jquery
@@ -349,534 +349,598 @@ class Crud
 
     private function load_action()
     {
-        ?>
-    <title> <?php echo $this->title ?> </title>
-    <div class="btn-group" style="padding: 5px;">
-        <?php if (isset($this->permission["add"]) && $this->permission["add"] ): ?>
+         ?>
+        <title> <?php echo $this->title ?> </title>
+        <div class="btn-group" style="padding: 5px;">
+            <?php if (isset($this->permission["add"]) && $this->permission["add"]) : ?>
 
-            <button class="btn btn-success" onclick="_add_()"><i class="fa fa-plus"></i> <?php echo _ADD ?> </button>
-        <?php endif;?>
-        <?php if ($this->column_filter): ?>
-            <button class="btn btn-default" onclick="_filter_()"><i class="fa fa-filter"></i> <?php echo _FILTER ?> </button>
-        <?php endif;?>
-        <button class="btn btn-default" onclick="reload_table()"><i class="fa fa-refresh"></i> <?php echo _REFRESH ?> </button>
-        <button class="btn btn-info" id="select-btn"><i class="fa fa-check"></i> <?php echo _SELECT ?> </button>
+                <button class="btn btn-success" onclick="_add_()"><i class="fa fa-plus"></i> <?php echo _ADD ?> </button>
+            <?php endif; ?>
+            <?php if ($this->column_filter) : ?>
+                <button class="btn btn-default" onclick="_filter_()"><i class="fa fa-filter"></i> <?php echo _FILTER ?> </button>
+            <?php endif; ?>
+            <button class="btn btn-default" onclick="reload_table()"><i class="fa fa-refresh"></i> <?php echo _REFRESH ?> </button>
+            <button class="btn btn-info" id="select-btn"><i class="fa fa-check"></i> <?php echo _SELECT ?> </button>
 
-        <?php if (isset($this->permission["delete"]) && $this->permission["delete"]): ?>
-            <button class="btn btn-warning" id="delete_group" onclick="_delete_group()"><i class="fa fa-close"></i> <?php echo _DELETE ?> </button>
-        <?php endif;?>
-        <?php if (0): ?>
-            <button class="btn btn-info" id="copy_group" onclick="_copy_group()"><i class="fa fa-copy"></i> <?php echo _COPY ?> </button>
-        <?php endif;?>
-    </div>
-    <div class="btn-group" style="padding: 5px;">
-        <?php echo $this->actions ?>
-    </div>
-<?php
-}
+            <?php if (isset($this->permission["delete"]) && $this->permission["delete"]) : ?>
+                <button class="btn btn-warning" id="delete_group" onclick="_delete_group()"><i class="fa fa-close"></i> <?php echo _DELETE ?> </button>
+            <?php endif; ?>
+            <?php if (0) : ?>
+                <button class="btn btn-info" id="copy_group" onclick="_copy_group()"><i class="fa fa-copy"></i> <?php echo _COPY ?> </button>
+            <?php endif; ?>
+        </div>
+        <div class="btn-group" style="padding: 5px;">
+            <?php echo $this->actions ?>
+        </div>
+    <?php
+    }
 
     private function load_table()
     {
-        ?>
-    <table id="<?php echo $this->tableId ?>" class="display" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th class="select"> <input type="checkbox" id="globalCheckbox"> </th>
-                <th><i class="fa fa-sort-numeric-asc "></i> </th>
-                <?php foreach ($this->column_title as $k): if ($this->checkList($k, 'title')): ?>
-		                        <th><?php echo $k ?></th>
-		                    <?php endif;
-                endforeach;?>
-                <?php if(@$this->permission["edit"] || @$this->permission["delete"]): ?>
-                    <th><?php echo _OP ?></th>
-                <?php endif;?>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th class="select"> </th>
-                <th><i class="fa fa-sort-numeric-asc "></i> </th>
-                <?php foreach ($this->column_title as $k): if ($this->checkList($k, 'title')): ?>
-		                    <th><?php echo $k ?></th>
-		                 <?php endif;endforeach;?>
-                <?php if (@$this->permission["edit"] || @$this->permission["delete"]): ?>
-                    <th><?php echo _OP ?>
-                    </th>
-                <?php endif;?>
-            </tr>
-        </tfoot>
-    </table>
-<?php
-}
+    ?>
+        <table id="<?php echo $this->tableId ?>" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th class="select"> <input type="checkbox" id="globalCheckbox"> </th>
+                    <th><i class="fa fa-sort-numeric-asc "></i> </th>
+                    <?php foreach ($this->column_title as $k) : if ($this->checkList($k, 'title')) : ?>
+                            <th><?php echo $k ?></th>
+                    <?php endif;
+                    endforeach; ?>
+                    <?php if (@$this->permission["edit"] || @$this->permission["delete"]) : ?>
+                        <th><?php echo _OP ?></th>
+                    <?php endif; ?>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="select"> </th>
+                    <th><i class="fa fa-sort-numeric-asc "></i> </th>
+                    <?php foreach ($this->column_title as $k) : if ($this->checkList($k, 'title')) : ?>
+                            <th><?php echo $k ?></th>
+                    <?php endif;
+                    endforeach; ?>
+                    <?php if (@$this->permission["edit"] || @$this->permission["delete"]) : ?>
+                        <th><?php echo _OP ?>
+                        </th>
+                    <?php endif; ?>
+                </tr>
+            </tfoot>
+        </table>
+    <?php
+    }
 
     private function load_modal()
     {
-        ?>
+    ?>
 
-    <!-- Bootstrap modal  add -->
-    <div class="modal fade" id="modal_form" role="dialog" data-backdrop="static">
+        <!-- Bootstrap modal  add -->
+        <div class="modal fade" id="modal_form" role="dialog" data-backdrop="static">
 
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title"><?php echo $this->title ?></h3>
-                </div>
-                <div class="modal-body form">
-                    <form action="#" id="form" class="form-horizontal">
-                        <input type="hidden" value="" name="id" />
-                        <div class="form-body">
-                            <?php for ($i = 0; $i < count($this->column_order); $i++): ?>
-                                <?php if ($this->column_require[$i] != 2 && $this->column_require[$i] != 3): ?>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3"><?php echo $this->column_title[$i] ?></label>
-                                        <div class=" col-md-9">
-                                            <?php echo $this->render_element($i) ?>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title"><?php echo $this->title ?></h3>
+                    </div>
+                    <div class="modal-body form">
+                        <form action="#" id="form" class="form-horizontal">
+                            <input type="hidden" value="" name="id" />
+                            <div class="form-body">
+                                <?php for ($i = 0; $i < count($this->column_order); $i++) : ?>
+                                    <?php if ($this->column_require[$i] != 2 && $this->column_require[$i] != 3) : ?>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><?php echo $this->column_title[$i] ?></label>
+                                            <div class=" col-md-9">
+                                                <?php echo $this->render_element($i) ?>
+                                            </div>
                                         </div>
-                                    </div>
-                                <?php endif;?>
-                            <?php endfor;?>
-                            <?php $this->render_form_add()?>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="btnSave" onclick="save()" class="btn btn-primary"><?php echo _SAVE ?></button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo _CANCEL ?></button>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
+                                <?php $this->render_form_add() ?>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnSave" onclick="save()" class="btn btn-primary"><?php echo _SAVE ?></button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo _CANCEL ?></button>
 
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <!-- End Bootstrap modal add -->
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- End Bootstrap modal add -->
 
-    <!-- ======================================================================== -->
-    <!-- Bootstrap modal filter -->
-    <div class="modal fade" id="modal_form_filter" role="dialog" data-backdrop="static">
+        <!-- ======================================================================== -->
+        <!-- Bootstrap modal filter -->
+        <div class="modal fade" id="modal_form_filter" role="dialog" data-backdrop="static">
 
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title"><?php echo $this->title ?></h3>
-                </div>
-                <div class="modal-body form">
-                    <form action="#" id="formFilter" class="form-horizontal">
-                        <input type="hidden" value="" name="id" />
-                        <div class="form-body">
-                            <?php for ($i = 0; $i < count($this->column_filter); $i++): ?>
-                                <?php if ($this->column_filter[$i]): ?>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3"><?php echo $this->column_title[$i] ?></label>
-                                        <div class=" col-md-9">
-                                            <?php echo $this->render_element_filter($i) ?>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title"><?php echo $this->title ?></h3>
+                    </div>
+                    <div class="modal-body form">
+                        <form action="#" id="formFilter" class="form-horizontal">
+                            <input type="hidden" value="" name="id" />
+                            <div class="form-body">
+                                <?php for ($i = 0; $i < count($this->column_filter); $i++) : ?>
+                                    <?php if ($this->column_filter[$i]) : ?>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3"><?php echo $this->column_title[$i] ?></label>
+                                            <div class=" col-md-9">
+                                                <?php echo $this->render_element_filter($i) ?>
+                                            </div>
                                         </div>
-                                    </div>
-                                <?php endif;?>
-                            <?php endfor;?>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="btnFilter" onclick="doFilter()" class="btn btn-primary"><?php echo _FILTER ?></button>
-                    <button type="button" onclick="clearFilter()" class="btn btn-primary"><?php echo _CLEAR_FILTER ?></button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo _CANCEL ?></button>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnFilter" onclick="doFilter()" class="btn btn-primary"><?php echo _FILTER ?></button>
+                        <button type="button" onclick="clearFilter()" class="btn btn-primary"><?php echo _CLEAR_FILTER ?></button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo _CANCEL ?></button>
 
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <!-- End Bootstrap modal filter-->
-    <!-- ======================================================================== -->
-    <!-- Bootstrap modal view -->
-    <div class="modal fade" id="modal_form_view" role="dialog" data-backdrop="static">
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- End Bootstrap modal filter-->
+        <!-- ======================================================================== -->
+        <!-- Bootstrap modal view -->
+        <div class="modal fade" id="modal_form_view" role="dialog" data-backdrop="static">
 
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title"><?php echo $this->title ?></h3>
-                </div>
-                <div class="modal-body">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title"><?php echo $this->title ?></h3>
+                    </div>
+                    <div class="modal-body">
                         <table class=" table table-hover table-striped">
-                            <?php for ($i = 0; $i < count($this->column_filter); $i++): ?>
+                            <?php for ($i = 0; $i < count($this->column_filter); $i++) : ?>
                                 <tr>
                                     <td><?php echo $this->column_title[$i] ?></td>
-                                    <td><b><p id='v__<?=$this->column_order[$i]?>'>  </p></b></td>
+                                    <td><b>
+                                            <p id='v__<?= $this->column_order[$i] ?>'> </p>
+                                        </b></td>
                                 </tr>
-                            <?php endfor;?>
+                            <?php endfor; ?>
                         </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo _CLOSE2 ?></button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <!-- End Bootstrap modal filter-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo _CLOSE2 ?></button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- End Bootstrap modal filter-->
 
-<?php
-}
+    <?php
+    }
 
     private function load_datatable($url)
     {
-        ?>
-    <script type="text/javascript">
-        var table;
-        var _selected = [];
-        $(document).ready(function() {
-            //datatables
-            table = $('#<?php echo $this->tableId ?>').DataTable({
-                "processing": true, //Feature control the processing indicator.
-                "serverSide": true, //Feature control DataTables' server-side processing mode.
-                "order": [], //Initial no order.
-                // Load data for the table's content from an Ajax source
-                "ajax": {
-                    "url": "<?php echo $url ?>",
-                    "type": "POST",
-                    "data": function(data) {
-                        data.typeIn = 'json';
-                        <?=($this->where) ? "data.where = '$this->where' ;" : null;?>
-                        <?php // for detect filtering to send
-        $i = 0;
-        foreach ($this->column_order as $k) {
-            if ($this->column_type[$i] == "date" || $this->column_type[$i] == "number") {
-                $tmp = "from__" . $k;
-                echo " data.$tmp = $('#$tmp').val();";
-                $tmp = "to__" . $k;
-                echo " data.$tmp = $('#$tmp').val();";
-            } else {
-                $tmp = "f__" . $k;
-                echo " data.$tmp = $('#$tmp').val();";
-            }
-            $i++;
-        }?>
-                        console.log(data);
+    ?>
+        <script type="text/javascript">
+            var table;
+            var _selected = [];
+            $(document).ready(function() {
+                //datatables
+                table = $('#<?php echo $this->tableId ?>').DataTable({
+                    "processing": true, //Feature control the processing indicator.
+                    "serverSide": true, //Feature control DataTables' server-side processing mode.
+                    "order": [], //Initial no order.
+                    // Load data for the table's content from an Ajax source
+                    "ajax": {
+                        "url": "<?php echo $url ?>",
+                        "type": "POST",
+                        "data": function(data) {
+                            data.typeIn = 'json';
+                            <?= ($this->where) ? "data.where = '$this->where' ;" : null; ?>
+                            <?php // for detect filtering to send
+                            $i = 0;
+                            foreach ($this->column_order as $k) {
+                                if ($this->column_type[$i] == "date" || $this->column_type[$i] == "number") {
+                                    $tmp = "from__" . $k;
+                                    echo " data.$tmp = $('#$tmp').val();";
+                                    $tmp = "to__" . $k;
+                                    echo " data.$tmp = $('#$tmp').val();";
+                                } else {
+                                    $tmp = "f__" . $k;
+                                    echo " data.$tmp = $('#$tmp').val();";
+                                }
+                                $i++;
+                            } ?>
 
-                    }
-                },
-                "rowCallback": function(row, data) {
-                    if ($.inArray(data.DT_RowId, _selected) !== -1) {
-                        $(row).addClass('selected');
+                        }
+                    },
+                    "rowCallback": function(row, data) {
+                        if ($.inArray(data.DT_RowId, _selected) !== -1) {
+                            $(row).addClass('selected');
 
-                    }
-                },
-                //Set column definition initialisation properties.
-                "columnDefs": [{
-                    "targets": [0], //first column / numbering column
-                    "orderable": false, //set not orderable
-                }, ],
-                stateSave: true,
-                scrollY: '50vh',
-                scrollX: true,
-                scrollCollapse: true,
-                fixedColumns: true,
-                "lengthMenu": [
-                    [10, 25, 50, 100, 200, 500, -1],
-                    [10, 25, 50, 100, 200, 500, "<?php echo _ALL ?>"]
-                ],
-                dom: 'Blfrtip',
-                buttons: [{
-                        extend: 'colvis',
-                        text: '<i class="fa fa-table" ></i>  <?php echo _VIEW . __ . _COLUMNS ?> '
+                        }
                     },
-                    {
-                        extend: 'copy',
-                        text: '<i class="fa fa-copy" > </i> <?php echo _COPY ?> '
-                    },
-                    {
-                        extend: 'csv',
-                        "filename": "<?php echo $this->title . rand(0, 100) ?>",
-                        text: '<i class="fa fa-file-excel-o" ></i> EXCEL/CSV',
-                        charset: 'UTF-16LE',
-
-                        bom: true
-                    },
-                    {
-                        extend: 'print',
-                        text: '<i class="fa fa-print" > </i> <?php echo _PRINT ?> ',
-                        autoPrint: false,
-                        exportOptions: {
-                            columns: ':visible',
+                    //Set column definition initialisation properties.
+                    "columnDefs": [{
+                        "targets": [0], //first column / numbering column
+                        "orderable": false, //set not orderable
+                    }, ],
+                    stateSave: true,
+                    scrollY: '50vh',
+                    scrollX: true,
+                    scrollCollapse: true,
+                    fixedColumns: true,
+                    "lengthMenu": [
+                        [10, 25, 50, 100, 200, 500, -1],
+                        [10, 25, 50, 100, 200, 500, "<?php echo _ALL ?>"]
+                    ],
+                    dom: 'Blfrtip',
+                    buttons: [{
+                            extend: 'colvis',
+                            text: '<i class="fa fa-table" ></i>  <?php echo _VIEW . __ . _COLUMNS ?> '
                         },
-                        customize: function(win) {
-                            $(win.document.body).find('table').addClass('display').css('font-size', '9px');
-                            $(win.document.body).find('tr:nth-child(odd) td').each(function(index) {
-                                $(this).css('background-color', '#D0D0D0');
-                            });
-                            $(win.document.body).find('h1').html("<?php echo $this->title ?>");
-                            $(win.document.body).find('h1').css("text-align", "center");
-                            $(win.document.body).find('h1').css("font-size", "18px");
+                        {
+                            extend: 'copy',
+                            text: '<i class="fa fa-copy" > </i> <?php echo _COPY ?> '
+                        },
+                        {
+                            extend: 'csv',
+                            "filename": "<?php echo $this->title . rand(0, 100) ?>",
+                            text: '<i class="fa fa-file-excel-o" ></i> EXCEL/CSV',
+                            charset: 'UTF-16LE',
+
+                            bom: true
+                        },
+                        {
+                            extend: 'print',
+                            text: '<i class="fa fa-print" > </i> <?php echo _PRINT ?> ',
+                            autoPrint: false,
+                            exportOptions: {
+                                columns: ':visible',
+                            },
+                            customize: function(win) {
+                                $(win.document.body).find('table').addClass('display').css('font-size', '9px');
+                                $(win.document.body).find('tr:nth-child(odd) td').each(function(index) {
+                                    $(this).css('background-color', '#D0D0D0');
+                                });
+                                $(win.document.body).find('h1').html("<?php echo $this->title ?>");
+                                $(win.document.body).find('h1').css("text-align", "center");
+                                $(win.document.body).find('h1').css("font-size", "18px");
+                            }
+                        }
+                    ],
+                    "language": {
+                        "lengthMenu": "<?php echo _VIEW ?> _MENU_ <?php echo _PER_PAGE ?>",
+                        "zeroRecords": "<?php echo _NOT_FOUND ?>",
+                        "info": "<?php echo _VIEW_PAGE ?> _PAGE_ <?php echo _OF ?> _PAGES_",
+                        "infoEmpty": "<?php echo _NOT_FOUND ?>",
+                        "infoFiltered": "(<?php echo _FILTERED_FROM ?> _MAX_ <?php echo _RECORD ?>)",
+                        "search": "<i class='fa fa-search '>",
+                        "pagingType": "full_numbers",
+                        "processing": "<div class='loading' > </div>",
+                        "oPaginate": {
+                            "sFirst": "<?php echo _FIRST ?> <i class='fa fa-fast-fa-backward '> </i>",
+                            "sPrevious": "<?php echo _PREVIOUS ?> <i class='fa fa-chevron-left  '> </i>",
+                            "sNext": "<i class='fa fa-chevron-right '> </i> <?php echo _NEXT ?> ",
+                            "sLast": "<i class='fa fa-fast-forward '> </i> <?php echo _LAST ?> "
                         }
                     }
-                ],
-                "language": {
-                    "lengthMenu": "<?php echo _VIEW ?> _MENU_ <?php echo _PER_PAGE ?>",
-                    "zeroRecords": "<?php echo _NOT_FOUND ?>",
-                    "info": "<?php echo _VIEW_PAGE ?> _PAGE_ <?php echo _OF ?> _PAGES_",
-                    "infoEmpty": "<?php echo _NOT_FOUND ?>",
-                    "infoFiltered": "(<?php echo _FILTERED_FROM ?> _MAX_ <?php echo _RECORD ?>)",
-                    "search": "<i class='fa fa-search '>",
-                    "pagingType": "full_numbers",
-                    "processing": "<div class='loading' > </div>",
-                    "oPaginate": {
-                        "sFirst": "<?php echo _FIRST ?> <i class='fa fa-fast-fa-backward '> </i>",
-                        "sPrevious": "<?php echo _PREVIOUS ?> <i class='fa fa-chevron-left  '> </i>",
-                        "sNext": "<i class='fa fa-chevron-right '> </i> <?php echo _NEXT ?> ",
-                        "sLast": "<i class='fa fa-fast-forward '> </i> <?php echo _LAST ?> "
-                    }
-                }
-            });
-            //                ------------------------for select start
-            //select all check box
-            $('#globalCheckbox').click(function() {
-                if ($(this).prop("checked")) {
-                    $(".checkBox").prop("checked", true);
-                } else {
-                    $(".checkBox").prop("checked", false);
-                }
-            });
-
-
-
-            var column = table.column(0);
-            $("#delete_group").hide();
-            $("#copy_group").hide();
-            column.visible(false);
-            $('#select-btn').on('click', function(e) {
-                e.preventDefault();
-
-                if (column.visible()) {
-                    $("#delete_group").hide();
-                    $("#copy_group").hide();
-                    column.visible(false);
-                    $('#select-btn').attr("class", "btn btn-info");
-                } else {
-                    $("#delete_group").show();
-                    $("#copy_group").show();
-                    column.visible(true);
-                    $('#select-btn').attr("class", "btn btn-default");
-                }
-            });
-            //                ------------------------for select end
-            $('#<?php echo $this->tableId ?> tbody').on('click', 'tr', function() {
-                var id = this.id;
-                var index = $.inArray(id, _selected);
-                if (index === -1) {
-                    _selected.push(id);
-                } else {
-                    _selected.splice(index, 1);
-                }
-
-                $(this).toggleClass('selected');
-            });
-
-            //set input/textarea/select event when change value, remove class error and remove text help block
-            $("input").change(function() {
-                $(this).parent().parent().removeClass('has-error');
-                $(this).next().empty();
-            });
-            $("textarea").change(function() {
-                $(this).parent().parent().removeClass('has-error');
-                $(this).next().empty();
-            });
-            $("select").change(function() {
-                $(this).parent().parent().removeClass('has-error');
-                //                    $(this).next().empty();
-            });
-        });
-
-        function _add_() {
-            save_method = 'add';
-            $('#form')[0].reset(); // reset form on modals
-            $('.form-group').removeClass('has-error'); // clear error class
-            $('.help-block').empty(); // clear error string
-            $('#modal_form').modal('show'); // show bootstrap modal
-            $('.modal-title').text('<?php echo _ADD ?>'); // Set Title to Bootstrap modal title
-        }
-
-        function _filter_() {
-            save_method = 'filter';
-            $('#modal_form_filter').modal('show'); // show bootstrap modal
-            $('.modal-title_filter').text('<?php echo _FILTER ?>'); // Set Title to Bootstrap modal title
-        }
-
-        function _edit_(id) {
-            save_method = 'update';
-            $('#form')[0].reset(); // reset form on modals
-            $('.form-group').removeClass('has-error'); // clear error class
-            $('.help-block').empty(); // clear error string
-
-            //Ajax Load data from ajax
-            $.ajax({
-                url: "<?php echo $url ?>",
-                type: "POST",
-                dataType: "JSON",
-                "data": {
-                    'typeIn': 'edit',
-                    'id': id
-                },
-                success: function(data) {
-                    $('[name="id"]').val(data.id);
-
-                    <?php foreach ($this->column_order as $k): ?>
-                        $('[name="<?php echo $k ?>"]').val(data.<?php echo $k ?>);
-                    <?php endforeach;?>
-                    $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-                    $('.modal-title').text('<?php echo _EDIT ?>'); // Set title to Bootstrap modal title
-                    $('select').trigger('change');
-
-
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    piero_alert("<?php echo _ERROR ?>", "<?php echo _ERROR_AJAX ?>");
-                }
-            });
-
-
-        }
-
-        function _copy_(id) {
-            save_method = 'add';
-            $('#form')[0].reset(); // reset form on modals
-            $('.form-group').removeClass('has-error'); // clear error class
-            $('.help-block').empty(); // clear error string
-
-            //Ajax Load data from ajax
-            $.ajax({
-                url: "<?php echo $url ?>",
-                type: "POST",
-                dataType: "JSON",
-                "data": {
-                    'typeIn': 'edit',
-                    'id': id
-                },
-                success: function(data) {
-                    $('[name="id"]').val(0);
-
-                    <?php foreach ($this->column_order as $k): ?>
-                        $('[name="<?php echo $k ?>"]').val(data.<?php echo $k ?>);
-                    <?php endforeach;?>
-                    $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-                    $('.modal-title').text('<?php echo _COPY ?>'); // Set title to Bootstrap modal title
-                    $('select').trigger('change');
-
-
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    piero_alert("<?php echo _ERROR ?>", "<?php echo _ERROR_AJAX ?>");
-                }
-            });
-
-
-        }
-
-        function _view_(id) {
-            save_method = 'view';
-
-            //Ajax Load data from ajax
-            $.ajax({
-                url: "<?php echo $url ?>",
-                type: "POST",
-                dataType: "JSON",
-                "data": {
-                    'typeIn': 'view',
-                    'id': id
-                },
-                success: function(data) {
-                    $('[name="id"]').val(0);
-
-                    <?php foreach ($this->column_order as $k): ?>
-                        $('[id="v__<?php echo $k ?>"]').text(data.<?php echo $k ?>);
-                    <?php endforeach;?>
-                    $('#modal_form_view').modal('show'); // show bootstrap modal when complete loaded
-                    $('.modal-title').text('<?php echo _VIEW ?>'); // Set title to Bootstrap modal title
-                    $('select').trigger('change');
-
-
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    piero_alert("<?php echo _ERROR ?>", "<?php echo _ERROR_AJAX ?>");
-                }
-            });
-
-
-        }
-
-        function reload_table() {
-            table.ajax.reload(null, false); //reload datatable ajax
-        }
-
-        $('input').keypress(function(e) {
-            if (e.which == 13) {
-                save();
-                return false;
-            }
-        });
-
-        function save() {
-
-            $('#btnSave').text('<?php echo _SAVE2 ?>...'); //change button text
-            $('#btnSave').attr('disabled', true); //set button disable
-            var _dt;
-            var _tmp_serialize;
-            if (save_method == 'add') {
-                _dt = "add";
-            } else {
-                _dt = "update";
-            }
-            _tmp_serialize = $('#form').serialize() + "&typeIn=" + _dt;
-            // ajax adding data to database
-            $.ajax({
-                url: "<?php echo $url ?>",
-                type: "POST",
-                data: _tmp_serialize,
-                dataType: "JSON",
-                success: function(data) {
-                    if (data.status) //if success close modal and reload ajax table
-                    {
-                        $('#modal_form').modal('hide');
-                        reload_table();
+                });
+                //                ------------------------for select start
+                //select all check box
+                $('#globalCheckbox').click(function() {
+                    if ($(this).prop("checked")) {
+                        $(".checkBox").prop("checked", true);
                     } else {
-                        for (var i = 0; i < data.inputerror.length; i++) {
-                            $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
-                            //                                $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
-
-                        }
-                        piero_alert('<?php echo _ERROR ?>', data.error_string)
+                        $(".checkBox").prop("checked", false);
                     }
-                    $('#btnSave').text("<?php echo _SAVE2 ?>"); //change button text
-                    $('#btnSave').attr('disabled', false); //set button enable
+                });
 
 
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    piero_alert("<?php echo _ERROR ?>", "<?php echo _ERROR_UPDATE ?>");
-                    $('#btnSave').text('<?php echo _SAVE2 ?>...'); //change button text
-                    $('#btnSave').attr('disabled', false); //set button enable
 
+                var column = table.column(0);
+                $("#delete_group").hide();
+                $("#copy_group").hide();
+                column.visible(false);
+                $('#select-btn').on('click', function(e) {
+                    e.preventDefault();
+
+                    if (column.visible()) {
+                        $("#delete_group").hide();
+                        $("#copy_group").hide();
+                        column.visible(false);
+                        $('#select-btn').attr("class", "btn btn-info");
+                    } else {
+                        $("#delete_group").show();
+                        $("#copy_group").show();
+                        column.visible(true);
+                        $('#select-btn').attr("class", "btn btn-default");
+                    }
+                });
+                //                ------------------------for select end
+                $('#<?php echo $this->tableId ?> tbody').on('click', 'tr', function() {
+                    var id = this.id;
+                    var index = $.inArray(id, _selected);
+                    if (index === -1) {
+                        _selected.push(id);
+                    } else {
+                        _selected.splice(index, 1);
+                    }
+
+                    $(this).toggleClass('selected');
+                });
+
+                //set input/textarea/select event when change value, remove class error and remove text help block
+                $("input").change(function() {
+                    $(this).parent().parent().removeClass('has-error');
+                    $(this).next().empty();
+                });
+                $("textarea").change(function() {
+                    $(this).parent().parent().removeClass('has-error');
+                    $(this).next().empty();
+                });
+                $("select").change(function() {
+                    $(this).parent().parent().removeClass('has-error');
+                    //                    $(this).next().empty();
+                });
+            });
+
+            function _add_() {
+                save_method = 'add';
+                $('#form')[0].reset(); // reset form on modals
+                $('.form-group').removeClass('has-error'); // clear error class
+                $('.help-block').empty(); // clear error string
+                $('#modal_form').modal('show'); // show bootstrap modal
+                $('.modal-title').text('<?php echo _ADD ?>'); // Set Title to Bootstrap modal title
+            }
+
+            function _filter_() {
+                save_method = 'filter';
+                $('#modal_form_filter').modal('show'); // show bootstrap modal
+                $('.modal-title_filter').text('<?php echo _FILTER ?>'); // Set Title to Bootstrap modal title
+            }
+
+            function _edit_(id) {
+                save_method = 'update';
+                $('#form')[0].reset(); // reset form on modals
+                $('.form-group').removeClass('has-error'); // clear error class
+                $('.help-block').empty(); // clear error string
+
+                //Ajax Load data from ajax
+                $.ajax({
+                    url: "<?php echo $url ?>",
+                    type: "POST",
+                    dataType: "JSON",
+                    "data": {
+                        'typeIn': 'edit',
+                        'id': id
+                    },
+                    success: function(data) {
+                        $('[name="id"]').val(data.id);
+
+                        <?php foreach ($this->column_order as $k) : ?>
+                            $('[name="<?php echo $k ?>"]').val(data.<?php echo $k ?>);
+                        <?php endforeach; ?>
+                        $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+                        $('.modal-title').text('<?php echo _EDIT ?>'); // Set title to Bootstrap modal title
+                        $('select').trigger('change');
+
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        piero_alert("<?php echo _ERROR ?>", "<?php echo _ERROR_AJAX ?>");
+                    }
+                });
+
+
+            }
+
+            function _copy_(id) {
+                save_method = 'add';
+                $('#form')[0].reset(); // reset form on modals
+                $('.form-group').removeClass('has-error'); // clear error class
+                $('.help-block').empty(); // clear error string
+
+                //Ajax Load data from ajax
+                $.ajax({
+                    url: "<?php echo $url ?>",
+                    type: "POST",
+                    dataType: "JSON",
+                    "data": {
+                        'typeIn': 'edit',
+                        'id': id
+                    },
+                    success: function(data) {
+                        $('[name="id"]').val(0);
+
+                        <?php foreach ($this->column_order as $k) : ?>
+                            $('[name="<?php echo $k ?>"]').val(data.<?php echo $k ?>);
+                        <?php endforeach; ?>
+                        $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+                        $('.modal-title').text('<?php echo _COPY ?>'); // Set title to Bootstrap modal title
+                        $('select').trigger('change');
+
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        piero_alert("<?php echo _ERROR ?>", "<?php echo _ERROR_AJAX ?>");
+                    }
+                });
+
+
+            }
+
+            function _view_(id) {
+                save_method = 'view';
+
+                //Ajax Load data from ajax
+                $.ajax({
+                    url: "<?php echo $url ?>",
+                    type: "POST",
+                    dataType: "JSON",
+                    "data": {
+                        'typeIn': 'view',
+                        'id': id
+                    },
+                    success: function(data) {
+                        $('[name="id"]').val(0);
+
+                        <?php foreach ($this->column_order as $k) : ?>
+                            $('[id="v__<?php echo $k ?>"]').text(data.<?php echo $k ?>);
+                        <?php endforeach; ?>
+                        $('#modal_form_view').modal('show'); // show bootstrap modal when complete loaded
+                        $('.modal-title').text('<?php echo _VIEW ?>'); // Set title to Bootstrap modal title
+                        $('select').trigger('change');
+
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        piero_alert("<?php echo _ERROR ?>", "<?php echo _ERROR_AJAX ?>");
+                    }
+                });
+
+
+            }
+
+            function reload_table() {
+                table.ajax.reload(null, false); //reload datatable ajax
+            }
+
+            $('input').keypress(function(e) {
+                if (e.which == 13) {
+                    save();
+                    return false;
                 }
             });
-        }
 
-        function doFilter() {
-            table.ajax.reload(null, false); //reload datatable ajax
-            $('#modal_form_filter').modal('hide');
+            function save() {
 
-        }
+                $('#btnSave').text('<?php echo _SAVE2 ?>...'); //change button text
+                $('#btnSave').attr('disabled', true); //set button disable
+                var _dt;
+                var _tmp_serialize;
+                if (save_method == 'add') {
+                    _dt = "add";
+                } else {
+                    _dt = "update";
+                }
+                _tmp_serialize = $('#form').serialize() + "&typeIn=" + _dt;
+                // ajax adding data to database
+                $.ajax({
+                    url: "<?php echo $url ?>",
+                    type: "POST",
+                    data: _tmp_serialize,
+                    dataType: "JSON",
+                    success: function(data) {
+                        if (data.status) //if success close modal and reload ajax table
+                        {
+                            $('#modal_form').modal('hide');
+                            reload_table();
+                        } else {
+                            for (var i = 0; i < data.inputerror.length; i++) {
+                                $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
+                                //                                $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
 
-        function clearFilter() {
-            $("#formFilter")[0].reset();
-            table.ajax.reload(null, false); //reload datatable ajax
-            $('#modal_form_filter').modal('hide');
+                            }
+                            piero_alert('<?php echo _ERROR ?>', data.error_string)
+                        }
+                        $('#btnSave').text("<?php echo _SAVE2 ?>"); //change button text
+                        $('#btnSave').attr('disabled', false); //set button enable
 
-        }
 
-        function _delete_group() {
-            var _sel = $('input[class="checkBox"]:checked').serialize();
-            if (_sel) {
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        piero_alert("<?php echo _ERROR ?>", "<?php echo _ERROR_UPDATE ?>");
+                        $('#btnSave').text('<?php echo _SAVE2 ?>...'); //change button text
+                        $('#btnSave').attr('disabled', false); //set button enable
+
+                    }
+                });
+            }
+
+            function doFilter() {
+                table.ajax.reload(null, false); //reload datatable ajax
+                $('#modal_form_filter').modal('hide');
+
+            }
+
+            function clearFilter() {
+                $("#formFilter")[0].reset();
+                table.ajax.reload(null, false); //reload datatable ajax
+                $('#modal_form_filter').modal('hide');
+
+            }
+
+            function _delete_group() {
+                var _sel = $('input[class="checkBox"]:checked').serialize();
+                if (_sel) {
+                    (new PNotify({
+                        title: '<?php echo _MESSAGE ?>',
+                        text: '<?php echo _ASK_DELETE ?>',
+                        icon: 'fa fa-close fa-5x ',
+                        hide: false,
+                        confirm: {
+                            confirm: true,
+                            buttons: [{
+                                    text: '<?php echo _YES ?>',
+                                    addClass: 'btn-primary',
+                                    click: function(notice) {
+                                        // ajax delete data to database
+                                        $.ajax({
+                                            url: "<?php echo $url ?>",
+                                            type: "POST",
+                                            dataType: "JSON",
+                                            data: {
+                                                "typeIn": "delete_group",
+                                                "id": _sel
+                                            },
+                                            success: function(data) {
+                                                piero_message();
+                                                reload_table();
+                                                notice.remove();
+                                            },
+                                            error: function(jqXHR, textStatus, errorThrown) {
+                                                piero_alert("<?php echo _ERROR ?>", "<?php echo _ERROR_DELETE ?>");
+                                            }
+                                        });
+
+                                    }
+                                },
+                                {
+                                    text: '<?php echo _CANCEL ?>',
+                                    addClass: 'btn',
+                                    click: function(notice) {
+                                        notice.remove();
+                                    }
+
+                                }
+                            ]
+                        },
+                        buttons: {
+                            closer: false,
+                            sticker: false
+                        },
+                        history: {
+                            history: false
+                        },
+                        addclass: 'stack-modal',
+                        stack: {
+                            'dir1': 'down',
+                            'dir2': 'right',
+                            'modal': true
+                        }
+                    }));
+                } else {
+                    piero_alert("<?php echo _ERROR ?>", "<?php echo _NO_SELECTED ?>");
+                }
+            }
+
+            function _delete_(id) {
                 (new PNotify({
                     title: '<?php echo _MESSAGE ?>',
                     text: '<?php echo _ASK_DELETE ?>',
@@ -894,8 +958,8 @@ class Crud
                                         type: "POST",
                                         dataType: "JSON",
                                         data: {
-                                            "typeIn": "delete_group",
-                                            "id": _sel
+                                            "typeIn": "delete",
+                                            "id": id
                                         },
                                         success: function(data) {
                                             piero_message();
@@ -933,75 +997,13 @@ class Crud
                         'modal': true
                     }
                 }));
-            } else {
-                piero_alert("<?php echo _ERROR ?>", "<?php echo _NO_SELECTED ?>");
+
             }
-        }
+        </script>
+        <?php
+    }
 
-        function _delete_(id) {
-            (new PNotify({
-                title: '<?php echo _MESSAGE ?>',
-                text: '<?php echo _ASK_DELETE ?>',
-                icon: 'fa fa-close fa-5x ',
-                hide: false,
-                confirm: {
-                    confirm: true,
-                    buttons: [{
-                            text: '<?php echo _YES ?>',
-                            addClass: 'btn-primary',
-                            click: function(notice) {
-                                // ajax delete data to database
-                                $.ajax({
-                                    url: "<?php echo $url ?>",
-                                    type: "POST",
-                                    dataType: "JSON",
-                                    data: {
-                                        "typeIn": "delete",
-                                        "id": id
-                                    },
-                                    success: function(data) {
-                                        piero_message();
-                                        reload_table();
-                                        notice.remove();
-                                    },
-                                    error: function(jqXHR, textStatus, errorThrown) {
-                                        piero_alert("<?php echo _ERROR ?>", "<?php echo _ERROR_DELETE ?>");
-                                    }
-                                });
-
-                            }
-                        },
-                        {
-                            text: '<?php echo _CANCEL ?>',
-                            addClass: 'btn',
-                            click: function(notice) {
-                                notice.remove();
-                            }
-
-                        }
-                    ]
-                },
-                buttons: {
-                    closer: false,
-                    sticker: false
-                },
-                history: {
-                    history: false
-                },
-                addclass: 'stack-modal',
-                stack: {
-                    'dir1': 'down',
-                    'dir2': 'right',
-                    'modal': true
-                }
-            }));
-
-        }
-    </script>
-<?php
-}
-
-//------------------------------view end
+    //------------------------------view end
     //------------------------------render start
     public function checkList($key, $mode = 'order')
     {
@@ -1016,14 +1018,12 @@ class Crud
             } else {
                 return false;
             }
-
         } else {
             if (in_array($key, $this->column_list)) {
                 return true;
             } else {
                 return false;
             }
-
         }
     }
     public function render_url($def = null)
@@ -1032,7 +1032,7 @@ class Crud
         $def = ($def) ? $def : $CI->router->method;
         return site_url($CI->router->directory . $CI->router->class . '/' . $def);
     }
-//out for table
+    //out for table
     private function render_view()
     {
         ob_start();
@@ -1056,7 +1056,7 @@ class Crud
             }
         }
     }
-//out for ajax out in datatable
+    //out for ajax out in datatable
     public function render_ajax_list()
     {
         $CI = &get_instance();
@@ -1072,8 +1072,10 @@ class Crud
 
             $c = 0;
             foreach ($this->column_order as $key) {
-                if (!$this->checkList($key)) {$c++;
-                    continue;}
+                if (!$this->checkList($key)) {
+                    $c++;
+                    continue;
+                }
                 switch ($this->column_type[$c]) {
                     case ("number"):
                         $row[] = (is_numeric($k->$key)) ? number_format($k->$key) : $k->$key;
@@ -1144,7 +1146,7 @@ class Crud
         //output to json format
         echo json_encode($output);
     }
-//total render
+    //total render
     public function render($view = "Dtbl_List")
     {
         $CI = &get_instance();
@@ -1158,7 +1160,7 @@ class Crud
             $this->select[$key] .= " AS $value";
         }
 
-        //render defual permision
+        //render default permission
         $this->permission["copy"] = isset($this->permission["copy"]) && $this->permission["copy"] ?? $this->permission["add"];
         $this->permission["view"] = isset($this->permission["view"]) && $this->permission["view"] ?? !empty($this->column_list);
 
@@ -1196,24 +1198,24 @@ class Crud
         }
     }
 
-//render element for edit adn add
+    //render element for edit adn add
     private function render_element($i)
     {
         $CI = &get_instance();
         $CI->load->helper('form');
         switch ($this->column_type[$i]) {
             case "input": ?>
-        <input name="<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control" type="text">
-        <?php break;
+                <input name="<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control" type="text">
+            <?php break;
             case "text": ?>
-        <textarea name="<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control"> </textarea>
-        <?php break;
+                <textarea name="<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control"> </textarea>
+            <?php break;
             case "email": ?>
-        <input name="<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control" type="email">
-        <?php break;
+                <input name="<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control" type="email">
+            <?php break;
             case "number": ?>
-        <input name="<?php echo $this->column_order[$i] ?>" class="form-control" type="number">
-        <?php break;
+                <input name="<?php echo $this->column_order[$i] ?>" class="form-control" type="number">
+                <?php break;
             case "bool":
                 echo form_dropdown($this->column_order[$i], array(1 => _TRUE, 0 => _FALSE));
                 break;
@@ -1235,31 +1237,31 @@ class Crud
                     $tmp_array = json_decode($this->column_type[$i]);
                     echo @form_dropdown($this->column_order[$i], $CI->element->pselect($tmp_array[1], ($tmp_array[2]) ? $tmp_array[2] : null, ($tmp_array[3]) ? $tmp_array[3] : null, _DEF_ELEMENT, ($tmp_array[4]) ? $tmp_array[4] : null, ($tmp_array[5]) ? $tmp_array[5] : null, null, 0), ["id" => $this->column_order[$i]]);
                 } else {
-                    ?>
-            <input name="<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control" type="text">
-        <?php
-}
+                ?>
+                    <input name="<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control" type="text">
+                <?php
+                }
         }
     }
-//render element for filter
+    //render element for filter
     private function render_element_filter($i)
     {
         $CI = &get_instance();
         $CI->load->helper('form');
         switch ($this->column_type[$i]) {
             case "input": ?>
-        <input id="f__<?php echo $this->column_order[$i] ?>" name="f__<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control" type="text">
-        <?php break;
+                <input id="f__<?php echo $this->column_order[$i] ?>" name="f__<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control" type="text">
+            <?php break;
             case "text": ?>
-        <textarea id="f__<?php echo $this->column_order[$i] ?>" name="f__<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control"></textarea>
-        <?php break;
+                <textarea id="f__<?php echo $this->column_order[$i] ?>" name="f__<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control"></textarea>
+            <?php break;
             case "email": ?>
-        <input id="f__<?php echo $this->column_order[$i] ?>" name="f__<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control" type="email">
-        <?php break;
+                <input id="f__<?php echo $this->column_order[$i] ?>" name="f__<?php echo $this->column_order[$i] ?>" placeholder="<?php echo $this->column_title[$i] ?>" class="form-control" type="email">
+            <?php break;
             case "number": ?>
-        <input id="from__<?php echo $this->column_order[$i] ?>" name="from__<?php echo $this->column_order[$i] ?>" placeholder="<?=_FROM?>" class="form-control" type="number">
-        <input id="to__<?php echo $this->column_order[$i] ?>" name="to__<?php echo $this->column_order[$i] ?>" placeholder="<?=_TO?>" class="form-control" type="number">
-        <?php break;
+                <input id="from__<?php echo $this->column_order[$i] ?>" name="from__<?php echo $this->column_order[$i] ?>" placeholder="<?= _FROM ?>" class="form-control" type="number">
+                <input id="to__<?php echo $this->column_order[$i] ?>" name="to__<?php echo $this->column_order[$i] ?>" placeholder="<?= _TO ?>" class="form-control" type="number">
+<?php break;
             case "bool":
                 echo form_dropdown("f__" . $this->column_order[$i], array(0 => _FALSE, 1 => _TRUE), null, ['id' => "f__" . $this->column_order[$i]]);
                 break;
@@ -1307,7 +1309,7 @@ class Crud
             return $value;
         }
     }
-//---------------------------------------------------------------------oth statr
+    //---------------------------------------------------------------------oth statr
     //generate array for crud permison
     public function render_permsion_crud($per)
     {

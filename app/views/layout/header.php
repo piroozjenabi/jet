@@ -121,16 +121,21 @@ $title = (isset($title) && $title) ? $title : $this->system->get_setting('login_
                     <ul class="nav navbar-nav side-nav">
 
                         <!--                 load for menus-->
-                        <?php foreach ($CI->permission->list_main_permision() as $k => $v) : ?>
-                            <?php
+                        <?php foreach ($CI->permission->list_main_permision() as $k => $v) :
                             $tmp = $CI->permission->list_menu_permision($v["id"]);
-                            if (count($tmp)) : ?>
-                                <li>
+                            
+                            if (count($tmp)) :
+                                $flgActive=0;     
+                                foreach ($tmp as $key => $value)
+                                    if(uri_string() == $value["menu_link"])
+                                        $flgActive = 1;
+                            ?>
+                                <li class="<?= $flgActive?"active":"" ?>">
                                     <a href="javascript:;" data-toggle="collapse" data-target="#PIERO_MNU<?php echo $v["id"] ?>"> <i class="<?php echo $v["icon"] ?> "> </i> <?php echo $v["des"] ?><span class="caret"></span></a>
                                     <!--                    sub menus-->
                                     <ul id="PIERO_MNU<?php echo $v["id"] ?>" class="collapse">
                                         <?php foreach ($tmp as $key => $value) : ?>
-                                            <li><a href="<?php echo site_url($value["menu_link"]) ?>"> <i class="<?php echo ($value["menu_icon"]) ? $value["menu_icon"] : $v["icon"] ?>"></i> <?php echo ($value["menu_text"]) ? $value["menu_text"] : $value["des"] ?></a></li>
+                                            <li><a class="<?= uri_string() == $value["menu_link"]?'active':''?>" href="<?=site_url($value["menu_link"]) ?>"> <i class="<?php echo ($value["menu_icon"]) ? $value["menu_icon"] : $v["icon"] ?>"></i> <?php echo ($value["menu_text"]) ? $value["menu_text"] : $value["des"] ?></a></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 </li>

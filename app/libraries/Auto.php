@@ -634,7 +634,7 @@ class Auto{
     {
         $CI =& get_instance();
         $CI->db->select('*');
-        $CI->db->from("tbl_auto_fields_value");
+        $CI->db->from("auto_fields_value");
         $CI->db->where("form_value_id",$form_id);
         if ($field_id) $CI->db->where("field_id",$field_id);
         return $CI->db->get()->result_array();
@@ -647,8 +647,8 @@ class Auto{
         $CI->db->select('*')
                 ->where('form_value_id',$id)
                 ->from($name_en);
-//        $CI->db->join('tbl_auto_forms_fields',"auto_fields_value.field_id=tbl_auto_forms_fields.id");
-//        $CI->db->where('tbl_auto_forms_fields.show_list',1);
+//        $CI->db->join('auto_forms_fields',"auto_fields_value.field_id=auto_forms_fields.id");
+//        $CI->db->where('auto_forms_fields.show_list',1);
 
         $tmp=null;
         foreach ($CI->db->get()->result_array()[0] as $k => $v)
@@ -672,7 +672,7 @@ class Auto{
         if($id)$CI->db->where('id',$id);
         if($id_form)$CI->db->where('form_id',$id_form);
         $CI->db->order_by('order_by');
-        $CI->db->from('tbl_auto_forms_fields');
+        $CI->db->from('auto_forms_fields');
         return $CI->db->get()->result_array() ;
     }
     // get propertis of fileds from name
@@ -681,7 +681,7 @@ class Auto{
         $CI =& get_instance();
         $CI->db->select('*')
         ->where('name',$name)
-        ->from('tbl_auto_forms_fields');
+        ->from('auto_forms_fields');
         return $CI->db->get()->row() ;
     }
 
@@ -691,7 +691,7 @@ class Auto{
 //    $this->delete_field_value($id);
     $CI =& get_instance();
     $CI->db->where('id',$id);
-    return $CI->db->delete('tbl_auto_forms_value');
+    return $CI->db->delete('auto_forms_value');
     }
 
 

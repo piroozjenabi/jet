@@ -17,7 +17,7 @@ $state=form_dropdown('state', [1 => _TRUE,0=>_FALSE], $detail_user[0]["state"], 
 //name of user
 $name= form_input(array('value'=> $detail_user[0]["name"] ,'id'=>'name', 'placeholder' => _FULL_NAME,'required' => 'required','name' => 'name','class'=>$def_css_class));
 //kode meli ya eghtesadi
-$meli_id= form_input(array('value'=> $detail_user[0]["meli_id"] ,'id'=>'meli_id', 'placeholder' => _MELI_ID,'required' => 'required','name' => 'meli_id','class'=>$def_css_class));
+$meli_id= form_input(array('value'=> $detail_user[0]["meli_id"] ,'id'=>'meli_id', 'placeholder' => _NATIONAL_ID,'required' => 'required','name' => 'meli_id','class'=>$def_css_class));
 
 $tell= form_input(array('value'=> $detail_user[0]["tell"] ,'id'=>'tell', 'placeholder' => _TELL,'required' => 'required','name' => 'tell','class'=>$def_css_class));
 $mobile= form_input(array('value'=> $detail_user[0]["mobile"] ,'id'=>'mobile', 'placeholder' => _MOBILE,'required' => 'required','name' => 'mobile','class'=>$def_css_class));
@@ -46,7 +46,7 @@ $idE=form_hidden("id", $detail_user[0]["id"]);
 </div>
 <div class="row  well ">
   <div class="col-sm-6 "><label for="lname"><?php echo _STATE ?></label><?php echo $state ?></div>
-  <div class="col-sm-6 "><label for="lname"><?php echo _MELI_ID ?></label><?php echo $meli_id ?></div>
+  <div class="col-sm-6 "><label for="lname"><?php echo _NATIONAL_ID ?></label><?php echo $meli_id ?></div>
   <div class="col-sm-6 "><label for="agent"><?php echo _REAGENT ?></label><?php echo $reagent ?></div>
   <div class="col-sm-6 "><label for="type"><?php echo _SEX?></label><?php echo $sex ?></div>
   <div class="col-sm-6 "><label for="tell"><?php echo _TELL ?></label><?php echo $tell ?></div>

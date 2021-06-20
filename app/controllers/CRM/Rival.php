@@ -23,7 +23,7 @@ class Rival extends  CI_Controller
         $tmp_selectdb2=array("select_db","prd_group","name");
         $this->crud->column_type=array("input","input",json_encode($tmp_selectdb2),"input","input","input",json_encode($tmp_selectdb),'input','input');
         $this->crud->column_search=array("brand","prd_name","prd_country","prd_company","prd_website","prd_contact");
-        $this->crud->permision=$this->crud->render_permsion_crud("rival");
+        $this->crud->permission=$this->crud->render_permsion_crud("rival");
         $this->crud->form_add=["maker_id"=>$user_id,"date"=>time()];
         $this->crud->actions= "<a class='btn btn-info  ' href='".site_url("MaLi/pprd/prd/manage_group")."' > <i class='fa fa-users' ></i>" . _MANAGE_PRD_GROUP. ' </a>';;
         if($this->permission->check("media_manage")){

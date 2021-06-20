@@ -33,7 +33,7 @@ $data = array('class' => $def_css_class);
 $group=form_dropdown('group_id', $this->element->pselect("crm_Promoter_group"), $detail_user[0]["group_id"], $data);
 
 $name= form_input(array('value'=> $detail_user[0]["name"] ,'id'=>'name', 'placeholder' => _NAME_USER,'required' => 'required','name' => 'name','class'=>$def_css_class));
-$meli_id= form_input(array('value'=> $detail_user[0]["meli_id"] ,'id'=>'name', 'placeholder' => _MELI_ID,'required' => 'required','name' => 'meli_id','class'=>$def_css_class));
+$meli_id= form_input(array('value'=> $detail_user[0]["meli_id"] ,'id'=>'name', 'placeholder' => _NATIONAL_ID,'required' => 'required','name' => 'meli_id','class'=>$def_css_class));
 $user_id= $this->element->user_select("user_id", "user_id", $def_css_class, $detail_user[0]['user_id']);
 $hour_daily= form_input(array('value'=> $detail_user[0]["hour_daily"] ,'id'=>'name', 'placeholder' => _HOUR_WORK.__._ACCEPTED_SUC,'required' => 'required','name' => 'hour_daily','class'=>$def_css_class));
 $sallari= form_input(array('value'=> $detail_user[0]["sallari"] ,'id'=>'name', 'placeholder' => _SALARY,'required' => 'required','name' => 'sallari','class'=>$def_css_class));
@@ -65,7 +65,7 @@ $weekly_alert3=$this->element->select_day("weekly_alert3", $detail_user[0]["week
 
 <div class="row well">
 
-  <div class="col-sm-3 well"><label for="type"><?php echo _MELI_ID?></label><?php echo $meli_id ?></div>
+  <div class="col-sm-3 well"><label for="type"><?php echo _NATIONAL_ID?></label><?php echo $meli_id ?></div>
   <div class="col-sm-3 well"><label for="tell"><?php echo _TELL ?></label><?php echo $tell ?></div>
   <div class="col-sm-3 well"><label for="mobile"><?php echo _MOBILE ?></label><?php echo $mobile ?></div>
   <div class="col-sm-3 well"><label for="email"><?php echo _EMAIL ?></label><?php echo $email ?></div>

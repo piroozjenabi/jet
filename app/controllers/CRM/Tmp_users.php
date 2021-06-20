@@ -80,7 +80,7 @@ class Tmp_users extends CI_Controller
         $this->crud->column_type=array("hide",json_encode(["select_db","tmp_client_state","name"]),json_encode(["select_db","tmp_client_type","name"]),json_encode(["select_db","tmp_client_peyment_type","name"]),"input","input","input","input");
         $this->crud->column_search=array("name","contact","tell","mobile");
         $this->crud->where="maker_id=$user_id AND state=$state";
-        $this->crud->permision=$this->crud->render_permsion_crud("tmp_user");
+        $this->crud->permission=$this->crud->render_permsion_crud("tmp_user");
         $this->crud->form_add=["maker_id"=>$user_id,"date_create"=>time()];
         if ($this->permission->check("tmp_user_manage_define")) {
             $this->crud->actions="<a class='btn btn-info' target='_blank' href='" .  site_url("/CRM/Tmp_users/manage_state/")  ."' > <i class='fa fa-circle-o-notch'> </i> "._MANAGE.__._STATE._S." </a>".

@@ -537,7 +537,7 @@ private function load_table()
         echo json_encode($output);
     }
     //total render
-    function render($view="Dtbl_List") {
+    function render($view="DList") {
         $CI            =& get_instance();
         $this->tableId = "taBle" . rand( 0, 1000 );
         if ( $CI->input->post( "where", true ) ) {

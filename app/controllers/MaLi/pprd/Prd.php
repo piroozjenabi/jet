@@ -39,8 +39,8 @@ class Prd extends CI_Controller
         $tmp_selectdbvahed = array("select_db", "mali_prd_unit", "name");
         $this->crud->column_type = array("hide", "bool", "input", json_encode($tmp_selectdb), "number", "input", json_encode($tmp_selectdbvahed), "number", "number", "number", "input");
         $this->crud->column_search = array("name", "row_plus");
-        $this->crud->permision = $this->crud->render_permsion_crud("prd");
-        if ($this->crud->permision["edit"]) {
+        $this->crud->permission = $this->crud->render_permsion_crud("prd");
+        if ($this->crud->permission["edit"]) {
             $tmp_url = site_url("MaLi/pprd/prd/edit/");
             $this->crud->actions_row = "<a class='btn btn-default' data-toggle='tooltip' title='" . _EDIT_FULLL . "' onclick=load_ajax_popupfull('$tmp_url','id=[[id]]') > <i class='fa fa-edit' ></i> </a>";
         }
@@ -64,7 +64,7 @@ class Prd extends CI_Controller
         $this->crud->title = _MANAGE_PRD_GROUP;
         $this->crud->column_order = array("name", "state", "des", "parent");
         $this->crud->column_title = array(_NAME, _STATE, _DES, _VALED);
-        $this->crud->column_require = array(1, 1, 1, 0);
+        $this->crud->column_require = array(1, 1, 0, 0);
         $tmp_selectdb = array("select_db", "prd_group", "name");
         $this->crud->column_type = array("input", "bool", "input", json_encode($tmp_selectdb));
         $this->crud->column_search = array("name", "des");

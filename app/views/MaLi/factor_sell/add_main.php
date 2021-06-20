@@ -39,8 +39,11 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
 <div class="modal-body">
   <div class='row well'>
     <button class="btn btn-success" style="width:20%" type="submit"> <?= _SAVE ?> </button>
+    <button type="button" class="btn btn-info" onclick="$('#desInvoice').toggle(50);$('#des').val('');$(this).toggleClass('btn-info')"> <i class='fa fa-cog'> </i> <?= _FACTOR_DES ?> </button>
+
     <div class="btn-group">
-      <button type="button" class="btn" onclick="$('#desInvoice').toggle(50);$('#des').val('');$(this).toggleClass('btn-info')"> <i class='fa fa-cog'> </i> <?= _FACTOR_DES ?> </button>
+      <button type="button" href="<?= site_url('MaLi/pprd/prd/manage') ?>" class="btn btn-default" > <i class='fa fa-plus'> </i> <?= _ADD.__._PRD ?> </button>
+      <button type="button" href="<?= site_url('MaLi/pprd/prd/manage') ?>" class="btn btn-default" > <i class='fa fa-plus'> </i> <?= _ADD.__._CLIENT ?> </button>
     </div>
   </div>
   <div class="row well" id="desInvoice" style="display:none">

@@ -26,7 +26,7 @@ class Project extends CI_Controller
         $this->crud->column_require = array(2, 1, 2, 0,0,2,2,2,2,2);
         $this->crud->column_type = array("hide", "input", json_encode(["array",$this->project_lib->status_array]), "text","date", json_encode(["select_db","user_admin","name"]), "date","date","date");
         $this->crud->column_search = array("name","des");
-        $this->crud->permision = ["add"=>false,"edit"=>true,"delete"=>true];
+        $this->crud->permission = ["add"=>false,"edit"=>true,"delete"=>true];
         $this->crud->form_add = ["maker_id" => $user_id];
 
         $this->crud->actions.= "<a class='btn btn-success' data-toggle='tooltip' title='" . _ADD.__._PROJECT . "' onclick=load_ajax_popup('". site_url("project/add")."','id=[[id]]') > <i class='fa fa-plus' ></i> " . _ADD.__._PROJECT . " </a>";;
@@ -131,7 +131,7 @@ class Project extends CI_Controller
         $tmp_selectdb3=array("select_db","project","name");
         $this->crud->column_type=array("hide","input","input","date",json_encode($tmp_selectdb3),json_encode($tmp_selectdb),json_encode($tmp_selectdb2));
         $this->crud->column_search=array("name","des");
-        $this->crud->permision=["add"=>false,"edit"=>true,"delete"=>true];
+        $this->crud->permission=["add"=>false,"edit"=>true,"delete"=>true];
         $this->crud->form_add=["maker_id"=>$user_id];
         $this->crud->render();
     }
@@ -150,7 +150,7 @@ class Project extends CI_Controller
         $tmp_selectdb3=array("select_db","project","name");
         $this->crud->column_type=array("hide","text","date",json_encode($tmp_selectdb3),json_encode($tmp_selectdb2));
         $this->crud->column_search=array("comment");
-        $this->crud->permision=["add"=>true,"edit"=>true,"delete"=>true];
+        $this->crud->permission=["add"=>true,"edit"=>true,"delete"=>true];
         $this->crud->form_add=["maker_id"=>$user_id];
         $this->crud->render();
     }

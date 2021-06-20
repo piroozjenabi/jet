@@ -20,7 +20,7 @@ class Manage extends CI_Controller
         $tmp_selectdb = array("select_db", "auto_forms_tree", "name");
         $this->crud->column_type = array("bool", "input", "input", "input", json_encode($tmp_selectdb));
         $this->crud->column_search = array("name", "name_en", "des");
-        $this->crud->permision = $this->crud->render_permsion_crud("auto_form");
+        $this->crud->permission = $this->crud->render_permsion_crud("auto_form");
         $tmp_url = site_url("/AUTO/manage_form/manage/manage_fields/" . '[[id]]');
         $this->crud->actions_row = "<a class='btn btn-default' data-toggle='tooltip' title='{_FIELD._S}' target='_blank' href='$tmp_url' > <i class='fa fa-lock' ></i> </a>" .
             '<a onclick="piero_confirm(del_cr_forms,[[id]])" data-toggle="tooltip" title="{_DELETE_CREATE_TABLES}" class=" btn btn-warning"  > <i class="fa fa-refresh "></i> </a> <hr>';

@@ -339,7 +339,7 @@ define("_RENDER_STOCK_RECEPI", "صدور حواله انبار");
 ####################################### -- ACCOUNTING  --
 define("_NAME_BANK", "نام بانک");
 define("_BRANCH_BANK", "کد/نام شعبه");
-define("_ACCOUNT_NUMBER_BANK", "شماره حساب");
+define("_ACCOUNT_NUMBER_BANK", "اطلاعات حساب بانکی");
 define("_RECIVER_BANK", "بانک ذینفع");
 define("_FULL_INVOICE", "صورت حساب کامل");
 
@@ -360,7 +360,7 @@ define("_CLIENT_PRICE_EN", "CONSUMER");
 
 ####################################### -- USERS --
 define("_FULL_NAME", "نام کامل");
-define("_MELI_ID", "کد ملی");
+define("_NATIONAL_ID", "کد ملی");
 define("_REAGENT", "معرف");
 define("_ACTION", "عملیاتها");
 define("_AGENT", "نماینده قانونی");

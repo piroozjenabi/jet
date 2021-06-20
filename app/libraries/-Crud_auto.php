@@ -14,7 +14,7 @@
 //param 3 : name of col
 //param 4 : where
 //param 5 : order
-//exam  $tmp_selectdb=array("select_db","tbl_usergroup_eemploy","name");
+//exam  $tmp_selectdb=array("select_db","usergroup_eemploy","name");
 //$this->crud->column_type=array("input","bool",json_encode($tmp_selectdb));
 // info for select_db ----------------------- end
 class Crud_auto
@@ -547,7 +547,7 @@ class Crud_auto
         echo json_encode($output);
     }
     //total render
-    function render($view="Dtbl_List")
+    function render($view="DList")
     {
         $CI            =& get_instance();
         $this->tableId = "taBle" . rand(0, 1000);

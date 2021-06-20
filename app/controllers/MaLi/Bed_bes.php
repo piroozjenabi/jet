@@ -86,7 +86,7 @@ class Bed_bes extends CI_Controller
         $this->crud->column_require=array(1,1,1,1,0);
         $this->crud->column_search=array("user.name","price","des");
         $this->crud->order=array("mali_bed_bes.id"=>"asc");
-        $this->crud->permision=array("add"=>false,"edit"=>false,"delete"=>"false");
+        $this->crud->permission=array("add"=>false,"edit"=>false,"delete"=>"false");
         $this->crud->where="group_id=8";
         $this->crud->join[]=array("user","mali_bed_bes.user_id=user.id");
         $this->crud->render("karkoshte/job_list");
