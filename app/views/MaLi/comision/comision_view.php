@@ -37,8 +37,8 @@ $charteemploy_sell=array('x'=>array(),'y'=>array());
         ?>
     <tr>
     <td><button class="btn btn-info" style="min-width: 200px" data-toggle="collapse" data-target="#<?php echo $k?>"> <i class="fa fa-eye-slash"></i> <?php echo $v["month_name"] ?> </button></td>
-    <td> <?php echo number_format($v["tot_sell"]) ?></td>
-    <td> <?php echo number_format($v["tot_com"]) ?></td>
+    <td> <?= price($v["tot_sell"]) ?></td>
+    <td> <?= price($v["tot_com"]) ?></td>
 
         <td colspan="3" >
         <div id="<?php echo $k?>" class="collapse"  dir="<?php echo _DIRECTION ?>" >
@@ -72,8 +72,8 @@ $charteemploy_sell=array('x'=>array(),'y'=>array());
                                     <span class="pull-right"></span>
                                     <div class="clearfix"></div>
                                     <div >
-                                        <?php echo _COMMISSION.__.$v["month_name"] ?> :<?php echo number_format($value['commission_thismonth'])._R   ?><br>
-                                        <?php echo _SELL.__.$v["month_name"] ?> :<?php echo number_format($value['totsell'])._R   ?><br>
+                                        <?php echo _COMMISSION.__.$v["month_name"] ?> :<?= price($value['commission_thismonth'], true)   ?><br>
+                                        <?php echo _SELL.__.$v["month_name"] ?> :<?= price($value['totsell'], true)   ?><br>
                                     </div>
                                 </div>
 

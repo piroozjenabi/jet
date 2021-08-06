@@ -137,6 +137,12 @@ function printDate($time = null, $format = "Y-m-d")
     return $CI->piero_jdate->jdate($format, $time);
 }
 
+function price($val, $showUnit = false){
+    return $val && is_numeric($val)
+    ? (number_format($val, config('decimal'))) . ($showUnit?_R:'')
+    : 0 ;
+}
+
 /**
  * function to parse name
  *
@@ -227,5 +233,11 @@ function session($key = null , $value = false){
 function loadV($view, $params = [], $paramsHeder = [], $paramsFooter = []){
     $ci = &get_instance();
     $ci->template->load($view, $params, $paramsHeder, $paramsFooter);
+}
+
+
+function config($name, $def = false, $json = false){
+    $CI = &get_instance();
+    return $CI->system->get_setting($name, $def, $json);
 }
 

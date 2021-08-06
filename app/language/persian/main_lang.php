@@ -20,8 +20,7 @@ define("_SS", "های");
 define("_SELECT", "انتخاب");
 
 //main currency method $ or rial and ...
-define("_R", " (ریال) ");
-
+define("_R", " (تومان) ");
 
 ####################################### -- GENERALS--
 define("_DEFAULT", "پیش فرض");
@@ -111,7 +110,7 @@ define("_TRUE", "فعال");
 define("_FALSE", "غیرفعال");
 define("_BILL", "صورت حساب");
 define("_ERROR_IN_INPUT_PARAMS", "خطا در پارامترهای ورودی . لطفا موارد ارسالی را چک کنید و دوباره امتحان کنید");
-define("_ERROR_AJAX", "خطا در ساختار دریافت بین لایه ای آجاکس");
+define("_ERROR_AJAX", "حطای سروری ، لطفا مجددا تلاش نمایید در صورت بروز مشکل با پشتیبانی تماس بگیرید");
 define("_ERROR_UPDATE", "خطا در بروز رسانی داده ها");
 define("_ERROR_DELETE", "خطا در حذف داده ها");
 define("_ERROR_ADD", "خطا در افزودن ");
@@ -503,7 +502,6 @@ define("_GROUP_PRD", "گروه کالا");
 define("_NUM_PRD", "تعداد اقلام");
 define("_COMPANY_MAKER", "شرکت سازنده");
 define("_ORDER_POINT", "حداکثر مبلغ خرید");
-define("_FANI_NUMBER", "شماره فنی");
 define("_BARCODE", "بارکد");
 define("_COUNTRY_MAKER", "کشور سازنده");
 define("_PRICE_SETTING", "قیمت گذاری");

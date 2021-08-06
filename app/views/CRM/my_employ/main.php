@@ -35,54 +35,54 @@ $last_factor=0;
 
     <td  >
         <p data-toggle="tooltip" data-placement="bottom"  title="<?php echo $value['address'] . " - " .$value['tell'] ?>" >
-        <?php echo $value['name'] ?>
+        <?= $value['name'] ?>
 
         </p>
     </td>
 
     <td>
         <a TARGET="<?php echo $this->system->get_setting("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/factor_sell/manage_factor/this_month/'.$value['id']); ?>" >
-        <?php echo number_format($value['commission'])  ?>
+        <?= price($value['commission'])  ?>
         </a>
     </td>
     <td>
-        <?php echo number_format($value['factor_total'])  ?>
+        <?= price($value['factor_total'])  ?>
     </td>
     <td>
 
 
         <a TARGET="<?php echo $this->system->get_setting("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/factor_sell/manage_factor/this_month/'.$value['id']); ?>" >
-        <?php $limit_sell= number_format($value['sell_price']- $this->system->get_user_admin_from_id($value['id'], "limit_sell"));
-        $strng_title=_REMIND.__._MIN_LIMIT_SELL." = ".$limit_sell." | "._MIN_LIMIT_SELL."=".number_format($this->system->get_user_admin_from_id($value['id'], "limit_sell"));
+        <?php $limit_sell= price($value['sell_price']- $this->system->get_user_admin_from_id($value['id'], "limit_sell"), true);
+        $strng_title=_REMIND.__._MIN_LIMIT_SELL." = ".$limit_sell." | "._MIN_LIMIT_SELL."=".price($this->system->get_user_admin_from_id($value['id'], "limit_sell"));
         $strng_title.=($this->system->get_setting("salary_this_mount_percent")>0)?'|' . _SALARY_THIS_MOUNTH.$value['sell_price']*$this->system->get_setting("salary_this_mount_percent"):"";
-        echo "<p data-toggle='tooltip' data-placement='bottom' title='$strng_title' > <i class='fa fa-dot-circle-o' > </i> ".number_format($value['sell_price'])." </p> ";
+        echo "<p data-toggle='tooltip' data-placement='bottom' title='$strng_title' > <i class='fa fa-dot-circle-o' > </i> ".price($value['sell_price'])." </p> ";
         ?>
         </a>
 
     </td>
 
     <td>
-        <?php echo number_format($value['total_pay'])  ?>
+        <?= price($value['total_pay']) ?>
     </td>
 
     <td>
 
-        <?php echo ($value['last_date']!=0) ?$CI->piero_jdate->jdate("Y/m/d", $value['last_date']):0;   ?>
+        <?= printDate($value['last_date']) ?>
     </td>
 
         <td>
-            <a TARGET="<?php echo $this->system->get_setting("my_eemploy_target") ?>" href="<?php echo site_url('CRM/my_client/index')."/".$value['id']; ?>" class="btn btn-default">
+            <a TARGET="<?= config("my_eemploy_target") ?>" href="<?php echo site_url('CRM/my_client/index')."/".$value['id']; ?>" class="btn btn-default">
               <i class="fa fa-users" ></i>  <?php echo _CLIENT_LIST?>
 
             </a>
 
 
-            <a TARGET="<?php echo $this->system->get_setting("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/factor_sell/manage_factor/index/public/'.$this->system->get_setting("main_factor_level").'/'.$value['id']); ?>" class="btn btn-default">
+            <a TARGET="<?= config("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/factor_sell/manage_factor/index/public/'.$this->system->get_setting("main_factor_level").'/'.$value['id']); ?>" class="btn btn-default">
               <i class="fa fa-list" ></i>  <?php echo _FACTOR_SELL?>
 
             </a>
 
-            <a TARGET="<?php echo $this->system->get_setting("my_eemploy_target") ?>" href="<?php echo site_url('CRM/Promoter/manage/'.$value['id']); ?>" class="btn btn-default">
+            <a TARGET="<?= config("my_eemploy_target") ?>" href="<?php echo site_url('CRM/Promoter/manage/'.$value['id']); ?>" class="btn btn-default">
               <i class="fa fa-money" ></i>  <?php echo _PROMOTER?>
 
             </a>
@@ -94,10 +94,10 @@ $last_factor=0;
 <?php endforeach; ?>
   <tr>
       <tfoot>
-      <td><?php echo _TOTAL_PLUS ?></td>
-      <td><?php echo number_format($total_com)  ?></td>
-      <td><?php echo number_format($total_price)  ?></td>
-      <td><?php echo number_format($total_pay)  ?></td>
+      <td><?= _TOTAL_PLUS ?></td>
+      <td><?= price($total_com)  ?></td>
+      <td><?= price($total_price)  ?></td>
+      <td><?= price($total_pay)  ?></td>
         <td></td>
       <td> <?php echo ($last_factor!=0) ?$CI->piero_jdate->jdate("Y/m/d", $last_factor):0;   ?></td>
       <td>

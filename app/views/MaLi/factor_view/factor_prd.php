@@ -168,7 +168,7 @@ foreach ($db['prd'] as $key => $value){
         $dis_unt=$value["takhfif"]/$value["num"];
         $tprd=$value["price"]*$value["num"];
         if ($value["price"]>0) {
-            $discount_line=number_format(($value["takhfif"]/$tprd)*100, 1);
+            $discount_line=price(($value["takhfif"]/$tprd)*100, 1);
         }
 
            //total client price
@@ -176,17 +176,17 @@ foreach ($db['prd'] as $key => $value){
         ?>
       <tr <?php echo $tblbg ?> >
             <?php if($this->system->get_setting("show_total_price")) :?>
-            <td><?php echo ($totalprd)?(@$propertis->free == "1")?_FREE:number_format($totalprd):_FREE  ?></td>
+            <td><?php echo ($totalprd)?(@$propertis->free == "1")?_FREE:price($totalprd):_FREE  ?></td>
             <?php endif;?>
          <td class="col-sm-2" >
             <?php
             //fro print price of client
             if($value["price_client"]) {
-                echo  number_format($value["price_client"]);
+                echo  price($value["price_client"]);
             }
             //for print takhfif
             else if($this->system->get_setting("show_off") && $value["takhfif"] >0) {
-                echo   $discount_line.  '% -' . number_format($value["takhfif"]).  '<br>' . number_format($value["price"] -$dis_unt);
+                echo   $discount_line.  '% -' . price($value["takhfif"]).  '<br>' . price($value["price"] -$dis_unt);
 
 
             }
@@ -197,7 +197,7 @@ foreach ($db['prd'] as $key => $value){
 
           </td>
             <?php if($this->system->get_setting("show_price")) :?>
-            <td  ><?php echo ($value["price"]>0)? (@$propertis->free == "1")?_FREE:number_format($value["price"]): _FREE  ?></td>
+            <td  ><?php echo ($value["price"]>0)? (isset($propertis->free) && $propertis->free == "1")?_FREE:price($value["price"]): _FREE  ?></td>
             <?php endif;?>
             <?php if($this->system->get_setting("show_unit")) :?>
             <td><?php echo $value["vahed_asli_name"] ?></td>
@@ -221,7 +221,7 @@ foreach ($db['prd'] as $key => $value){
     foreach ($db['kosoorat'] as $key => $value): ?>
         <?php
           $totalprd=$value["price"];
-          $discount_percent=number_format(($totalprd/$all_totalprd)*100, 2);
+          $discount_percent=price(($totalprd/$all_totalprd)*100, 2);
           $all_totalprd -= $totalprd;
           $i++;
         if($i % 2 ==0) {
@@ -232,9 +232,9 @@ foreach ($db['prd'] as $key => $value){
         ?>
       <tr <?php echo $tblbg ?> >
 
-      <td style="height: 22px;line-height: 25px" ><?php echo number_format($totalprd); ?></td>
+      <td style="height: 22px;line-height: 25px" ><?php echo price($totalprd); ?></td>
       <td  ></td>
-      <td style=";height: 22px;line-height: 25px" >-<?php echo ($propertis->free == "1")?_FREE:number_format($value["price"])  ?></td>
+      <td style=";height: 22px;line-height: 25px" >-<?php echo ($propertis->free == "1")?_FREE:price($value["price"])  ?></td>
       <td  style=";height: 22px;line-height: 25px;font-size: 11px" ><b><?php echo $discount_percent ?>%</b></td>
       <td></td>
       <td style="text-align: left;height: 22px;line-height: 25px" ><?php echo $value["name"] ?></td>
@@ -257,11 +257,11 @@ foreach ($db['prd'] as $key => $value){
         ?>
       <tr <?php echo $tblbg ?> >
 
-      <td style="height: 22px;line-height: 25px" ><?php echo number_format($totalprd); ?></td>
+      <td style="height: 22px;line-height: 25px" ><?= price($totalprd); ?></td>
       <td  ></td>
       <td  ></td>
 <!--      <td style=";height: 22px;line-height: 25px;font-size: 15px" ><b>--><?//= $discount_percent ?><!--% </b></td>-->
-      <td  style=";height: 22px;line-height: 25px" >+<?php echo (@$propertis->free == "1")?_FREE:number_format($value["price"]) ?></td>
+      <td  style=";height: 22px;line-height: 25px" >+<?php echo (@$propertis->free == "1")?_FREE:price($value["price"]) ?></td>
       <td></td>
       <td style="text-align: left;height: 22px;line-height: 25px" > <?php echo $value["name"] ?></td>
       <td></td>
@@ -291,14 +291,14 @@ foreach ($db['prd'] as $key => $value){
     <?php if (@$propertis->show_total!="off") : ?>
     <?php if ($client_price_flag) : ?>
         <tr>
-            <td colspan="7" class="fa" > <?php echo _PRICE_TOTAL.  _R .number_format($all_totalprd_client) ?> </td>
+            <td colspan="7" class="fa" > <?php echo _PRICE_TOTAL.price($all_totalprd_client) ?> </td>
         </tr>
     <?php endif ?>
       <tr class="total">
         <td class="fa" colspan="4" ><?php echo _LAST_PRICE._R ?>
-        <?php echo (@$propertis->free == "1")?_FREE:number_format($all_totalprd) ?></td>
+        <?php echo (@$propertis->free == "1")?_FREE:price($all_totalprd) ?></td>
                  <td> </td>
-        <td colspan="2" class="en"><?php echo _SUB_TOTAL_EN ?>  <?php echo (@$propertis->free == "1")?_FREE_OF_CHARGE_EN:_R_EN. number_format($all_totalprd); ?>  </td>
+        <td colspan="2" class="en"><?php echo _SUB_TOTAL_EN ?>  <?php echo (@$propertis->free == "1")?_FREE_OF_CHARGE_EN:_R_EN. price($all_totalprd); ?>  </td>
 
       </tr>
       <tr >

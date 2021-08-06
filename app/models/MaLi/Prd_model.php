@@ -27,7 +27,6 @@ class Prd_model extends CI_Model
         $data["company"]=post("company_maker", true);
         $data["pic"]=post("pic", true);
         $data["file"]=post("file", true);
-        $data["fani_number"]=post("fani_number", true);
         $data["barcode"]=post("barcode", true);
         $data["country"]=post("country_maker", true);
         if (!$id) {

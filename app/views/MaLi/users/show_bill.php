@@ -59,19 +59,19 @@ $show_link= site_url("MaLi/factor_sell/manage_factor/view_details");
 <table class="table table-hover table-striped cleartbl"  >
     <tr>
         <td>Name : </td>
-        <td><?php echo $detail_users[0]["extra1"]  ?></td>
+        <td><?= $detail_users[0]["extra1"]  ?></td>
     </tr>
     <tr>
         <td>Contact person : </td>
-        <td><?php echo $detail_users[0]["extra2"] ?></td>
+        <td><?= $detail_users[0]["extra2"] ?></td>
     </tr>
     <tr>
         <td>Address : </td>
-        <td><?php echo $detail_users[0]["extra3"] ?></td>
+        <td><?= $detail_users[0]["extra3"] ?></td>
     </tr>
     <tr>
         <td>City,State,Zip : </td>
-        <td><?php echo $detail_users[0]["extra4"] ?></td>
+        <td><?= $detail_users[0]["extra4"] ?></td>
     </tr>
     <tr>
         <td>Country : </td>
@@ -107,8 +107,8 @@ $show_link= site_url("MaLi/factor_sell/manage_factor/view_details");
         }
     }
 }
-    //------------------forpays
-            $tmp=$CI->bed_beslib->get_list_bes_from_user($detail_users[0]["id"]);
+//------------------for pays
+$tmp=$CI->bed_beslib->get_list_bes_from_user($detail_users[0]["id"]);
 if(count($tmp)) {
     foreach ($tmp as $key => $value) {
         if ($value["enable"]) {
@@ -123,32 +123,26 @@ if(count($tmp)) {
         }
     }
 }
-
-
-
  //sort
 usort(
     $bilar, function ($a, $b) {
         return $a['date'] - $b['date'];
     }
 );
-            ?>
+?>
 
 <table  class=" table table-hover table-striped" >
 
     <thead>
     <tr>
-        <td><?php echo _ID ?></td>
-        <td><?php echo _DATE ?></td>
-        <td><?php echo _DATE.__._EXPIRE ?></td>
-        <td><?php echo _DES ?></td>
-        <td><?php echo _BEDEHKAR._R ?></td>
-        <td><?php echo _BESTANKAR._R ?></td>
-        <td><?php echo _REMIND._R ?></td>
+        <td><?= _ID ?></td>
+        <td><?= _DATE ?></td>
+        <td><?= _DATE.__._EXPIRE ?></td>
+        <td><?= _DES ?></td>
+        <td><?= _BEDEHKAR._R ?></td>
+        <td><?= _BESTANKAR._R ?></td>
+        <td><?= _REMIND._R ?></td>
         <td>!</td>
-
-
-
         <td class="dis_print" > </td>
     </tr>
     </thead>
@@ -156,28 +150,22 @@ usort(
         $tbed+=$value["bed"];
         $tbes+=$value["bes"];
         $remind=$remind+$value["bed"]-$value["bes"];
-        //--- for bed or bes per line
-        if ($remind >0 ) {
-            $typ=_BED;
-        }
-        else if($remind <0 ) {
-            $typ=_BES;
-            //            $remind*=-1;
-        }
-        else {
-            $typ="";
-        }
+
+        if ($remind >0 ) $typ=_BED;
+        else if($remind <0 ) $typ=_BES;
+        else $typ="";
+        
         ?>
         <tr>
-            <td><?php echo $value["id"] ?></td>
-            <td><?php echo ($value["date"])? $CI->piero_jdate->jdate("Y/m/d", $value["date"]):null; ?></td>
-            <td><?php echo ($value["expire"])? $CI->piero_jdate->jdate("Y/m/d", $value["expire"]):null;?></td>
-            <td><?php echo $value["des"] ?></td>
-            <td><?php echo number_format($value["bed"])?></td>
-            <td><?php echo number_format($value["bes"])?></td>
-            <td><?php echo number_format(($remind>=0)?$remind:$remind*-1)  // if manfi not show manfi?></td>
-            <td><?php echo $typ ?></td>
-            <td class="dis_print" ><?php echo $value["op"]?></td>
+            <td><?= $value["id"] ?></td>
+            <td><?= ($value["date"])? $CI->piero_jdate->jdate("Y/m/d", $value["date"]):null; ?></td>
+            <td><?= ($value["expire"])? $CI->piero_jdate->jdate("Y/m/d", $value["expire"]):null;?></td>
+            <td><?= $value["des"] ?></td>
+            <td><?= price($value["bed"])?></td>
+            <td><?= price($value["bes"])?></td>
+            <td><?= price(($remind>=0)?$remind:$remind*-1)  // if manfi not show manfi?></td>
+            <td><?= $typ ?></td>
+            <td class="dis_print" ><?= $value["op"]?></td>
         </tr>
     <?php endforeach; ?>
     <tfoot>
@@ -185,11 +173,11 @@ usort(
         <td> # </td>
         <td>  </td>
         <td>  </td>
-        <td> <?php echo _TOTAL_PLUS ?></td>
-        <td><?php echo number_format($tbed) ?></td>
-        <td><?php echo number_format($tbes) ?></td>
-        <td><?php echo number_format($remind) ?></td>
-        <td><?php echo $typ ?></td>
+        <td><?= _TOTAL_PLUS ?></td>
+        <td><?= price($tbed) ?></td>
+        <td><?= price($tbes) ?></td>
+        <td><?= price($remind) ?></td>
+        <td><?= $typ ?></td>
         <td class="dis_print">  </td>
 
     </tr>
@@ -201,11 +189,8 @@ usort(
     <thead>
     <tr>
         <td></td>
-        <td><?php echo _REMIND ?></td>
-
-        <td>  <?php echo number_format($remind)._R ?></td>
-
-
+        <td><?= _REMIND ?></td>
+        <td><?= price($remind) ?></td>
     </tr>
     </thead>
 

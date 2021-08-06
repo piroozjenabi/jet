@@ -475,7 +475,6 @@ define("_GROUP_PRD", "product group");
 define("_NUM_PRD", "number of product");
 define("_COMPANY_MAKER", "made in ");
 define("_ORDER_POINT", "order point");
-define("_FANI_NUMBER", "serial");
 define("_BARCODE", "barcode");
 define("_COUNTRY_MAKER", "maker country");
 define("_PRICE_SETTING", "prices");

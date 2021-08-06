@@ -15,7 +15,7 @@ class Prd extends CI_Controller
         $ret = $this->Prd_model->edit_prd(post("id", true));
         $this->template->load_popup('MaLi/prds/add_p_prd', _EDIT_FULLL . __ . _PRD, array("detail_prd" => $ret));
     }
-    public function pedit($id=null)
+    public function pedit($id = null)
     {
         $this->permission->check("prd_edit", 0, 1);
         $id = post("id", true);
@@ -26,18 +26,17 @@ class Prd extends CI_Controller
     //manage
     public function manage($parent_id = null)
     {
-        //        load for data table
         $this->load->library("Crud");
         $this->crud->table = "prd";
         $this->crud->title = _MANAGE . __ . _PRD;
         $this->crud->column_order = array("id", "state", "name", "group_id", "out_stack_alert", "price1", "vahed_asli", "order_by", "row_plus");
         $this->crud->column_list = array("id", "state", "name", "group_id", "out_stack_alert", "price1");
-        $this->crud->column_title = array(_ID, _STATE, _NAME, _GROUP, _OUT_STACK_ALERT, _PRICE, _VAHED_ASLI, _ORDER_BY, _FACTOR_ROW_PLUS_);
-        $this->crud->column_require = array(2, 1, 1, 0, 0, 0, 0, 0,0, 0, 0);
-        $this->crud->column_filter = array(1, 1, 1, 1, 0, 0, 1, 0,0, 0, 0);
+        $this->crud->column_title = array(_ID, _STATE, _NAME, _GROUP, _OUT_STACK_ALERT, _PRICE._R, _VAHED_ASLI, _ORDER_BY, _FACTOR_ROW_PLUS_);
+        $this->crud->column_require = array(2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+        $this->crud->column_filter = array(1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0);
         $tmp_selectdb = array("select_db", "prd_group", "name");
         $tmp_selectdbvahed = array("select_db", "mali_prd_unit", "name");
-        $this->crud->column_type = array("hide", "bool", "input", json_encode($tmp_selectdb), "number", "input", json_encode($tmp_selectdbvahed), "number", "number", "number", "input");
+        $this->crud->column_type = array("hide", "bool", "input", json_encode($tmp_selectdb), "number", "number", json_encode($tmp_selectdbvahed), "number", "number", "number", "input");
         $this->crud->column_search = array("name", "row_plus");
         $this->crud->permission = $this->crud->render_permsion_crud("prd");
         if ($this->crud->permission["edit"]) {

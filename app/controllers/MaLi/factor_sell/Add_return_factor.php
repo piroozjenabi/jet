@@ -33,7 +33,7 @@ class add_return_factor extends CI_Controller
         if ($main_factor_id) {
             $this->system->message(_FACTOR . _ADDED);
             // add alerts expire
-            if($this->system->get_setting("enabel_alert_expire_factor")) {
+            if($this->system->get_setting("enable_alert_expire_factor")) {
                 // alert add new factor
                 $client_id = post("user", true);
                 $mes=$this->system->get_user_from_id($client_id)." | ".$this->system->get_user_from_id($client_id, "tell")." ".$this->system->get_user_from_id($client_id, "mobile");

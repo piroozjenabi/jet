@@ -84,8 +84,8 @@ if(isset($detail_factor[0]["params"])){
 </div>
 <div class="row well col-sm-12">
     <div class="col-lg-4">    <?php echo _MAKER ?> :<?php echo $this->system->get_user_admin_from_id($detail_factor[0]["maker_id"], "name")  ?></div>
-    <div class="col-lg-4">   <?php echo _TOTAL_PLUS?> : <?php echo number_format($CI->Factor_sell_model->show_total_price($factor_id)). _R  ?></div>
-    <div class="col-lg-4">  <?php if(1) :?>  <?php echo _COMMISSION ?> :<?php echo number_format($CI->Comission_model->commison_factor($factor_id)). _R  ?> <?php
+    <div class="col-lg-4">   <?php echo _TOTAL_PLUS?> : <?php echo price($CI->Factor_sell_model->show_total_price($factor_id))  ?></div>
+    <div class="col-lg-4">  <?php if(1) :?>  <?php echo _COMMISSION ?> :<?php echo price($CI->Comission_model->commison_factor($factor_id))  ?> <?php
    endif; ?></div>
 
     </div>
@@ -130,9 +130,9 @@ if(isset($detail_factor[0]["params"])){
             <td><?php echo  $this->system->get_prd_from_id($value["id_prd"], "name") ?></td>
             <td><?php echo $value["num"]?></td>
 
-            <td><?php echo ($value["price"]>0)?number_format($value["price"]):_FREE?></td>
+            <td><?php echo ($value["price"]>0)?price($value["price"]):_FREE?></td>
 
-            <td><?php echo ($value["price"]>0)?number_format($value["num"]*$value["price"]-$value["takhfif"]):_FREE?></td>
+            <td><?php echo ($value["price"]>0)?price($value["num"]*$value["price"]-$value["takhfif"]):_FREE?></td>
         </tr>
     <?php endforeach; ?>
     <tfoot>
@@ -141,8 +141,8 @@ if(isset($detail_factor[0]["params"])){
         <td> <?php echo _TOTAL_PLUS ?></td>
         <td><?php echo $tnum ?></td>
         <td><?php echo $tnumc ?></td>
-        <td><?php echo number_format($tprice) ?></td>
-        <td><?php echo number_format($ttprice)?></td>
+        <td><?php echo price($tprice) ?></td>
+        <td><?php echo price($ttprice)?></td>
 
     </tr>
     </tfoot>
@@ -180,7 +180,7 @@ if(isset($detail_factor[0]["params"])){
         <td></td>
         <td></td>
 
-        <td><?php echo number_format($tpriceoth) ?></td>
+        <td><?= price($tpriceoth) ?></td>
 <td></td>
 
     </tr>

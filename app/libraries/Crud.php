@@ -1078,7 +1078,7 @@ class Crud
                 }
                 switch ($this->column_type[$c]) {
                     case ("number"):
-                        $row[] = (is_numeric($k->$key)) ? number_format($k->$key) : $k->$key;
+                        $row[] = price($k->$key, false);
                         break;
                     case ("bool"):
                         //                    $row[] = ($k->$key)?_TRUE:_FALSE;

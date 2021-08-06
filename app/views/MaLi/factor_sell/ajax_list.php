@@ -6,13 +6,13 @@ $CI->load->library('Page');
 ?>
 <div class=" col-lg-12 ">
     <div class="col-lg-2 alert alert-danger "> <b><?= $CI->factor->get_level($level)["name"] ?></b> </div>
-    <div class="col-lg-2 alert alert-warning "><?= _JAME_KOL ?> : <?= number_format($tot) . _R ?></div>
+    <div class="col-lg-2 alert alert-warning "><?= _JAME_KOL ?> : <?= price($tot) . _R ?></div>
     <?php if ($this->system->get_setting("show_comision_list_factor")) : ?>
-        <div class="col-lg-3 alert alert-success "><?= _JAME_KOL . " " . _COMMISSION ?> : <?= number_format($comtot) . _R ?></div>
+        <div class="col-lg-3 alert alert-success "><?= _JAME_KOL . " " . _COMMISSION ?> : <?= price($comtot) . _R ?></div>
     <?php endif; ?>
     <?php if ($this->system->get_setting("show_pay_on_factor_list")) : ?>
-        <div class="col-lg-3 alert alert-warning "><?= _JAME_KOL . " " . _GET ?> : <?= number_format($gettot) . _R ?></div>
-        <div class="col-lg-2 alert alert-danger "><?= _REMIND ?> : <?= number_format($tot - $gettot) . _R ?></div>
+        <div class="col-lg-3 alert alert-warning "><?= _JAME_KOL . " " . _GET ?> : <?= price($gettot) . _R ?></div>
+        <div class="col-lg-2 alert alert-danger "><?= _REMIND ?> : <?= price($tot - $gettot) . _R ?></div>
     <?php endif; ?>
 </div>
 <table class="table table-hover table-striped dataTbl">
@@ -125,9 +125,9 @@ $CI->load->library('Page');
                 <td><?= $value["name"] ?> <?= ($value["agent"]) ? "--" . $value["agent"] : ""; ?></td>
                 <td><?= printDate($value["date"]) ?></td>
                 <td class="exp"><?= printDate($value["expire_date"]) ?></td>
-                <td><?= number_format($value["total_factor"])   ?></td>
+                <td><?= price($value["total_factor"])   ?></td>
                 <?php if ($this->system->get_setting("show_comision_list_factor")) : ?>
-                    <td><?= number_format($value["com"])   ?></td>
+                    <td><?= price($value["com"])   ?></td>
                 <?php endif; ?>
 
                 <?php if ($this->system->get_setting("show_pay_on_factor_list")) : ?>
@@ -135,9 +135,9 @@ $CI->load->library('Page');
                         <?php if ($this->permission->is_admin()) : ?>
                             <a class=' btn  btn-default ' onclick=load_ajax_popup('<?= $get_link ?>','id=<?= $id_factor ?>')> <i class='fa fa-dollar'></i> </a>
                         <?php endif; ?>
-                        <?= number_format($value["get"])  ?></td>
+                        <?= price($value["get"]) ?></td>
 
-                    <td><?= number_format($value["total_factor"] - $value["get"])   ?></td>
+                    <td><?= price($value["total_factor"] - $value["get"])   ?></td>
                 <?php endif; ?>
                 <td><?= $value["namec"]  ?></td>
             </tr>

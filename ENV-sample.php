@@ -1,6 +1,9 @@
-<?php 
+<?php
     # BASE CONFIG
-    define('TITLE'       , "JET");
+    define('TITLE', "JET");
+    define('URL', "auto"); // "auto" or "example.com"
+    define('DEBUG', true);
+    define('HASH', 'askdjfhjkashdfjk3#@RSDF#@R');
 
     # DATABASE
     define('DB_HOST'     , "localhost" );

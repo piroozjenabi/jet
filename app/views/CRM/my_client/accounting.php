@@ -96,11 +96,11 @@ $c=0;
                     ?>
                 </p>
             </td>
-            <td><?= number_format($value['total_price']) ?></td>
-            <td><?= number_format($value['total_dariafti']) ?></td>
-            <td><?= number_format($value['remind']) ?></td>
+            <td><?= price($value['total_price']) ?></td>
+            <td><?= price($value['total_dariafti']) ?></td>
+            <td><?= price($value['remind']) ?></td>
             <td><?=printDate("Y/m/d",$value['last_date']);  ?></td>
-            <td> <p  data-toggle="tooltip" data-placement="bottom"  title="<?=number_format($value['last_get_price']) ._R ?> " > <?= ($value['last_get_date'])?printDate("Y/m/d",$value['last_get_date']):null;  ?> </p></td>
+            <td> <p  data-toggle="tooltip" data-placement="bottom"  title="<?= price($value['last_get_price'], true) ?> " > <?= ($value['last_get_date'])?printDate("Y/m/d",$value['last_get_date']):null;  ?> </p></td>
             <td><?= @$this->system->get_user_admin_from_id($value['maker_id']) ;  ?></td>
             <td class="dis_print" >
                 <?=$opp  ?>
@@ -116,9 +116,9 @@ $c=0;
         <td></td>
         <td></td>
         <td><?= _TOTAL_PLUS ?></td>
-        <td> <?= number_format($all_price) ?></td>
-        <td> <?= number_format($all_get) ?></td>
-        <td> <?= number_format($all_price-$all_get) ?></td>
+        <td> <?= price($all_price) ?></td>
+        <td> <?= price($all_get) ?></td>
+        <td> <?= price($all_price-$all_get) ?></td>
         <td></td>
         <td></td>
         <td></td>
