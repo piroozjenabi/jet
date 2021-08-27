@@ -7,7 +7,6 @@
  */
 $CI =& get_instance();
 $this->load->helper('form');
-$CI->load->library('Piero_jdate');
 $def_css_class="form-control";
 $attributes = array('class' => 'form', 'id' => 'form');
 $main_form= form_open('CRM/Tmp_users/add_tracks/'.$id_user, $attributes);
@@ -36,7 +35,7 @@ $tmp_html="";
     <?php echo ($tmp_user[0]["extra2"])?_EXTRA2_TMP_USER ." : ".$tmp_user[0]["extra2"]." | ":null ?>
 </div>
     <div class="label label-primary"  >
-        <?php echo _DATE_CREATE ." : ". $CI->piero_jdate->jdate("Y/m/d", $tmp_user[0]["date_create"])?>|
+        <?php echo _DATE_CREATE ." : ". printDate($tmp_user[0]["date_create"])?>|
         <?php echo _MAKER ." : ". $this->system->get_user_admin_from_id($tmp_user[0]["maker_id"]) ?>
     </div>
     <div class="label label-danger" style="margin-top: -150px;width: 100%" >  <?php echo _CURRENT_STATE." : ". $cur_value["name"] ?> </div>

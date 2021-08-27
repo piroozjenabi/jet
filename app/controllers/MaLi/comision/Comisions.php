@@ -26,8 +26,8 @@ class Comisions extends CI_Controller
             foreach ($res as $key => &$value)
             {
                 $k=(!$k)?-1:$k;
-                //            $value["commission_thismonth"]=$this->Comission_model->get_user_commission($value["id"],$this->system->get_setting("main_factor_level"),$k)-$this->Comission_model->get_user_commission($value["id"],$this->system->get_setting("deafult_reject_factor_level"),$k);
-                $value["commission_thismonth"]=$this->Comission_model->get_user_commission($value["id"], $this->system->get_setting("main_factor_level"), $k);
+                //            $value["commission_thismonth"]=$this->Comission_model->get_user_commission($value["id"],config("main_factor_level"),$k)-$this->Comission_model->get_user_commission($value["id"],config("deafult_reject_factor_level"),$k);
+                $value["commission_thismonth"]=$this->Comission_model->get_user_commission($value["id"], config("main_factor_level"), $k);
                 $tot_com+=$value["commission_thismonth"];
 
                 $value["totsell"]=$this->factor->user_sell_mounth($value["id"], $k);

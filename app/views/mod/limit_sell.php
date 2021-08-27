@@ -2,10 +2,9 @@
 $CI = &get_instance();
 $persian = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹');
 $num = range(0, 9);
-$CI->load->library('Piero_jdate');
-$curent_day = $CI->piero_jdate->jdate("d", time());
+$curent_day = printDate(time(),"d");
 $curent_day = str_replace($persian, $num, $curent_day);
-$last_day = $CI->piero_jdate->jdate("t", time());
+$last_day = printDate(time(),"t");
 $last_day = str_replace($persian, $num, $last_day);
 ?>
 <div style="height: 200px;overflow: hidden" class="<?php echo $propertis->root_css ?>">
@@ -13,7 +12,7 @@ $last_day = str_replace($persian, $num, $last_day);
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-6 text-right">
-                    <div class="huge"> <?php echo ($this->system->get_setting("salary_this_mount_percent") > 0) ? _SALARY_THIS_MOUNTH . ":" . price($db["user_selled"] * $this->system->get_setting("salary_this_mount_percent")) : "<i class='fa fa-clock-o  fa-2x' > </i>" ?> </div>
+                    <div class="huge"> <?php echo (config("salary_this_mount_percent") > 0) ? _SALARY_THIS_MOUNTH . ":" . price($db["user_selled"] * config("salary_this_mount_percent")) : "<i class='fa fa-clock-o  fa-2x' > </i>" ?> </div>
                 </div>
                 <div class="col-xs-6 text-left">
                     <div class="huge"> <?= price($db["user_selled"] - $db["user_limit"]) ?> </div>

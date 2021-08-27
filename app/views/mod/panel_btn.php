@@ -1,4 +1,4 @@
-<a  TARGET="<?= $this->system->get_setting("dashboard_target") ?>" href="<?= site_url($propertis->link) ?>">
+<a  TARGET="<?= config("dashboard_target") ?>" href="<?= site_url($propertis->link) ?>">
 <div style="height: 200px;overflow: hidden"  class="<?= $propertis->root_css ?>  " >
 <div  class="<?= $propertis->css ?> panel-btn ">
     <div class="panel-heading" style="height: 85%;padding-top: 8%">

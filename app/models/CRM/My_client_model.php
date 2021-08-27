@@ -171,7 +171,7 @@ class My_client_model extends CI_Model
             }
             $remind=$total_price-$total_dariafti;
 
-            if ($total_price==0 && !$this->system->get_setting("show_zero_on_acounting_clients")) { unset($res[$key]);
+            if ($total_price==0 && !config("show_zero_on_acounting_clients")) { unset($res[$key]);
             }
 
             //debtor type
@@ -273,7 +273,7 @@ class My_client_model extends CI_Model
     {
         $user_id=$this->system->get_user();
         $count=count($this->list_track_time($client_id, time()));
-        if($this->system->get_setting("max_user_time_period")>$count ) {
+        if(config("max_user_time_period")>$count ) {
             $data = array();
             $data["id"] = "";
             $data["des"] = post("des", true);

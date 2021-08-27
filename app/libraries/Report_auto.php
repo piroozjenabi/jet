@@ -500,8 +500,7 @@ private function load_table()
                         $row[]=null;
                         break;
                     case ("date"):
-                        $CI->load->library('Piero_jdate');
-                        $row[] = ($k->$key)?$CI->piero_jdate->jdate("Y/m/d", $k->$key):null ;
+                        $row[] = ($k->$key)?printDate($k->$key):null ;
                         break;
                     default:
                         //mavared pichide keniaz ba tarkib json darad

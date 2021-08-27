@@ -1,10 +1,9 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 $CI = &get_instance();
-$CI->load->library('Piero_jdate');
 $user_id = $this->system->get_user();
 $alertsList = $this->alerts_lib->type_list();
 $titleNav = isset($title) && $title ? " | <b style='color:#fff'>$title</b>" : "";
-$title = (isset($title) && $title) ? $title : $this->system->get_setting('login_title');
+$title = (isset($title) && $title) ? $title : config('login_title');
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,11 +21,11 @@ $title = (isset($title) && $title) ? $title : $this->system->get_setting('login_
     <div id="wrapper">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <span onclick="side_menu_toggle()" class="piero_nav piero_slide_mobile"> <i class="fa fa-2x fa-bars"></i> </span>
-            <a class="piero_nav" href="<?php echo site_url($this->system->get_setting("home")) ?>"> <i class="fa fa-2x fa-home"></i> </a>
+            <a class="piero_nav" href="<?php echo site_url(config("home")) ?>"> <i class="fa fa-2x fa-home"></i> </a>
 
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" target="_blank" href="<?= $this->system->get_setting("company_url") ?>">
+                <a class="navbar-brand" target="_blank" href="<?= config("company_url") ?>">
                     <span class="full">JET <?= $titleNav ?></span>
                     <span class="min" style="display: none">JET <?= $titleNav ?></span>
                 </a>
@@ -149,7 +148,7 @@ $title = (isset($title) && $title) ? $title : $this->system->get_setting('login_
         <!-- bottom navigation -->
         <div class="btm-nav">
             <?php
-            if ($this->system->get_setting("shpw_ci_render_time")) : ?>
+            if (config("shpw_ci_render_time")) : ?>
                 <a> <i class="fa fa-bar-chart "> </i> <em style="text-align: center"> <strong>{elapsed_time}</strong> <?php echo _SECEND ?></em> </a>
             <?php endif; ?>
             <a> <i class="fa fa-calendar"></i> <?= _TODAY . " : " . $CI->piero_jdate->jdate("Y/m/d H:i", time()) ?></a>

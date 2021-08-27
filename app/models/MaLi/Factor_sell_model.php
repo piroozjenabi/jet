@@ -192,7 +192,7 @@ class Factor_sell_model extends CI_Model
         $this->db->from('factor');
         $res = $this->db->get()->result_array();
         foreach ($res as $key => $value) {
-            $def_users = $this->system->get_users_from_usergroup(json_decode($this->system->get_setting("expire_alerts_users_group")));
+            $def_users = $this->system->get_users_from_usergroup(json_decode(config("expire_alerts_users_group")));
             $this->alerts_lib->add_alert(1, array("id" => $value["id"]), $value["expire_date"], "", $def_users);
             echo "factor:" . $value["id"] . "added <br>";
         }
@@ -271,7 +271,7 @@ class Factor_sell_model extends CI_Model
 
         //render level
         $this->load->library("Factor");
-        $this->factor->render_level($main_factor_id, $this->system->get_setting("deafult_reject_factor_level"));
+        $this->factor->render_level($main_factor_id, config("deafult_reject_factor_level"));
         return $main_factor_id;
     }
 

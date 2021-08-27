@@ -20,7 +20,7 @@ else
            "tmp_client_peyment" => "" , "address"=>"","postal_code"=>"","usergroup"=>"",
            "extra5" => "" ,"extra1" => "" , "extra2"=>"","extra3"=>"","extra4"=>"",
            "tell" => "" , "email"=>"","website"=>"http://",
-           "perfix_code"=> $this->system->get_setting("perfix_user") ,
+           "perfix_code"=> config("perfix_user") ,
            "comerical_type"=>"1","usergroup"=>"2","status_id"=>"1");
 
     echo form_open('CRM/Tmp_users/padd', $attributes);

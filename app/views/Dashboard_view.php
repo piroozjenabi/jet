@@ -3,11 +3,11 @@ $CI=&get_instance();
 $alertslist=$this->alerts_lib->type_list();
 echo $html;
 ?>
-<?php if($this->system->get_setting('dashboard_bg') ) :?>
+<?php if(config('dashboard_bg') ) :?>
 <style type="text/css">
     #page-wrapper{
         height: 700px !important;
-        background-image: url("<?php echo base_url($this->system->get_setting('dashboard_bg')) ?>") !important;
+        background-image: url("<?php echo base_url(config('dashboard_bg')) ?>") !important;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;

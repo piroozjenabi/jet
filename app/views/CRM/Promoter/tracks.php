@@ -13,7 +13,6 @@ $message=form_input(array('id'=>'track[1]', 'placeholder' => _TYPE_TRACK,'name' 
 $savebtn= form_button(array('type' => "submit",'id' => 'submit','class'=>'btn btn-success btn-block .btn-lg '), _SAVE);
 $edit_link="<a class='btn btn-lg btn-info' onclick=areyousure('link','".site_url("CRM/Tmp_users/edit/".$id_user)."')> <i class=\"fa fa-edit\"></i> "  . _EDIT." "._DETAILS. '</a>';
 $CI =& get_instance();
-$CI->load->library('Piero_jdate');
 $tmp_tracks=$tracks;
 $cur_value=array();
 $tmp_html="";

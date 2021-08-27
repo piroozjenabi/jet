@@ -11,7 +11,7 @@ $factor_client = $this->element->user_select("user", "user", $def_css_class, @$d
 $level_factor = form_dropdown('level_id', $this->element->pselect("factor_level"), @$detail_factor[0]["level_id"], array("required" => "required", "class" => $def_css_class));
 //date setting
 $factor_date = $this->element->input_date("factor_date", time());
-$factor_date_expire = $this->element->input_date("expire_factor", strtotime("+" . (int)$this->system->get_setting("factor_day_expire_date") . " days"));
+$factor_date_expire = $this->element->input_date("expire_factor", strtotime("+" . (int)config("factor_day_expire_date") . " days"));
 
 //factor prd
 $radif_prd = form_input(array('id' => 'radif[1]', 'value' => '[1]', 'name' => 'radif[1]', 'class' => $def_css_class));
@@ -53,7 +53,7 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
     <div class="col-sm-4"><label for="type"><?= _FACTOR_CLIENT ?> </label><?= $factor_client ?></div>
     <div class="col-sm-4"><label for="type"><?= _FACTORـTYPE ?></label><?= $level_factor ?> </div>
     <div class="col-sm-2"><label for="type"><?= _FACTORـDATE ?></label><?= $factor_date ?></div>
-    <?php if ($this->system->get_setting("enable_factor_expire_date")) : ?>
+    <?php if (config("enable_factor_expire_date")) : ?>
       <div class="col-sm-2"><label for="type"><?= _EXPIRE_FACTOR ?></label><?= $factor_date_expire ?></div>
     <?php endif; ?>
     <div class="col-sm-12" id="user_details" style="text-align: center;padding-top: 15px"> </div>
@@ -110,7 +110,7 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
   </div>
   <!-- INCREMENT OF FACTOR -->
   <div class="row ">
-    <?php if ($this->system->get_setting("enable_kosoorat")) : ?>
+    <?php if (config("enable_kosoorat")) : ?>
       <div class="col-sm-6 well">
         <div class="panel panel-default">
           <div class="panel-heading"> <i class="fa fa-minus"> </i> <?= _KOSOORAT ?></div>
@@ -136,7 +136,7 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
     <?php endif; ?>
     <!-- DECREMENT OF FACTOR -->
 
-    <?php if ($this->system->get_setting("enable_ezafat")) : ?>
+    <?php if (config("enable_ezafat")) : ?>
       <div class="col-sm-6 well">
 
         <div class="panel panel-default">

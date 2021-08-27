@@ -35,11 +35,10 @@ $extra2= form_input(array('value'=> $detail_user[0]["extra2"] ,'id'=>'extra2', '
 $extra3= form_input(array('value'=> $detail_user[0]["extra3"],'id'=>'extra3', 'placeholder' => _EXTRA3,'name' => 'extra3','class'=>$def_css_class));
 $extra4= form_input(array('value'=> $detail_user[0]["extra4"],'id'=>'extra4', 'placeholder' => _EXTRA4,'name' => 'extra4','class'=>$def_css_class));
 $extra5= form_input(array('value'=> $detail_user[0]["extra5"],'id'=>'extra5', 'placeholder' => _EXTRA5,'name' => 'extra5','class'=>$def_css_class));
-//buttun--------------------
+//button--------------------
 $savebtn= form_button(array('type' => "button",'id' => 'submit','class'=>'btn btn-success btn-block .btn-lg '), _SAVE);
 $username= form_input(array('value'=> $detail_user[0]["username"],'placeholder' => _USERNAME,'name' => 'username','class'=>$def_css_class));
 $password= form_password(array('autocomplete'=>"off" ,'placeholder' => _PASSWORD,'name' => 'password','class'=>$def_css_class));
-
 echo form_hidden("id", $detail_user[0]["id"])
 ?>
 

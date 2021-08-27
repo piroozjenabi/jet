@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-$dir = $this->system->get_setting("def_upload_path");
+$dir = config("def_upload_path");
 $this->load->helper("form");
 ?>
 <div class="col-md-8"> <img style="width:100%"  src="<?=base_url($dir . $data->file)?>" > </div> 

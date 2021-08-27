@@ -1,16 +1,15 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 $CI = &get_instance();
 $CI->load->library("Factor");
-$CI->load->library('Piero_jdate');
 $CI->load->library('Page');
 ?>
 <div class=" col-lg-12 ">
     <div class="col-lg-2 alert alert-danger "> <b><?= $CI->factor->get_level($level)["name"] ?></b> </div>
     <div class="col-lg-2 alert alert-warning "><?= _JAME_KOL ?> : <?= price($tot) . _R ?></div>
-    <?php if ($this->system->get_setting("show_comision_list_factor")) : ?>
+    <?php if (config("show_comision_list_factor")) : ?>
         <div class="col-lg-3 alert alert-success "><?= _JAME_KOL . " " . _COMMISSION ?> : <?= price($comtot) . _R ?></div>
     <?php endif; ?>
-    <?php if ($this->system->get_setting("show_pay_on_factor_list")) : ?>
+    <?php if (config("show_pay_on_factor_list")) : ?>
         <div class="col-lg-3 alert alert-warning "><?= _JAME_KOL . " " . _GET ?> : <?= price($gettot) . _R ?></div>
         <div class="col-lg-2 alert alert-danger "><?= _REMIND ?> : <?= price($tot - $gettot) . _R ?></div>
     <?php endif; ?>
@@ -24,11 +23,11 @@ $CI->load->library('Page');
         <td> <a style="color: #fff" onclick="load_ajax('<?= site_url("MaLi/factor_sell/manage_factor/ajax_list") ?>','#ajax_load','<?= 'user_id=' . $user_id . "&sort=factor.expire_date" ?>')"> <i class="fa fa-sort"></i> <?= _EXPIRE_FACTOR ?> </a> </td>
         <td> <?= _PRICE_FACTOR . __ . _R ?></td>
         <!--        if comision enabled-->
-        <?php if ($this->system->get_setting("show_comision_list_factor")) : ?>
+        <?php if (config("show_comision_list_factor")) : ?>
             <td><?= _COMMISSION . __ . _R ?></td>
         <?php endif; ?>
         <!--        if pay enabled-->
-        <?php if ($this->system->get_setting("show_pay_on_factor_list")) : ?>
+        <?php if (config("show_pay_on_factor_list")) : ?>
             <td><?= _GETED . __ . _R ?></td>
             <td><?= _REMIND . __ . _R ?></td>
         <?php endif; ?>
@@ -126,11 +125,11 @@ $CI->load->library('Page');
                 <td><?= printDate($value["date"]) ?></td>
                 <td class="exp"><?= printDate($value["expire_date"]) ?></td>
                 <td><?= price($value["total_factor"])   ?></td>
-                <?php if ($this->system->get_setting("show_comision_list_factor")) : ?>
+                <?php if (config("show_comision_list_factor")) : ?>
                     <td><?= price($value["com"])   ?></td>
                 <?php endif; ?>
 
-                <?php if ($this->system->get_setting("show_pay_on_factor_list")) : ?>
+                <?php if (config("show_pay_on_factor_list")) : ?>
                     <td>
                         <?php if ($this->permission->is_admin()) : ?>
                             <a class=' btn  btn-default ' onclick=load_ajax_popup('<?= $get_link ?>','id=<?= $id_factor ?>')> <i class='fa fa-dollar'></i> </a>

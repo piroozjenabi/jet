@@ -169,12 +169,12 @@ class Tmp_users_model extends CI_Model
         $data["date_modify"] = jetDate();
         $data["date_expire"] = "";
         $data["address"] = $tmp[0]["address"];
-        $data["usergroup"] = $this->system->get_setting("def_user_group_after_convert");
+        $data["usergroup"] = config("def_user_group_after_convert");
         $data["maker_id"] = $this->system->get_user();
         $data["state"] = "1";
         $data["agent"] = $tmp[0]["contact"];
         $data["status_id"] = 1;
-        $data["perfix_code"] = $this->system->get_setting("perfix_user");
+        $data["perfix_code"] = config("perfix_user");
         $data["tmp_user"] = $tmp[0]["id"];
 
          

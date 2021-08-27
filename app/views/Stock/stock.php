@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <a class="btn  btn-default btn-lg" onclick="printp('acc_body')" type="button"   > <i class="fa fa-print"></i> <?php echo _PRINT ?> </a>
 </div>
 <div id="acc_body">
-<?php if($this->system->get_setting("disolay_stock_by_stock")) :?>
+<?php if(config("disolay_stock_by_stock")) :?>
     <table class="table table-hover table-striped dataTbl" >
         <thead>
         <tr>

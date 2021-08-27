@@ -344,11 +344,10 @@ class Auto{
     public function render_view($name_col,$value)
     {
         $CI =& get_instance();
-        $CI->load->library('Piero_jdate');
         $arr=$CI->db->get_where("auto_forms_fields","name= '$name_col'")->result_array()[0];
         switch ($arr["type"]){
             case "date":
-                return $CI->piero_jdate->jdate("Y/m/d",$value);
+                return printDate($value);
                 break;
             case "file":
                 return $CI->element->view_file($value);
@@ -643,7 +642,6 @@ class Auto{
     function show_list($id){
         $CI =& get_instance();
         $name_en=$this->render_name_en_from_form_value_id($id);
-        $CI->load->library('Piero_jdate');
         $CI->db->select('*')
                 ->where('form_value_id',$id)
                 ->from($name_en);

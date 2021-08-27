@@ -48,7 +48,7 @@ class Factor_sell_pre extends CI_Controller
         $pdf->SetDisplayMode('real', 'default');
         $pdf->AddPage();
         //header image
-        $pdf->Image($this->system->get_setting("deafult_folder_img")."/".$factor_pre["header_pic"], 200, 10, 190, 21, 'JPG', $factor_pre["url_header"], '', false, 150, '', false, false, 0, false, false, false); // * setting header
+        $pdf->Image(config("deafult_folder_img")."/".$factor_pre["header_pic"], 200, 10, 190, 21, 'JPG', $factor_pre["url_header"], '', false, 150, '', false, false, 0, false, false, false); // * setting header
             $ws=0;
         //render html
         foreach ($result as $key => $value)

@@ -14,8 +14,8 @@ $allprice = 0;
 
 ?>
 <div class="col-sm-3 well" style="min-height: 70px;"> <?php echo _NAME ?> :<?php echo $detail_users[0]["name"]  ?>.<?php echo $detail_users[0]["agent"] ?> </div>
-<div class="col-sm-3 well" style="min-height: 70px;"> <?php echo _MAKE  ?> :<?php echo $CI->piero_jdate->jdate("Y/m/d", $detail_users[0]["date_create"]) ?>
-    <?php echo _MODIFY  ?> :<?php echo $CI->piero_jdate->jdate("Y/m/d", $detail_users[0]["date_modify"]) ?></div>
+<div class="col-sm-3 well" style="min-height: 70px;"> <?php echo _MAKE  ?> :<?php echo printDate($detail_users[0]["date_create"]) ?>
+    <?php echo _MODIFY  ?> :<?php echo printDate($detail_users[0]["date_modify"]) ?></div>
 <div class="col-sm-6 well" style="min-height: 70px;">
     <?php echo $detail_users[0]["address"] ?> , <?php echo $detail_users[0]["tell"] ?> , <?php echo $detail_users[0]["mobile"] ?></div>
 
@@ -32,7 +32,7 @@ $allprice = 0;
                     <td><?php echo _DATE ?></td>
                     <?php if ($v["expirable"]) : ?><td><?php echo _EXPIRE ?></td><?php
                                                                             endif; ?>
-                    <td <?php echo (!$this->system->get_setting("display_eemployer_on_print_client_detials")) ? 'class="dis_print"' : ''; ?>><?php echo _KARSHENAS ?></td>
+                    <td <?php echo (!config("display_eemployer_on_print_client_detials")) ? 'class="dis_print"' : ''; ?>><?php echo _KARSHENAS ?></td>
                     <td class="dis_print"> </td>
                 </tr>
             </thead>
@@ -51,10 +51,10 @@ $allprice = 0;
                     <tr>
                         <td><?= $value["factor_id"] ?></td>
                         <td><?= price($value["price"]) ?></td>
-                        <td><?= $CI->piero_jdate->jdate("Y/m/d", $value["date"])        ?></td>
-                        <?php if ($v["expirable"]) : ?> <td><?php echo $CI->piero_jdate->jdate("Y/m/d", $value["expire_date"]) ?></td> <?php
+                        <td><?= printDate($value["date"])        ?></td>
+                        <?php if ($v["expirable"]) : ?> <td><?php echo printDate($value["expire_date"]) ?></td> <?php
                                                                                                                                 endif; ?>
-                        <td <?php echo (!$this->system->get_setting("display_eemployer_on_print_client_detials")) ? 'class="dis_print"' : ''; ?>><?php echo $this->system->get_user_admin_from_id($value["maker_id"]) ?></td>
+                        <td <?php echo (!config("display_eemployer_on_print_client_detials")) ? 'class="dis_print"' : ''; ?>><?php echo $this->system->get_user_admin_from_id($value["maker_id"]) ?></td>
                         <td class="dis_print"><?php echo $op ?></td>
                     </tr>
                 <?php endforeach; ?>
@@ -84,7 +84,7 @@ $allprice = 0;
             <td><?php echo _DATE . __ . _CHECKOU ?></td>
             <td><?php echo _STATE ?></td>
             <td><?php echo _DES ?></td>
-            <td <?php echo (!$this->system->get_setting("display_eemployer_on_print_client_detials")) ? 'class="dis_print"' : ''; ?>><?php echo _EMPLOY ?></td>
+            <td <?php echo (!config("display_eemployer_on_print_client_detials")) ? 'class="dis_print"' : ''; ?>><?php echo _EMPLOY ?></td>
             <td> </td>
         </tr>
     </thead>
@@ -98,14 +98,14 @@ $allprice = 0;
         <tr>
             <td><?= $value["id"] ?></td>
             <td><?= price($value["price"]) ?></td>
-            <td><?= $CI->piero_jdate->jdate("Y/m/d", $value["date"])        ?></td>
-            <td><?= $CI->piero_jdate->jdate("Y/m/d", $value["date_enter"]) ?></td>
-            <td><?= (@json_decode($value["params"])->flagcheck) ? $CI->piero_jdate->jdate("Y/m/d", json_decode($value["params"])->datecheck) : null ?></td>
+            <td><?= printDate($value["date"])        ?></td>
+            <td><?= printDate($value["date_enter"]) ?></td>
+            <td><?= (@json_decode($value["params"])->flagcheck) ? printDate(json_decode($value["params"])->datecheck) : null ?></td>
             <td><?= (($value["enable"])) ? _MALI_ENABLED : _MAILI_DISABLED ?></td>
 
             <td><?= $this->element->edit_text($value["id"], $value["des"], "mali_bed_bes", "des", "text")  ?></td>
 
-            <td <?= (!$this->system->get_setting("display_eemployer_on_print_client_detials")) ? 'class="dis_print"' : ''; ?>><?php echo $this->system->get_user_admin_from_id($value["maker_id"]) ?></td>
+            <td <?= (!config("display_eemployer_on_print_client_detials")) ? 'class="dis_print"' : ''; ?>><?php echo $this->system->get_user_admin_from_id($value["maker_id"]) ?></td>
             <?php if ($this->permission->check("base_accounting")) : ?>
                 <td><?php
 
@@ -117,7 +117,7 @@ $allprice = 0;
 
                     //check
 
-                    if ($value["group_id"] == $this->system->get_setting("deafult_checku_group")) {
+                    if ($value["group_id"] == config("deafult_checku_group")) {
                         if ($value["enable"]) {
                             $dislink = site_url("MaLi/Bed_bes/en_dis/" . $value["id"]);
                             echo "<a class='btn btn-danger'  onclick=areyousure('link','$dislink')>"  . "<i class='fa fa-level-up' ></i>" . _MAILI_DISABLED . '</a>';

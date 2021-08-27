@@ -1098,15 +1098,11 @@ class Crud
                         $row[] = $CI->system->get_user_from_id($k->$key);
                         break;
                     case ("date"):
-                        $CI->load->library('Piero_jdate');
-                        $row[] = ($k->$key) ? $CI->piero_jdate->jdate("Y/m/d", strtotime($k->$key)) : null;
-                        //  $row[] =$k->$key;
-
+                        //  $row[] = $k->$key;
+                        $row[] = printDate($k->$key);
                         break;
-
                     case ("json"):
-                        $CI->load->library('Piero_jdate');
-                        $row[] = $CI->piero_jdate->jdate("Y/m/d", json_decode($k->$key)->datecheck);
+                        $row[] = printDate(json_decode($k->$key)->datecheck);
                         break;
                     default:
                         //mavared pichide keniaz ba tarkib json darad
@@ -1295,8 +1291,7 @@ class Crud
         $i = array_search($key, $this->column_order);
         $type = $this->column_type[$i];
         if ($type == "date") {
-            $CI->load->library('Piero_jdate');
-            return $CI->piero_jdate->jdate("Y/m/d", strtotime($value));
+            return printDate($value);
         } elseif (strpos($type, "array")) {
             $tmp_array = (array) json_decode($this->column_type[$i]);
             $tmp = (array) $tmp_array[1];

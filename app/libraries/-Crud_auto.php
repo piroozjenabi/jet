@@ -504,13 +504,13 @@ class Crud_auto
                     break;
                 case ("date"):
                     $CI->load->library('Piero_jdate');
-                    $row[] = ($k->$key)?$CI->piero_jdate->jdate("Y/m/d",  rtrim($k->$key, '0000')):null ;
+                    $row[] = ($k->$key)?printDate( rtrim($k->$key, '0000')):null ;
                     //                    $row[] =$k->$key;
 
                     break;
                 case ("json"):
                     $CI->load->library('Piero_jdate');
-                    $row[] =$CI->piero_jdate->jdate("Y/m/d", json_decode($k->$key)->datecheck);
+                    $row[] =printDate(json_decode($k->$key)->datecheck);
                     break;
                 default:
                     //mavared pichide keniaz ba tarkib json darad

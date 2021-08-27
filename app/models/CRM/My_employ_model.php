@@ -19,9 +19,9 @@ class My_employ_model extends CI_Model
 
         $this->load->model("MaLi/Factor_sell_model");
         $this->load->library('Piero_jdate');
-        $def_usergroup_seller=json_decode($this->system->get_setting("defualt_selluser_group"));
+        $def_usergroup_seller=json_decode(config("defualt_selluser_group"));
 
-        $enable_admin_see_all=$this->system->get_setting("enable_user_just_can_see_child_emp");
+        $enable_admin_see_all=config("enable_user_just_can_see_child_emp");
 
         //        $this->db->distinct();
         $this->db->select('*');

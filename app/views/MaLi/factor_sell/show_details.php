@@ -112,7 +112,7 @@ if(isset($detail_factor[0]["params"])){
     <td>#</td>
     <td><?php echo _NAME ?></td>
     <td><?php echo _NUM ?></td>
-    <td><?php echo _NUM ?> <?php echo $this->system->get_setting("perfix_alt_unit_fa")?></td>
+    <td><?php echo _NUM ?> <?php echo config("perfix_alt_unit_fa")?></td>
     <td><?php echo _PRICE._R?></td>
 
     <td><?php echo _TOTAL_PLUS._R ?></td>

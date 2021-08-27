@@ -31,17 +31,17 @@ class Bed_bes extends CI_Controller
         if(strtotime(post("datecheck", true)) >= time() ) {
 
             $message=_ALERT.__._CHECKOU.__.$this->system->get_user_from_id(post("user_id", true)).__.price(post("price", true));
-            $users=$this->system->get_users_from_usergroup(json_decode($this->system->get_setting("def_usergroup_recive_checku_alert")));
+            $users=$this->system->get_users_from_usergroup(json_decode(config("def_usergroup_recive_checku_alert")));
             $this->alerts_lib->add_alert(4, array("price" =>post("price", true),"user_id"=>post("user_id", true),"date" =>strtotime(post("date", true))), strtotime(post("datecheck", true)), $message, $users);
-            $group= ($group)?$group:$this->system->get_setting("deafult_checku_group");
+            $group= ($group)?$group:config("deafult_checku_group");
         }
         else
         {
-            $group= ($group)?$group:$this->system->get_setting("deafult_pay_client_group");
+            $group= ($group)?$group:config("deafult_pay_client_group");
         }
         $checku=array();
         if(post("flagcheck")) {
-            $group= $this->system->get_setting("deafult_checku_group");
+            $group= config("deafult_checku_group");
             $checku["flagcheck"] = true;
             $checku["datecheck"] = strtotime(post("datecheck", true));
             $checku["bankcheck"] = post("bankcheck", true);

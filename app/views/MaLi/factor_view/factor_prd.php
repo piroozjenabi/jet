@@ -62,18 +62,18 @@ foreach ($db['prd'] as $key => $value){
   <div   class="col-sm-<?php echo $width ?> <?php echo $propertis->css ?>" >
     <?php echo $name ?>
 <table >
-    <?php if($this->system->get_setting("title_en")) :?>
+    <?php if(config("title_en")) :?>
        <tr class="headen">
-        <?php if($this->system->get_setting("show_total_price")) :?>
+        <?php if(config("show_total_price")) :?>
             <th class="col-sm-2" ><?php echo _PRICE_TOTAL_EN ?></th>
         <?php endif;?>
 
                <th class="col-sm-2" >
                     <?php
-                    if ($this->system->get_setting("show_client_price") && $client_price_flag) {
+                    if (config("show_client_price") && $client_price_flag) {
                         echo _CLIENT_PRICE_EN ;
                     }
-                    else if($this->system->get_setting("show_off") && $discount_flag) {
+                    else if(config("show_off") && $discount_flag) {
                            echo _TAKHFIF_EN ;
 
                     }
@@ -83,39 +83,39 @@ foreach ($db['prd'] as $key => $value){
                     ?>
                </th>
 
-        <?php if($this->system->get_setting("show_price")) :?>
+        <?php if(config("show_price")) :?>
             <th class="col-sm-2" ><?php echo _VAHED_EN._PRICE_EN._R_EN ?></th>
         <?php endif;?>
 
-        <?php if($this->system->get_setting("show_unit")) :?>
+        <?php if(config("show_unit")) :?>
             <th class="col-sm-2" ><?php echo _VAHED_EN?> </th>
         <?php endif;?>
 
-            <?php if($this->system->get_setting("show_unit_main")) :?>
-               <th class="col-sm-2" ><?php echo _NUM_EN ?> <?php echo $this->system->get_setting("perfix_main_unit_en")?></th>
+            <?php if(config("show_unit_main")) :?>
+               <th class="col-sm-2" ><?php echo _NUM_EN ?> <?php echo config("perfix_main_unit_en")?></th>
             <?php endif;?>
-            <?php if($this->system->get_setting("show_unit_alt")) :?>
-               <th class="col-sm-2" ><?php echo _NUM_EN ?> <?php echo $this->system->get_setting("perfix_alt_unit_en")?></th>
+            <?php if(config("show_unit_alt")) :?>
+               <th class="col-sm-2" ><?php echo _NUM_EN ?> <?php echo config("perfix_alt_unit_en")?></th>
             <?php endif;?>
-        <?php if($this->system->get_setting("show_des_prd")) :?>
+        <?php if(config("show_des_prd")) :?>
             <th class="col-sm-3" ><?php echo _DES_EN._KALA_EN ?></th>
         <?php endif;?>
-        <?php if($this->system->get_setting("show_code_prd")) :?>
+        <?php if(config("show_code_prd")) :?>
             <th class="col-sm-1" ><?php echo _CODE_EN ?></th>
         <?php endif;?>
       </tr>
     <?php endif;?>
-    <?php if($this->system->get_setting("title_fa")) :?>
+    <?php if(config("title_fa")) :?>
       <tr class="headfa">
-            <?php if($this->system->get_setting("show_total_price")) :?>
+            <?php if(config("show_total_price")) :?>
              <th class="col-sm-2" ><?php echo _PRICE_TOTAL._R ?></th>
             <?php endif;?>
           <th class="col-sm-2" >
             <?php
-            if ($this->system->get_setting("show_client_price") && $client_price_flag) {
+            if (config("show_client_price") && $client_price_flag) {
                 echo _CLIENT_PRICE ;
             }
-            else if($this->system->get_setting("show_off") && $discount_flag) {
+            else if(config("show_off") && $discount_flag) {
                   echo _TAKHFIF ;
 
             }
@@ -124,23 +124,23 @@ foreach ($db['prd'] as $key => $value){
             }
             ?>
           </th>
-            <?php if($this->system->get_setting("show_price")) :?>
+            <?php if(config("show_price")) :?>
             <th class="col-sm-2" ><?php echo _PRICE._VAHED._R ?></th>
             <?php endif;?>
-            <?php if($this->system->get_setting("show_unit")) :?>
+            <?php if(config("show_unit")) :?>
              <th class="col-sm-2" ><?php echo _VAHED?></th>
             <?php endif;?>
 
-            <?php if($this->system->get_setting("show_unit_main")) :?>
-              <th class="col-sm-2" ><?php echo _NUM ?> <?php echo $this->system->get_setting("perfix_main_unit_fa")?></th>
+            <?php if(config("show_unit_main")) :?>
+              <th class="col-sm-2" ><?php echo _NUM ?> <?php echo config("perfix_main_unit_fa")?></th>
             <?php endif;?>
-            <?php if($this->system->get_setting("show_unit_alt")) :?>
-              <th class="col-sm-2" ><?php echo _NUM ?> <?php echo $this->system->get_setting("perfix_alt_unit_fa")?></th>
+            <?php if(config("show_unit_alt")) :?>
+              <th class="col-sm-2" ><?php echo _NUM ?> <?php echo config("perfix_alt_unit_fa")?></th>
             <?php endif;?>
-            <?php if($this->system->get_setting("show_des_prd")) :?>
+            <?php if(config("show_des_prd")) :?>
             <th class="col-sm-3" ><?php echo _DES._KALA ?></th>
             <?php endif;?>
-            <?php if($this->system->get_setting("show_code_prd")) :?>
+            <?php if(config("show_code_prd")) :?>
             <th class="col-sm-1" ><?php echo _CODE._KALA ?></th>
             <?php endif;?>
       </tr>
@@ -175,7 +175,7 @@ foreach ($db['prd'] as $key => $value){
            $all_totalprd_client+=($value["price_client"]*$value["num"]);
         ?>
       <tr <?php echo $tblbg ?> >
-            <?php if($this->system->get_setting("show_total_price")) :?>
+            <?php if(config("show_total_price")) :?>
             <td><?php echo ($totalprd)?(@$propertis->free == "1")?_FREE:price($totalprd):_FREE  ?></td>
             <?php endif;?>
          <td class="col-sm-2" >
@@ -185,7 +185,7 @@ foreach ($db['prd'] as $key => $value){
                 echo  price($value["price_client"]);
             }
             //for print takhfif
-            else if($this->system->get_setting("show_off") && $value["takhfif"] >0) {
+            else if(config("show_off") && $value["takhfif"] >0) {
                 echo   $discount_line.  '% -' . price($value["takhfif"]).  '<br>' . price($value["price"] -$dis_unt);
 
 
@@ -196,22 +196,22 @@ foreach ($db['prd'] as $key => $value){
             ?>
 
           </td>
-            <?php if($this->system->get_setting("show_price")) :?>
+            <?php if(config("show_price")) :?>
             <td  ><?php echo ($value["price"]>0)? (isset($propertis->free) && $propertis->free == "1")?_FREE:price($value["price"]): _FREE  ?></td>
             <?php endif;?>
-            <?php if($this->system->get_setting("show_unit")) :?>
+            <?php if(config("show_unit")) :?>
             <td><?php echo $value["vahed_asli_name"] ?></td>
             <?php endif;?>
-            <?php if($this->system->get_setting("show_unit_main")) :?>
+            <?php if(config("show_unit_main")) :?>
               <td><?php echo $value["num"] ?></td>
             <?php endif;?>
-            <?php if($this->system->get_setting("show_unit_alt")) :?>
+            <?php if(config("show_unit_alt")) :?>
             <td  ><?php echo $alt_num ?></td>
             <?php endif;?>
-            <?php if($this->system->get_setting("show_des_prd")) :?>
+            <?php if(config("show_des_prd")) :?>
              <td style="text-align: left;" ><?php echo $value["name"] ?></td>
             <?php endif;?>
-            <?php if($this->system->get_setting("show_code_prd")) :?>
+            <?php if(config("show_code_prd")) :?>
             <td><?php echo $value["prd_id"] ?></td>
             <?php endif;?>
       </tr>

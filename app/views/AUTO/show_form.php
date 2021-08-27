@@ -8,7 +8,6 @@
 $radif=0;
 //print_r($detail_factor);
 $CI =& get_instance();
-$CI->load->library('Piero_jdate');
 $CI->load->library('Auto');
 $detail_form=$CI->auto->get_form_from_id($form_id);
 $refer=$this->auto->list_refer_from_id($form_id);
@@ -26,9 +25,9 @@ $op=$CI->auto->render_op_form($detail_form[0],"btn btn-default");
 <br>
 <div class="row well  " >
     <div class="col-sm-3">    <?= _MAKER ?> :<?= $this->system->get_user_admin_from_id($detail_form[0]["maker_id"],"name")  ?></div>
-    <div class="col-sm-3">   <?= _DATE.__._MAKE?> : <?= $CI->piero_jdate->jdate("Y/m/d",$detail_form[0]["date"]);  ?></div>
+    <div class="col-sm-3">   <?= _DATE.__._MAKE?> : <?= printDate($detail_form[0]["date"]);  ?></div>
     <div class="col-sm-2">   <?= _NUMBER.__._FORM ?> :<?= $detail_form[0]["id"] ?> </div>
-    <div class="col-sm-2">   <?= _EDIT?> : <?= (isset($detail_form[0]["modify_date"]))?$CI->piero_jdate->jdate("Y/m/d",$detail_form[0]["modify_date"]):null  ?></div>
+    <div class="col-sm-2">   <?= _EDIT?> : <?= (isset($detail_form[0]["modify_date"]))?printDate($detail_form[0]["modify_date"]):null  ?></div>
     <div class="col-sm-2">    <?= _EDITOR ?> :<?= (isset($detail_form[0]["modifire_id"]))?$this->system->get_user_admin_from_id($detail_form[0]["modifire_id"],"name"):null  ?></div>
 
 </div>
@@ -66,13 +65,13 @@ $op=$CI->auto->render_op_form($detail_form[0],"btn btn-default");
             </td>
             <td> <?=$this->system->get_user_admin_from_id($value["from_user_id"])  ?> </td>
             <td> <?=$this->system->get_user_admin_from_id($value["to_user_id"])  ?> </td>
-            <td> <?= $CI->piero_jdate->jdate("Y/m/d",$value["date"])  ?> </td>
+            <td> <?= printDate($value["date"])  ?> </td>
             <td> <?= $value["des"] ?> </td>
             <td> <?= $CI->auto->print_state ($value["state"]) ?> </td>
             <td> <?= (isset($tmp->user_accept))?$this->system->get_user_admin_from_id($tmp->user_accept):null  ?> </td>
-            <td> <?= (isset($tmp->date_accept))?$CI->piero_jdate->jdate("Y/m/d",$tmp->date_accept):null  ?> </td>
+            <td> <?= (isset($tmp->date_accept))?printDate($tmp->date_accept):null  ?> </td>
             <td> <?= (isset($tmp->user_reject))?$this->system->get_user_admin_from_id($tmp->user_reject):null  ?> </td>
-            <td> <?= (isset($tmp->date_reject))?$CI->piero_jdate->jdate("Y/m/d",$tmp->date_reject):null  ?> </td>
+            <td> <?= (isset($tmp->date_reject))?printDate($tmp->date_reject):null  ?> </td>
             <td> <?= (isset($tmp->des_reject))?$tmp->des_reject:null  ?> </td>
 
         </tr>
@@ -97,7 +96,7 @@ $op=$CI->auto->render_op_form($detail_form[0],"btn btn-default");
             <?php foreach ($history as $key => $value): ?>
                 <tr>
                 <td> <?=$this->system->get_user_admin_from_id($value["user_id"])  ?></td>
-                <td> <?=$CI->piero_jdate->jdate("Y/m/d",$value["date"])  ?> </td>
+                <td> <?=printDate($value["date"])  ?> </td>
                 <td> <?=$CI->auto->get_auto_history_type($value["type"])  ?> </td>
                 </tr>
             <?php endforeach; ?>

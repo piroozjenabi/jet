@@ -19,7 +19,7 @@ class My_employ extends CI_Controller
         foreach ($res as $key => &$value)
         {
 
-            $value["commission"]=$this->Comission_model->get_user_commission($value["id"], $this->system->get_setting("main_factor_level"), true)-$this->Comission_model->get_user_commission($value["id"], $this->system->get_setting("deafult_reject_factor_level"), true);
+            $value["commission"]=$this->Comission_model->get_user_commission($value["id"], config("main_factor_level"), true)-$this->Comission_model->get_user_commission($value["id"], config("deafult_reject_factor_level"), true);
             $value["factor_total"]=$this->Factor_sell_model->get_user_totalprice($value["id"]);
             $value["last_date"]=$this->Factor_sell_model->get_user_totalprice($value["id"], 1, "date");
             $value["sell_price"]=$this->factor->render_limit_pay($value["id"]);

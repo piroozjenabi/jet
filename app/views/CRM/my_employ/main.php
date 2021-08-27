@@ -6,7 +6,6 @@
  * Time: 3:01 PM
  */
 $CI =& get_instance();
-$CI->load->library('Piero_jdate');
 $total_price=0;
 $total_pay=0;
 $total_com=0;
@@ -41,7 +40,7 @@ $last_factor=0;
     </td>
 
     <td>
-        <a TARGET="<?php echo $this->system->get_setting("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/factor_sell/manage_factor/this_month/'.$value['id']); ?>" >
+        <a TARGET="<?php echo config("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/factor_sell/manage_factor/this_month/'.$value['id']); ?>" >
         <?= price($value['commission'])  ?>
         </a>
     </td>
@@ -51,10 +50,10 @@ $last_factor=0;
     <td>
 
 
-        <a TARGET="<?php echo $this->system->get_setting("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/factor_sell/manage_factor/this_month/'.$value['id']); ?>" >
+        <a TARGET="<?php echo config("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/factor_sell/manage_factor/this_month/'.$value['id']); ?>" >
         <?php $limit_sell= price($value['sell_price']- $this->system->get_user_admin_from_id($value['id'], "limit_sell"), true);
         $strng_title=_REMIND.__._MIN_LIMIT_SELL." = ".$limit_sell." | "._MIN_LIMIT_SELL."=".price($this->system->get_user_admin_from_id($value['id'], "limit_sell"));
-        $strng_title.=($this->system->get_setting("salary_this_mount_percent")>0)?'|' . _SALARY_THIS_MOUNTH.$value['sell_price']*$this->system->get_setting("salary_this_mount_percent"):"";
+        $strng_title.=(config("salary_this_mount_percent")>0)?'|' . _SALARY_THIS_MOUNTH.$value['sell_price']*config("salary_this_mount_percent"):"";
         echo "<p data-toggle='tooltip' data-placement='bottom' title='$strng_title' > <i class='fa fa-dot-circle-o' > </i> ".price($value['sell_price'])." </p> ";
         ?>
         </a>
@@ -77,7 +76,7 @@ $last_factor=0;
             </a>
 
 
-            <a TARGET="<?= config("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/factor_sell/manage_factor/index/public/'.$this->system->get_setting("main_factor_level").'/'.$value['id']); ?>" class="btn btn-default">
+            <a TARGET="<?= config("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/factor_sell/manage_factor/index/public/'.config("main_factor_level").'/'.$value['id']); ?>" class="btn btn-default">
               <i class="fa fa-list" ></i>  <?php echo _FACTOR_SELL?>
 
             </a>
@@ -99,15 +98,15 @@ $last_factor=0;
       <td><?= price($total_price)  ?></td>
       <td><?= price($total_pay)  ?></td>
         <td></td>
-      <td> <?php echo ($last_factor!=0) ?$CI->piero_jdate->jdate("Y/m/d", $last_factor):0;   ?></td>
+      <td> <?php echo ($last_factor!=0) ?printDate($last_factor):0;   ?></td>
       <td>
-          <a TARGET="<?php echo $this->system->get_setting("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/pusers/users/manage_all'); ?>" class="btn btn-danger">
+          <a TARGET="<?php echo config("my_eemploy_target") ?>" href="<?php echo site_url('MaLi/pusers/users/manage_all'); ?>" class="btn btn-danger">
               <i class="fa fa-users" ></i>  <?php echo _LIST._ALL._CLIENTS?>
 
           </a>
 
 
-          <a href="<?php echo site_url('MaLi/factor_sell/manage_factor/index/public/'.$this->system->get_setting("main_factor_level")); ?>" class="btn btn-danger">
+          <a href="<?php echo site_url('MaLi/factor_sell/manage_factor/index/public/'.config("main_factor_level")); ?>" class="btn btn-danger">
               <i class="fa fa-list" ></i>  <?php echo _LIST._ALL._FACTOR_SELL?>
 
           </a>

@@ -53,7 +53,7 @@ $idE=form_hidden("id", $detail_user[0]["id"]);
   <div class="col-sm-6 "><label for="mobile"><?php echo _MOBILE ?></label><?php echo $mobile ?></div>
   <div class="col-sm-6 "><label for="email"><?php echo _EMAIL ?></label><?php echo $email ?></div>
   <div class="col-sm-6 "><label for="postal_code"><?php echo _POSTAL_CODE ?></label><?php echo $postal_code ?></div>
-    <?php if($this->system->get_setting("enable_limit_sell")) : ?>
+    <?php if(config("enable_limit_sell")) : ?>
   <div class="col-sm-12 input-numeral "><label for="password"><?php echo _MIN_LIMIT_SELL?></label><?php echo $limit_sell ?></div>
     <?php endif; ?>
   <div class="col-sm-12 "><label for="address"><?php echo _ADDRESS ?></label><?php echo $address ?></div></div>

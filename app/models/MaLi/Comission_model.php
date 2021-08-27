@@ -29,7 +29,7 @@ class Comission_model extends CI_Model
     public function get_user_comision($user_id=null)
     {
         $user_id=($user_id)?$user_id:$this->system->get_user();
-        $ret=$this->system->get_setting("def_comision_group");
+        $ret=config("def_comision_group");
         $params=$this->system->get_user_admin_from_id($user_id, "params");
         if($params) {
             $params=json_decode($params);

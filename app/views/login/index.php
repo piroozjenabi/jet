@@ -13,9 +13,9 @@ $this->load->helper('form');
 $user_name = form_input(array('name' => 'username', "class" => "form-control", "required" => "required"));
 $password = form_password(array('name' => 'password', "class" => "form-control", "required" => "required"));
 $submit = form_button(array('type' => "button", 'class' => 'btn btn-deep-green', "id" => "submit"), _LOGIN);
-$tmp_random = json_decode($this->system->get_setting("login_random_texts"));
-$tmp_slide = json_decode($this->system->get_setting("login_slide_show"));
-$tmp_html_footer = $this->system->get_setting("login_html_footer");
+$tmp_random = json_decode(config("login_random_texts"));
+$tmp_slide = json_decode(config("login_slide_show"));
+$tmp_html_footer = config("login_html_footer");
 $this->template->load_css("login");
 // $this->template->load_js("login");
 ?>
@@ -69,7 +69,7 @@ $this->template->load_css("login");
         </div><!--col-sm-6-->
 
         <div class="col-sm-6 left-side">
-            <h1><?php echo $this->system->get_setting('login_title') ?></h1>
+            <h1><?php echo config('login_title') ?></h1>
             <p>
 <!--                            slide show-->
             <?php $this->element->slideshow($tmp_slide)?>
@@ -131,7 +131,7 @@ function submit() {
             if (data.status)
             {
                 $("form")[0].reset();
-                window.location="<?php echo site_url($this->system->get_setting("home")) ?>";
+                window.location="<?php echo site_url(config("home")) ?>";
             }
             else
             {

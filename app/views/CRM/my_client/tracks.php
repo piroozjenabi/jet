@@ -14,7 +14,6 @@ $main_form= form_open('CRM/my_client/add_tracks/'.$id_user, $attributes);
 $message=form_input(array('id'=>'track[1]', 'placeholder' => _TYPE_TRACK,'name' => 'track[1]','class'=>$def_css_class , "onchange"=>"add_track()" ));
 $savebtn= form_button(array('type' => "submit",'id' => 'submit','class'=>'btn btn-success btn-block .btn-lg '), _SAVE);
 $CI =& get_instance();
-$CI->load->library('Piero_jdate');
 $tmp_tracks=$tracks;
 if($this->permission->check("user_edit")) {
     $edit_link="<a class='btn btn-info' style='font-size:12px !important ;' onclick=areyousure('link','".site_url("MaLi/pusers/users/edit/".$id_user)."')> <i class=\"fa fa-edit\"></i> "  . _EDIT.'</a>';
@@ -60,7 +59,7 @@ if($this->permission->check("user_edit")) {
                     </div>
                     <div class="col-xs-12 text-center">
                         <div class="huge"></div>
-                        <div style="text-align: center;font-weight: bolder"><?php echo $CI->piero_jdate->jdate("y/m/d", $last) ?></div>
+                        <div style="text-align: center;font-weight: bolder"><?php echo printDate($last) ?></div>
                     </div>
                 </div>
             </div>
@@ -85,7 +84,7 @@ if($this->permission->check("user_edit")) {
                     </div>
                     <div class="col-xs-12 text-center">
                         <div class="huge"></div>
-                        <div style="text-align: center;font-weight: bolder"><?php echo $CI->piero_jdate->jdate("y/m/d", $cur)?></div>
+                        <div style="text-align: center;font-weight: bolder"><?php echo printDate($cur)?></div>
                     </div>
                 </div>
             </div>
@@ -129,7 +128,7 @@ foreach ($period as $key => $value):
 <?php endforeach;?>
 <?php
 //add
-if($this->system->get_setting("max_user_time_period")>$c) : ?>
+if(config("max_user_time_period")>$c) : ?>
     <div class="col-lg-1 col-md-1"  data-target="#add-track" style="cursor: pointer" data-toggle="modal">
         <div class="panel panel-red">
             <div class="panel-heading">

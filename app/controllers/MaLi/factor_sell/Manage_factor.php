@@ -12,7 +12,7 @@ class Manage_factor extends CI_Controller
 
     public function index($type = "private", $level = 0, $user_id = 0)
     {
-        $level = ($level) ? $level : $this->system->get_setting("deafult_factor_level");
+        $level = ($level) ? $level : config("deafult_factor_level");
         $this->main($level, $type, $user_id);
     }
 
@@ -45,9 +45,9 @@ class Manage_factor extends CI_Controller
         $this->load->model('MaLi/Comission_model');
         $this->load->library('Piero_jdate');
         $this->load->library("Factor");
-        $pay_flag = $this->system->get_setting("show_pay_on_factor_list");
-        $com_flag = $this->system->get_setting("show_comision_list_factor");
-        $level = ($level) ? $level : $this->system->get_setting("main_factor_level");
+        $pay_flag = config("show_pay_on_factor_list");
+        $com_flag = config("show_comision_list_factor");
+        $level = ($level) ? $level : config("main_factor_level");
         //get result array
         $result = $this->Factor_sell_model->manage_list($level, $type, $user_id, $month_ago, $type_date, $type_in, $sort);
         //define
@@ -176,22 +176,22 @@ class Manage_factor extends CI_Controller
     public function this_month($user_id = 0, $mount_ago = 0, $type = "public")
     {
         $user_id = ($user_id) ? $user_id : $this->system->get_user();
-        $this->main($this->system->get_setting("main_factor_level"), $type, $user_id, ++$mount_ago);
+        $this->main(config("main_factor_level"), $type, $user_id, ++$mount_ago);
     }
     public function list_bedehkar($user_id = 0)
     {
-        $this->main($this->system->get_setting("main_factor_level"), "public", $user_id, 0, 0, "list_bedehkar");
+        $this->main(config("main_factor_level"), "public", $user_id, 0, 0, "list_bedehkar");
     }
     public function list_trans($user_id = 0)
     {
-        $this->main($this->system->get_setting("main_factor_level"), "public", $user_id, 0, 0, "list_trans");
+        $this->main(config("main_factor_level"), "public", $user_id, 0, 0, "list_trans");
     }
     //show factor this mounth
     public function this_month_expire($user_id = 0, $mount_ago = 0)
     {
         $user_id = ($user_id) ? $user_id : $this->system->get_user();
         $type = ($this->permission->check("dashboard_expirefactor_all")) ? "public" : "private";
-        $this->main($this->system->get_setting("main_factor_level"), $type, $user_id, ++$mount_ago, "expire_date");
+        $this->main(config("main_factor_level"), $type, $user_id, ++$mount_ago, "expire_date");
 
     }
 
@@ -199,7 +199,7 @@ class Manage_factor extends CI_Controller
     public function expire_all($user_id = 0, $mount_ago = 0)
     {
         $user_id = ($user_id) ? $user_id : $this->system->get_user();
-        $this->main($this->system->get_setting("main_factor_level"), "public", $user_id, 0, "expire_date", "expire_all");
+        $this->main(config("main_factor_level"), "public", $user_id, 0, "expire_date", "expire_all");
     }
 
     //factor pay

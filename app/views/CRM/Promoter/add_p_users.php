@@ -20,7 +20,7 @@ else
            "address"=>"","postal_code"=>"","hour_daily"=>"","user_id"=>"",
            "group_id" => "" ,"extra1" => "" , "extra2"=>"","extra3"=>"",
            "tell" => "" , "email"=>"","sallari"=>"","weekly_alert1"=>"","weekly_alert2"=>"","weekly_alert3"=>"",
-           "perfix_code"=> $this->system->get_setting("perfix_user") ,
+           "perfix_code"=> config("perfix_user") ,
            "comerical_type"=>"1","usergroup"=>"2","status_id"=>"1");
 
     echo form_open('CRM/Promoter/padd', $attributes);

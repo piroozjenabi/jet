@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <a  TARGET="<?= $this->system->get_setting("dashboard_target") ?>" href="<?= site_url($propertis->link) ?>">
+    <a  TARGET="<?= config("dashboard_target") ?>" href="<?= site_url($propertis->link) ?>">
         <div class="panel-footer">
             <span class="pull-left"><?= _VIEW_DETAILS ?></span>
             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

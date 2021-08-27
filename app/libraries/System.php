@@ -217,11 +217,10 @@ class System
     public function get_current_month_timetamp($type = "start", $mount_inc = 0)
     {
         $CI = &get_instance();
-        $CI->load->library('Piero_jdate');
         $mount_inc = ($mount_inc) ? strtotime("-$mount_inc month") : strtotime("+1 days");
-        $current_month = $CI->piero_jdate->jdate("m", $mount_inc);
-        $current_year = $CI->piero_jdate->jdate("Y", strtotime("+1 days"));
-        $last_day = $CI->piero_jdate->jdate("t", strtotime("+1 days"));
+        $current_month = printDate($mount_inc, "m");
+        $current_year = printDate(strtotime("+1 days"), "Y");
+        $last_day = printDate(strtotime("+1 days"), "t");
         switch ($type) {
             case "start":
                 return $CI->piero_jdate->jmktime(0, 0,  0,  $current_month, 0, $current_year);
@@ -246,10 +245,10 @@ class System
         $out = array();
         for ($i = 0; $i <= $num; $i++) {
             $time = strtotime("-$i month");
-            $year = $CI->piero_jdate->jdate("y", $time); //give num of mounth
-            $month = $CI->piero_jdate->jdate("m", $time); //give num of mounth
+            $year = printDate($time,"y"); //num of year
+            $month = printDate($time,"m"); //num of month
             $name_month = $CI->piero_jdate->jdate_words(array("mm" => $month))["mm"];
-            $out[$i] = $name_month . " " . $year; //convert date to mounth
+            $out[$i] = $name_month . " " . $year; //convert date to month
         }
         return $out;
     }

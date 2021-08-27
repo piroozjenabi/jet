@@ -72,11 +72,11 @@ class Users extends CI_Controller
         $this->crud->render();
     }
     //edit user full edit
-    function edit()
+    function edit($id)
     {
         $this->permission->check("user_edit", 0, 1);
         $this->load->model('MaLi/Users_model');
-        $ret=$this->Users_model->edit_user(post("id", true));
+        $ret=$this->Users_model->edit_user($id);
         $this->template->load_popup('MaLi/users/add_p_users', _EDIT_FULLL.__._USER, array("detail_user" => $ret));
     }
     function pedit()

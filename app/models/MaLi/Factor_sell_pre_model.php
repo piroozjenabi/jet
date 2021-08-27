@@ -85,8 +85,8 @@ class Factor_sell_pre_model extends CI_Model
     public function factor_num($value,$id_factor)
     {
         $tmp="";
-        if ($this->system->get_setting("perfix_factor")) {
-            $tmp=$this->system->get_setting("perfix_factor");
+        if (config("perfix_factor")) {
+            $tmp=config("perfix_factor");
         }
         return $tmp.$this->factor_data[0]["factor_id"];
 

@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-$dir = $this->system->get_setting("def_upload_path");
+$dir = config("def_upload_path");
 ?>
 <div class="col-lg-2 col-md-2 card" onclick=load_ajax_popupfull('<?= site_url("media/show/$id") ?>')>
     <img class="img-thumbnail" src="<?=base_url($dir . $file)?>" >

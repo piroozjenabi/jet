@@ -170,6 +170,8 @@ define("_TAX", "tax");
 define("_COMPANY", "company");
 define("_PIC", "pic");
 define("_DATE", "date");
+define("_CREATED_AT", "created at");
+define("_UPDATED_AT", "updated at");
 define("_NUM", "count");
 define("_DATE_PH", "year/ mounth / day");
 define("_CODE", "code");

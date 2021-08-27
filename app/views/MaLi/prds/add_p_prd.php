@@ -50,7 +50,7 @@ $savebtn = form_button(array('type' => "submit", 'id' => 'submit', 'class' => 'b
   <div class="col-sm-3 "><label for="file"><?php echo _FILE ?></label><?php echo $file ?></div>
   <div class="col-sm-3 "><label for="url"><?php echo _URL ?></label><?php echo $url ?></div>
 </div>
-<?php if ($this->system->get_setting('enable_prd_pricing')) : ?>
+<?php if (config('enable_prd_pricing')) : ?>
   <div class="row well">
     <h3> <?= _PRICE_SETTING ?> </h3>
     <div class="col-sm-3 "><label for="price1"><?php echo _PRICE . "1" ?></label><?php echo $price1 ?></div>

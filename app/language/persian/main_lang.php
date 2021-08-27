@@ -175,6 +175,8 @@ define("_TAX", "مالیات");
 define("_COMPANY", "شرکت سازنده");
 define("_PIC", "تصویر");
 define("_DATE", "تاریخ");
+define("_CREATED_AT", "تاریخ ساخت");
+define("_UPDATED_AT", "تاریخ برزورسانی");
 define("_NUM", "تعداد");
 define("_DATE_PH", "سال/ ماه / روز");
 define("_CODE", "کد");

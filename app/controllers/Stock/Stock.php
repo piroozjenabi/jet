@@ -20,7 +20,7 @@ class Stock extends  CI_Controller
         $c=0;
         $d=0;
 
-        if($this->system->get_setting("disolay_stock_by_stock")) {
+        if(config("disolay_stock_by_stock")) {
             $list_stock = $this->Stock_model->stock_list();
 
             foreach ($list_stock as $k => $v) {
