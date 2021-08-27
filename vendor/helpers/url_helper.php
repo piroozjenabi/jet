@@ -194,6 +194,17 @@ if ( ! function_exists('anchor_popup'))
 	 */
 	function anchor_popup($uri = '', $title = '', $attributes = FALSE)
 	{
+		if($attributes == 'default')
+		$attributes = [
+			'width'      => '_w',
+			'height'     => '_h',
+			'scrollbars' => 'yes',
+			'status'     => 'yes',
+			'resizable'  => 'yes',
+			'screenx'    => '0',
+			'screeny'    => '0',
+			'class'       => 'btn btn-default',
+		];
 		$title = (string) $title;
 		$site_url = preg_match('#^(\w+:)?//#i', $uri) ? $uri : site_url($uri);
 

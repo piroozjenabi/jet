@@ -20,8 +20,7 @@ class Manage_factor extends CI_Controller
     {
         $this->load->library("Factor");
         $data = array("level" => $level, "month_ago" => $month_ago, "user_id" => $user_id, "type_date" => $type_date, "type_in" => $type_in, "type" => $type);
-        loadV('MaLi/factor_sell/manage_list', $data,['title'=>_MANAGE_INVOICE]);
-
+        loadV('MaLi/factor_sell/manage_list', $data, ['title' => _MANAGE_INVOICE]);
     }
     //ajax list
     public function ajax_list()
@@ -141,7 +140,6 @@ class Manage_factor extends CI_Controller
 
     public function show_details($id_factor)
     {
-
     }
     //reject form
     public function rejectform()
@@ -167,9 +165,21 @@ class Manage_factor extends CI_Controller
     {
         $id = post("id", true);
         $this->load->model('MaLi/Factor_sell_model');
+        $this->load->model('MaLi/Factor_sell_model');
+        $this->load->model('MaLi/Comission_model');
+        $this->load->library("Factor");
         $ret = $this->Factor_sell_model->edit_factor($id);
+        $level = $this->factor->get_level_info_from_factor_id($id);
 
-        $this->template->load_popup("MaLi/factor_sell/show_details", _VIEW_DETAILS . __ . _FACTOR, array("detail_factor" => $ret, "factor_id" => $id, "other_pay" => []));
+        $this->template->load_popup(
+            "MaLi/factor_sell/show_details",
+            _VIEW_DETAILS . __ . _FACTOR,
+            [
+                 "detail_factor" => $ret,
+                 "id" => $id,
+                 "level" => $level,
+                 "other_pay" => []
+            ]);
     }
 
     //show factor this month
@@ -192,7 +202,6 @@ class Manage_factor extends CI_Controller
         $user_id = ($user_id) ? $user_id : $this->system->get_user();
         $type = ($this->permission->check("dashboard_expirefactor_all")) ? "public" : "private";
         $this->main(config("main_factor_level"), $type, $user_id, ++$mount_ago, "expire_date");
-
     }
 
     //show factor all expired
@@ -245,30 +254,31 @@ class Manage_factor extends CI_Controller
         $this->crud->table = "factor";
         $this->crud->title = _MANAGE_INVOICE;
         $this->crud->column_order = array("factor_prd.id_factor", "level_id", "user_id", "date", "expire_date", "sum(price*num-takhfif)", "sum(takhfif)", "sum(num)", "sum(value)");
-        $this->crud->column_title = array(_ID, _TYPE, _CLIENT, _DATE, _EXPIRE_FACTOR, _PRICE_FACTOR, _TAKHFIF, _NUM_PRD,"inc");
-        $this->crud->join[] = array("factor_prd", "factor.id = factor_prd.id_factor","left");
-        $this->crud->join[] = array("factor_additions", "factor.id = factor_additions.id_factor","left");
+        $this->crud->column_title = array(_ID, _TYPE, _CLIENT, _DATE, _EXPIRE_FACTOR, _PRICE_FACTOR, _TAKHFIF, _NUM_PRD, "inc");
+        $this->crud->join[] = array("factor_prd", "factor.id = factor_prd.id_factor", "left");
+        $this->crud->join[] = array("factor_additions", "factor.id = factor_additions.id_factor", "left");
         $this->crud->group_by = "factor.id";
         $this->crud->permission = array("add" => false, "edit" => false, "delete" => false);
         $tmp_selectdb = array("select_db", "user", "name");
         $tmp_selectdbtype = array("select_db", "factor_level", "name");
-        $this->crud->column_type = array("hide", json_encode($tmp_selectdbtype), json_encode($tmp_selectdb), "date", "date", "number", "number", "number","number");
+        $this->crud->column_type = array("hide", json_encode($tmp_selectdbtype), json_encode($tmp_selectdb), "date", "date", "number", "number", "number", "number");
         $this->crud->actions = "<a class='btn btn-info  ' href='" . site_url("MaLi/pusers/users/manage") . "' > <i class='fa fa-users' ></i>" . _MANAGE_CLIENTS . ' </a>';
         $this->crud->order = array("factor.date", "DESC");
         $this->crud->render();
     }
 
     // crud for manage factor levels
-    public function manage_level(){
+    public function manage_level()
+    {
         $this->load->library("Crud");
         $this->crud->table          = "factor_level";
         $this->crud->title          = _MANAGE_FACTOR_LEVELS;
-        $this->crud->column_order   = array("name", "des", "next_levels", "get_id", "expirable", "removable", "editable", "show_details", "alert_self_make", "alert_usergroups_make", "alert_self_expire","alert_usergroup_expire","stock_in","stock_out", "bed","bes","factor_preview_id","reject_form","other_pay","stock_in_recepie");
-        $this->crud->column_list    = array("name", "des", "next_levels", "get_id", "expirable", "removable", "editable","show_details","bed","bes");
+        $this->crud->column_order   = array("name", "des", "next_levels", "get_id", "expirable", "removable", "editable", "show_details", "alert_self_make", "alert_usergroups_make", "alert_self_expire", "alert_usergroup_expire", "stock_in", "stock_out", "bed", "bes", "factor_preview_id", "reject_form", "other_pay", "stock_in_recepie");
+        $this->crud->column_list    = array("name", "des", "next_levels", "get_id", "expirable", "removable", "editable", "show_details", "bed", "bes");
         $this->crud->column_require = array(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        $this->crud->column_title   = array(_NAME, _DES, _FACTOR_NEXT_LEVEL, _FACTOR_GET_ID, _FACTOR_EXPIREABLE,_FACTOR_REMOVABLE, _FACTOR_EDITABLE, _FACTOR_PRINTABLE, _FACTOR_ALERT_SELF, _FACTOR_ALERT_SELF_GROUP, _FACTOR_EXPIRE_ALERT_SELF, _FACTOR_EXPIRE_ALERT_SELF_GROUP, _FACTOR_STOCK_IN, _FACTOR_STOCK_OUT, _FACTOR_BED, _FACTOR_BES, _FACTOR_PREVID, _FACTOR_REJECTABLE, _FACTOR_OTHER_PAY, _FACTOR_STOCK_RECEPIE);
+        $this->crud->column_title   = array(_NAME, _DES, _FACTOR_NEXT_LEVEL, _FACTOR_GET_ID, _FACTOR_EXPIREABLE, _FACTOR_REMOVABLE, _FACTOR_EDITABLE, _FACTOR_PRINTABLE, _FACTOR_ALERT_SELF, _FACTOR_ALERT_SELF_GROUP, _FACTOR_EXPIRE_ALERT_SELF, _FACTOR_EXPIRE_ALERT_SELF_GROUP, _FACTOR_STOCK_IN, _FACTOR_STOCK_OUT, _FACTOR_BED, _FACTOR_BES, _FACTOR_PREVID, _FACTOR_REJECTABLE, _FACTOR_OTHER_PAY, _FACTOR_STOCK_RECEPIE);
         $this->crud->permission      = array("add" => true, "edit" => true, "delete" => true);
-        $this->crud->column_type    = array( "input", "input", json_encode(["select_db", "factor_level", "name"]), "bool", "bool", "bool", "bool", "bool", "bool","bool", "bool", "bool", "bool", "bool","bool", "bool", "bool", "bool", "bool","bool","bool");
+        $this->crud->column_type    = array("input", "input", json_encode(["select_db", "factor_level", "name"]), "bool", "bool", "bool", "bool", "bool", "bool", "bool", "bool", "bool", "bool", "bool", "bool", "bool", "bool", "bool", "bool", "bool", "bool");
         $this->crud->actions        = "<a class='btn btn-info  ' href='" . site_url("MaLi/factor_sell/manage_factor/manage_level") . "' >" . _MANAGE_INVOICE . ' </a>';
         $this->crud->order          = array("factor.date", "DESC");
         $this->crud->render();
