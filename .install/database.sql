@@ -35,7 +35,7 @@ CREATE TABLE `jet_alerts` (
   KEY `user` (`user_id`),
   CONSTRAINT `alert_type` FOREIGN KEY (`type_id`) REFERENCES `jet_alerts_type` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `alert_user` FOREIGN KEY (`user_id`) REFERENCES `jet_user_admin` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='alerts for eemployers';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8    COMMENT='alerts for eemployers';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `jet_alerts_type` (
   PRIMARY KEY (`id`),
   KEY `function` (`function`),
   KEY `order_by` (`order_by`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `jet_auto_auto_refer_user` (
   KEY `tbl_auto_refer_user_tbl_auto_forms_id_fk` (`form_id`),
   CONSTRAINT `tbl_auto_refer_user_tbl_auto_forms_id_fk` FOREIGN KEY (`form_id`) REFERENCES `jet_auto_forms` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `tbl_auto_refer_user_tbl_user_eemploy_id_fk` FOREIGN KEY (`user_id`) REFERENCES `jet_user_admin` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `jet_auto_fields_value` (
   KEY `date` (`date`),
   CONSTRAINT `tbl_auto_fields_value_tbl_auto_forms_fiel1ds_id_fk` FOREIGN KEY (`field_id`) REFERENCES `jet_auto_forms_fields` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `tbl_auto_fields_value_tbl_auto_forms_value_id_fk` FOREIGN KEY (`form_value_id`) REFERENCES `jet_auto_forms_value` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='value of fields in auto';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8    COMMENT='value of fields in auto';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +167,7 @@ CREATE TABLE `jet_auto_forms` (
   KEY `tbl_auto_forms_tbl_user_eemploy_id_fk` (`maker_id`),
   CONSTRAINT `tbl_auto_forms_tbl_auto_forms_tree_id_fk` FOREIGN KEY (`tree_id`) REFERENCES `jet_auto_forms_tree` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   CONSTRAINT `tbl_auto_forms_tbl_user_eemploy_id_fk` FOREIGN KEY (`maker_id`) REFERENCES `jet_user_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='list forms';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8    COMMENT='list forms';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,7 +204,7 @@ CREATE TABLE `jet_auto_forms_fields` (
   `max` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `tbl_auto_forms_fields_name_uindex` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +231,7 @@ CREATE TABLE `jet_auto_forms_tree` (
   `user_maker_id` int(11) DEFAULT NULL,
   `params` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='tree af forms for auto';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8    COMMENT='tree af forms for auto';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -299,7 +299,7 @@ CREATE TABLE `jet_auto_froms_refer` (
   PRIMARY KEY (`id`),
   KEY `tbl_auto_froms_refer_tbl_auto_forms_value_id_fk` (`form_value_id`),
   CONSTRAINT `tbl_auto_froms_refer_tbl_auto_forms_value_id_fk` FOREIGN KEY (`form_value_id`) REFERENCES `jet_auto_forms_value` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='refers';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8    COMMENT='refers';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -323,7 +323,7 @@ CREATE TABLE `jet_auto_refer_subject` (
   `name` varchar(100) DEFAULT NULL,
   `des` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -350,7 +350,7 @@ CREATE TABLE `jet_country` (
   `code` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='countries';
+) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=utf8    COMMENT='countries';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -400,7 +400,7 @@ CREATE TABLE `jet_crm_Promoter` (
   CONSTRAINT `group` FOREIGN KEY (`group_id`) REFERENCES `jet_crm_Promoter_group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `shop` FOREIGN KEY (`user_id`) REFERENCES `jet_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tbl_promoter_tbl_user_eemploy_id_fk` FOREIGN KEY (`maker_id`) REFERENCES `jet_user_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='promater details';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8    COMMENT='promater details';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -424,7 +424,7 @@ CREATE TABLE `jet_crm_Promoter_group` (
   `name` varchar(100) NOT NULL,
   `params` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -455,7 +455,7 @@ CREATE TABLE `jet_crm_Promoter_track` (
   KEY `tbl_Promoter_track_tbl_Promoter_id_fk` (`promoter_id`),
   CONSTRAINT `tbl_Promoter_track_tbl_Promoter_id_fk` FOREIGN KEY (`promoter_id`) REFERENCES `jet_crm_Promoter` (`id`),
   CONSTRAINT `tbl_promotor_track_tbl_user_eemploy_id_fk` FOREIGN KEY (`user_id`) REFERENCES `jet_user_admin` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -483,7 +483,7 @@ CREATE TABLE `jet_crm_company` (
   `des` varchar(255) DEFAULT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -508,7 +508,7 @@ CREATE TABLE `jet_crm_company_group` (
   `name` varchar(100) DEFAULT NULL,
   `des` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -546,7 +546,7 @@ CREATE TABLE `jet_crm_rival_prd` (
   KEY `tbl_crm_rival_prd_tbl_prd_id_fk` (`prd_realated`),
   CONSTRAINT `tbl_crm_rival_prd_tbl_prd_group_id_fk` FOREIGN KEY (`group_rival_prd`) REFERENCES `jet_prd_group` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   CONSTRAINT `tbl_crm_rival_prd_tbl_prd_id_fk` FOREIGN KEY (`prd_realated`) REFERENCES `jet_prd` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -579,7 +579,7 @@ CREATE TABLE `jet_factor` (
   KEY `level_id` (`level_id`),
   CONSTRAINT `factor_clientid` FOREIGN KEY (`user_id`) REFERENCES `jet_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `factor_maker_id` FOREIGN KEY (`maker_id`) REFERENCES `jet_user_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -651,7 +651,7 @@ CREATE TABLE `jet_factor_level` (
   PRIMARY KEY (`id`),
   KEY `factor_preview_id` (`factor_preview_id`),
   CONSTRAINT `jet_factor_level_ibfk_1` FOREIGN KEY (`factor_preview_id`) REFERENCES `tbl_factor_preview` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -685,7 +685,7 @@ CREATE TABLE `jet_factor_prd` (
   KEY `id_factor` (`id_factor`),
   CONSTRAINT `factor_factor_prd` FOREIGN KEY (`id_prd`) REFERENCES `jet_prd` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `factor_prd` FOREIGN KEY (`id_factor`) REFERENCES `jet_factor` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -719,7 +719,7 @@ CREATE TABLE `jet_log` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `ip` (`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=560 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='log system';
+) ENGINE=InnoDB AUTO_INCREMENT=560 DEFAULT CHARSET=utf8    COMMENT='log system';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -747,7 +747,7 @@ CREATE TABLE `jet_mali_banks` (
   `public` int(1) DEFAULT NULL,
   `private` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='bank_acounts';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8    COMMENT='bank_acounts';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -782,7 +782,7 @@ CREATE TABLE `jet_mali_commision` (
   KEY `tbl_mali_commision_tbl_prd_id_fk` (`prd_id`),
   CONSTRAINT `groupc` FOREIGN KEY (`groupc`) REFERENCES `jet_mali_commision_group` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `tbl_mali_commision_tbl_prd_id_fk` FOREIGN KEY (`prd_id`) REFERENCES `jet_prd` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -806,7 +806,7 @@ CREATE TABLE `jet_mali_commision_group` (
   `name` varchar(255) NOT NULL,
   `params` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -829,7 +829,7 @@ CREATE TABLE `jet_mali_prd_unit` (
   `id` int(40) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -865,7 +865,7 @@ CREATE TABLE `jet_media` (
   KEY `group_id` (`group_id`),
   KEY `maker_id` (`maker_id`),
   KEY `type_id` (`type_id`,`accepted`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='manage media ';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4    COMMENT='manage media ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -891,7 +891,7 @@ CREATE TABLE `jet_media_group` (
   `des` varchar(100) DEFAULT NULL,
   `params` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -928,7 +928,7 @@ CREATE TABLE `jet_module` (
   KEY `permision_id` (`permision_id`),
   CONSTRAINT `module_group` FOREIGN KEY (`group_id`) REFERENCES `jet_module_group` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `permision` FOREIGN KEY (`permision_id`) REFERENCES `jet_permision` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='ماژول ها';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8    COMMENT='ماژول ها';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -953,7 +953,7 @@ CREATE TABLE `jet_module_group` (
   `name` varchar(100) NOT NULL,
   `des` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -984,7 +984,7 @@ CREATE TABLE `jet_module_usergroup` (
   KEY `position` (`position`),
   CONSTRAINT `module` FOREIGN KEY (`module_id`) REFERENCES `jet_module` (`id`) ON DELETE CASCADE,
   CONSTRAINT `user_group` FOREIGN KEY (`user_group_id`) REFERENCES `jet_usergroup_eemploy` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1020,7 +1020,7 @@ CREATE TABLE `jet_pay` (
   KEY `tbl_pay_ibfk_1` (`user_id`),
   CONSTRAINT `factor-pay` FOREIGN KEY (`factor_id`) REFERENCES `jet_factor` (`id`) ON UPDATE NO ACTION,
   CONSTRAINT `jet_pay_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `jet_user` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1054,7 +1054,7 @@ CREATE TABLE `jet_permision` (
   PRIMARY KEY (`id`),
   KEY `permision_group_id` (`permision_group_id`),
   KEY `order_by` (`order_by`)
-) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1082,7 +1082,7 @@ CREATE TABLE `jet_permision_group` (
   `icon` varchar(50) DEFAULT NULL,
   `menu` int(11) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1112,7 +1112,7 @@ CREATE TABLE `jet_permision_usergroup` (
   KEY `permision_id` (`permision_id`),
   CONSTRAINT `permision_fk` FOREIGN KEY (`permision_id`) REFERENCES `jet_permision` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `usergroup_permisoion` FOREIGN KEY (`usergroup_id`) REFERENCES `jet_usergroup_eemploy` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5882 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=5882 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1156,7 +1156,7 @@ CREATE TABLE `jet_prd` (
   KEY `group-id` (`group_id`),
   KEY `vahed_asli` (`vahed_asli`),
   CONSTRAINT `unit` FOREIGN KEY (`vahed_asli`) REFERENCES `jet_mali_prd_unit` (`id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1185,7 +1185,7 @@ CREATE TABLE `jet_prd_group` (
   PRIMARY KEY (`id`),
   KEY `tbl_prd_group_tbl_prd_group_id_fk` (`parent`),
   CONSTRAINT `tbl_prd_group_tbl_prd_group_id_fk` FOREIGN KEY (`parent`) REFERENCES `jet_prd_group` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1218,7 +1218,7 @@ CREATE TABLE `jet_project` (
   `point_date` datetime DEFAULT NULL,
   `trash` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='manage project table';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8    COMMENT='manage project table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1250,7 +1250,7 @@ CREATE TABLE `jet_project_comments` (
   KEY `maker_id` (`maker_id`),
   KEY `date` (`date`),
   KEY `replay` (`replay`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1276,7 +1276,7 @@ CREATE TABLE `jet_project_company` (
   `company_id` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1303,7 +1303,7 @@ CREATE TABLE `jet_project_prd` (
   `des` text DEFAULT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1335,7 +1335,7 @@ CREATE TABLE `jet_project_todo` (
   `done` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1365,7 +1365,7 @@ CREATE TABLE `jet_project_user` (
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1392,7 +1392,7 @@ CREATE TABLE `jet_sessions` (
   PRIMARY KEY (`id`),
   KEY `ci_sessions_timestamp` (`timestamp`),
   KEY `ip_address` (`ip_address`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1422,7 +1422,7 @@ CREATE TABLE `jet_setting` (
   PRIMARY KEY (`id`),
   KEY `group_settings` (`group_id`),
   CONSTRAINT `group_settings` FOREIGN KEY (`group_id`) REFERENCES `jet_setting_group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1449,7 +1449,7 @@ CREATE TABLE `jet_setting_group` (
   PRIMARY KEY (`id`),
   KEY `tbl_setting_group_tbl_permision_group_id_fk` (`permision_group`),
   CONSTRAINT `tbl_setting_group_tbl_permision_group_id_fk` FOREIGN KEY (`permision_group`) REFERENCES `jet_permision_group` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1478,7 +1478,7 @@ CREATE TABLE `jet_stock` (
   PRIMARY KEY (`id`),
   KEY `tbl_stock_tbl_stock_id_fk` (`parent`),
   CONSTRAINT `tbl_stock_tbl_stock_id_fk` FOREIGN KEY (`parent`) REFERENCES `jet_stock` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='manage stocks';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8    COMMENT='manage stocks';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1510,7 +1510,7 @@ CREATE TABLE `jet_stock_check` (
   KEY `prd_id` (`prd_id`),
   KEY `date` (`date`,`user_id`,`stock_id`),
   CONSTRAINT `prd` FOREIGN KEY (`prd_id`) REFERENCES `jet_prd` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1548,7 +1548,7 @@ CREATE TABLE `jet_stock_in` (
   CONSTRAINT `prd_stock_in` FOREIGN KEY (`prd_id`) REFERENCES `jet_prd` (`id`),
   CONSTRAINT `tbl_stock_in_tbl_stock_id_fk` FOREIGN KEY (`stock_id`) REFERENCES `jet_stock` (`id`),
   CONSTRAINT `user_stock_in` FOREIGN KEY (`user_id`) REFERENCES `jet_user_admin` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1587,7 +1587,7 @@ CREATE TABLE `jet_stock_out` (
   CONSTRAINT `tbl_stock_out_tbl_stock_id_fk` FOREIGN KEY (`stock_id`) REFERENCES `jet_stock` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tbl_stock_out_tbl_user_id_fk` FOREIGN KEY (`user_reciver_id`) REFERENCES `jet_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `user_stock` FOREIGN KEY (`user_id`) REFERENCES `jet_user_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1636,7 +1636,7 @@ CREATE TABLE `jet_tmp_client` (
   CONSTRAINT `tmp_payment` FOREIGN KEY (`tmp_client_peyment`) REFERENCES `jet_tmp_client_peyment_type` (`id`),
   CONSTRAINT `tmp_state` FOREIGN KEY (`state`) REFERENCES `jet_tmp_client_state` (`id`),
   CONSTRAINT `tmp_type` FOREIGN KEY (`tmp_client_type`) REFERENCES `jet_tmp_client_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='temp clients';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8    COMMENT='temp clients';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1660,7 +1660,7 @@ CREATE TABLE `jet_tmp_client_peyment_type` (
   `name` varchar(100) NOT NULL,
   `des` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1692,7 +1692,7 @@ CREATE TABLE `jet_tmp_client_state` (
   `order_by` int(10) NOT NULL,
   `deafult` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1724,7 +1724,7 @@ CREATE TABLE `jet_tmp_client_tracking` (
   KEY `tmp_user` (`tmp_user`),
   CONSTRAINT `from_user` FOREIGN KEY (`from_user`) REFERENCES `jet_user_admin` (`id`),
   CONSTRAINT `tmp_user` FOREIGN KEY (`tmp_user`) REFERENCES `jet_tmp_client` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='temp client tracking';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8    COMMENT='temp client tracking';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1748,7 +1748,7 @@ CREATE TABLE `jet_tmp_client_type` (
   `name` varchar(100) NOT NULL,
   `des` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='temporary client type';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8    COMMENT='temporary client type';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1816,7 +1816,7 @@ CREATE TABLE `jet_user` (
   CONSTRAINT `maker` FOREIGN KEY (`maker_id`) REFERENCES `jet_user_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `status` FOREIGN KEY (`status_id`) REFERENCES `jet_user_status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `user group` FOREIGN KEY (`usergroup`) REFERENCES `jet_usergroup` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=222 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='full information about user client';
+) ENGINE=InnoDB AUTO_INCREMENT=222 DEFAULT CHARSET=utf8    COMMENT='full information about user client';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1868,7 +1868,7 @@ CREATE TABLE `jet_user_admin` (
   KEY `maker_id` (`maker_id`),
   KEY `meli_id` (`meli_id`),
   KEY `date_create` (`date_create`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='full information about user to login and do any thing = maker_id';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8    COMMENT='full information about user to login and do any thing = maker_id';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1896,7 +1896,7 @@ CREATE TABLE `jet_user_employ_report` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `report_user` FOREIGN KEY (`user_id`) REFERENCES `jet_user_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT=' employer daily report';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8    COMMENT=' employer daily report';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1920,7 +1920,7 @@ CREATE TABLE `jet_user_status` (
   `name` varchar(50) NOT NULL,
   `des` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1951,7 +1951,7 @@ CREATE TABLE `jet_user_track_period` (
   KEY `id_client` (`id_client`),
   CONSTRAINT `id_client` FOREIGN KEY (`id_client`) REFERENCES `jet_user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `id_user` FOREIGN KEY (`id_user`) REFERENCES `jet_user_admin` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='temp client track period ';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8    COMMENT='temp client track period ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1980,7 +1980,7 @@ CREATE TABLE `jet_user_tracking` (
   PRIMARY KEY (`id`),
   KEY `from_user` (`from_user`),
   KEY `client` (`client`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='tracking for users';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8    COMMENT='tracking for users';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2005,7 +2005,7 @@ CREATE TABLE `jet_usergroup` (
   `parent` int(11) DEFAULT NULL,
   `state` int(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2031,7 +2031,7 @@ CREATE TABLE `jet_usergroup_eemploy` (
   `parent` int(11) NOT NULL DEFAULT 0,
   `state` int(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8   ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

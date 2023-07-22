@@ -573,3 +573,7 @@ tr:hover .hover_show {
   color: #ccc;
   background-color: #4d4d4d;
 }
+
+.ltr{
+  direction : ltr !important;
+}

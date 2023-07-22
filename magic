@@ -27,7 +27,7 @@
         break;    
         case 'install':
             echo "first setup database connection in ENV.php";
-            shell_exec('mysql -h ' . DB_HOST . ' -u ' . DB_USERNAME . ' -p' . DB_PASSWORD . ' ' . DB_DATABASE . ' < install/database.sql');
+            shell_exec('mysql -h ' . DB_HOST . ' -u ' . DB_USERNAME . ' -p' . DB_PASSWORD . ' ' . DB_DATABASE . ' --force < install/database.sql');
             shell_exec('mv install .install');
             echo "for more security delete .install folder";
         break;    

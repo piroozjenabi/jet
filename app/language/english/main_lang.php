@@ -42,6 +42,7 @@ define("_FILTER", "filter");
 define("_CLEAR_FILTER", "clear filter");
 define("_MANAGE", " manage ");
 define("_ADD", " add ");
+define("_QUICK", "quick");
 define("_SEND", "send");
 define("_EDIT", " edit");
 define("_DELETE", " delete ");
@@ -430,8 +431,8 @@ define("_VIEW_FACTOR", "view invoice");+
 define("_FACTOR", "invoice");
 define("_FACTOR_NUM", "invoice id");
 define("_FACTOR_CLIENT", "client");
-define("_FACTORـTYPE", "invoice type");
-define("_FACTORـDATE", "invoice date");
+define("_FACTOR_TYPE", "invoice type");
+define("_FACTOR_DATE", "invoice date");
 define("_FACTOR_DES", "invoice more information");
 define("_EXPIRE_FACTOR", "invoice expire date ");
 define("_FACTOR_ROW_PLUS_", "expire date"); //for add some detail of prd in factor line1 of header
@@ -454,7 +455,7 @@ define("_KOSOORAT", "deductions");
 define("_MABLAGH", "price");
 define("_PARDAKHT_SETTING", "pay type");
 define("_TAKHFIF", "off price");
-define("_TAKHFIF_KHATI", "line off price");
+define("_OFF_PER_LINE", "line off price");
 define("_PRICE_TOTAL_STRING", "total price in letters");
 define("_PRD_TAKHFIF", "main price after off price");
 define("_REJECT", "reject");

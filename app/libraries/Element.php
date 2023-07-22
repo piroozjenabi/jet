@@ -140,6 +140,28 @@ class Element
         return $data;
     }
 
+    public function userSelectAjax($id, $name, $css, $def = 1, $op = ""){
+        return "
+        <select 
+            id='{$id}' 
+            name='{$name}' 
+            style='width:100%' 
+            class='{$css}' {$op} 
+            required
+            >
+            <option> </option>
+            <option>12 </option>
+            <option>2 </option>
+        </select>
+        
+        <script type='text/javascript'> 
+        document.getElementById('{$id}').addEventListener('select2.select', function(){
+            alert(123);
+        }) </script>
+        ";
+
+    }
+
     //price select
     public function user_select($id, $name, $css, $def = 1, $op = "")
     {

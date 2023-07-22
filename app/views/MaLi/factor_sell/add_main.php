@@ -1,24 +1,24 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
 $attributes = array('class' => 'form', 'id' => 'form');
-$def_css_class = "spcell";
+$def_css_class = "spcell ltr";
 $data = array('class' => $def_css_class);
 
 $this->load->helper('form');
 echo form_open('MaLi/factor/add/' . @$detail_factor[0]["id_factor"], $attributes);
 //FACTOR HEADER
-$factor_client = $this->element->user_select("user", "user", $def_css_class, @$detail_factor[0]['user_id'], "onchange=checkuser()");
+$factor_client = $this->element->userSelectAjax("user", "user", $def_css_class, @$detail_factor[0]['user_id'], "onchange=checkUser()");
 $level_factor = form_dropdown('level_id', $this->element->pselect("factor_level"), @$detail_factor[0]["level_id"], array("required" => "required", "class" => $def_css_class));
 //date setting
 $factor_date = $this->element->input_date("factor_date", time());
 $factor_date_expire = $this->element->input_date("expire_factor", strtotime("+" . (int)config("factor_day_expire_date") . " days"));
 
 //factor prd
-$radif_prd = form_input(array('id' => 'radif[1]', 'value' => '[1]', 'name' => 'radif[1]', 'class' => $def_css_class));
+$index = form_input(array('id' => 'radif[1]', 'value' => '[1]', 'name' => 'radif[1]', 'class' => $def_css_class));
 $name_prd = $this->element->price_select("prd[1]", "prd[1]", $def_css_class);
 $num_prd = form_input(array('id' => 'numprd[1]', 'value' => '1', 'name' => 'numprd[1]', 'class' => $def_css_class, "onkeyup" => "price_prd(1)", "onchange" => "price_prd(1)"));
 $price_prd = form_input(array('id' => 'price[1]', 'name' => 'price[1]', 'onkeyup' => 'price_prd(1)', 'onchange' => 'price_prd(1)', 'class' => $def_css_class));
-$takhfif_prd = form_input(array('id' => 'takhfif[1]', 'name' => 'takhfif[1]', 'onkeyup' => 'total_price(1)', 'onchange' => 'total_price(1)', 'class' => $def_css_class, 'value' => 0));
+$offPrd = form_input(array('id' => 'takhfif[1]', 'name' => 'takhfif[1]', 'onkeyup' => 'total_price(1)', 'onchange' => 'total_price(1)', 'class' => $def_css_class, 'value' => 0));
 $total_prd_main = form_input(array('id' => 'total_main[1]', 'name' => 'total_main[1]', 'onkeyup' => 'total_price(1)', 'onchange' => 'total_price(1)', 'disabled' => 'disabled', 'class' => $def_css_class));
 $total_prd = form_input(array('id' => 'total[1]', 'name' => 'total[1]', 'onkeyup' => 'total_price(1)', 'onchange' => 'total_price(1)', 'disabled' => 'disabled', 'class' => $def_css_class));
 //des
@@ -27,23 +27,15 @@ $des = form_textarea(array('id' => 'des', 'name' => 'des', "style" => "height:10
 $total_prd_end = form_input(array('id' => 'total_prd_end', 'readonly' => 'readonly', 'name' => 'total_prd_end', 'class' => $def_css_class));
 $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_end', 'readonly' => 'readonly', 'class' => $def_css_class));
 ?>
-<style type="text/css">
-  input {
-    direction: ltr !important;
-  }
-
-  .h1ads {
-    display: none
-  }
-</style>
 <div class="modal-body">
   <div class='row well'>
+    <button class="btn btn-info" style="width:20%" type="submit"> <?= _SAVE_PAY ?> </button>
     <button class="btn btn-success" style="width:20%" type="submit"> <?= _SAVE ?> </button>
-    <button type="button" class="btn btn-info" onclick="$('#desInvoice').toggle(50);$('#des').val('');$(this).toggleClass('btn-info')"> <i class='fa fa-cog'> </i> <?= _FACTOR_DES ?> </button>
+    <button type="button" class="btn btn-warning" onclick="$('#desInvoice').toggle(50);$('#des').val('');$(this).toggleClass('btn-info')"> <i class='fa fa-cog'> </i> <?= _FACTOR_DES ?> </button>
 
     <div class="btn-group">
-      <button type="button" href="<?= site_url('MaLi/pprd/prd/manage') ?>" class="btn btn-default" > <i class='fa fa-plus'> </i> <?= _ADD.__._PRD ?> </button>
-      <button type="button" href="<?= site_url('MaLi/pprd/prd/manage') ?>" class="btn btn-default" > <i class='fa fa-plus'> </i> <?= _ADD.__._CLIENT ?> </button>
+      <button type="button" href="<?= site_url('MaLi/pprd/prd/manage') ?>" class="btn btn-default"> <i class='fa fa-plus'> </i> <?= _ADD . __ . _QUICK . __ . _PRD ?> </button>
+      <button type="button" href="<?= site_url('MaLi/pprd/prd/manage') ?>" class="btn btn-default"> <i class='fa fa-plus'> </i> <?= _ADD . __ . _QUICK . __ . _CLIENT ?> </button>
     </div>
   </div>
   <div class="row well" id="desInvoice" style="display:none">
@@ -51,8 +43,8 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
   </div>
   <div class="row well">
     <div class="col-sm-4"><label for="type"><?= _FACTOR_CLIENT ?> </label><?= $factor_client ?></div>
-    <div class="col-sm-4"><label for="type"><?= _FACTORـTYPE ?></label><?= $level_factor ?> </div>
-    <div class="col-sm-2"><label for="type"><?= _FACTORـDATE ?></label><?= $factor_date ?></div>
+    <div class="col-sm-4"><label for="type"><?= _FACTOR_TYPE ?></label><?= $level_factor ?> </div>
+    <div class="col-sm-2"><label for="type"><?= _FACTOR_DATE ?></label><?= $factor_date ?></div>
     <?php if (config("enable_factor_expire_date")) : ?>
       <div class="col-sm-2"><label for="type"><?= _EXPIRE_FACTOR ?></label><?= $factor_date_expire ?></div>
     <?php endif; ?>
@@ -67,7 +59,7 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
         <td style="width: 30%"><?= _NAME . ' ' . _PRD ?></td>
         <td style="width: 5%"> <?= _NUM ?></td>
         <td><?= _PRICE_MAIN . _R ?></td>
-        <td><?= _TAKHFIF_KHATI ?></td>
+        <td><?= _OFF_PER_LINE ?></td>
         <td><?= _PRICE_TOTAL . _R ?></td>
       </tr>
       <?php if (isset($mode) && @$mode = "edit" && @$detail_factor[0]["id"]) {
@@ -87,11 +79,11 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
       } else {
       ?>
         <tr id="prd_row">
-          <td><?= $radif_prd ?></td>
+          <td><?= $index ?></td>
           <td><?= $name_prd ?></td>
           <td><?= $num_prd ?></td>
           <td><?= $price_prd ?></td>
-          <td><?= $takhfif_prd ?><div id="perfix_takhfif"> </div>
+          <td><?= $offPrd ?><div id="perfix_takhfif"> </div>
           </td>
           <td><?= $total_prd_main ?></td>
         <?php } ?>
@@ -219,7 +211,7 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
 
   function add_row() {
     _row++;
-    $("#prd_tbl").append('<tr>   <td> <?php echo $this->element->rep_ele($radif_prd, "1", "'+_row+'") ?> </td> <td> <?php echo $this->element->rep_ele($name_prd, "1", "'+_row+'") ?></td>  <td> <?php echo $this->element->rep_ele($num_prd, "1", "'+_row+'") ?> </td><td> <?php echo $this->element->rep_ele($price_prd, "1", "'+_row+'") ?> </td> <td> <?php echo $this->element->rep_ele($takhfif_prd, "1", "'+_row+'") ?> </td> <td> <?php echo $this->element->rep_ele($total_prd_main, "1", "'+_row+'") ?> </td></tr>');
+    $("#prd_tbl").append('<tr>   <td> <?php echo $this->element->rep_ele($index, "1", "'+_row+'") ?> </td> <td> <?php echo $this->element->rep_ele($name_prd, "1", "'+_row+'") ?></td>  <td> <?php echo $this->element->rep_ele($num_prd, "1", "'+_row+'") ?> </td><td> <?php echo $this->element->rep_ele($price_prd, "1", "'+_row+'") ?> </td> <td> <?php echo $this->element->rep_ele($offPrd, "1", "'+_row+'") ?> </td> <td> <?php echo $this->element->rep_ele($total_prd_main, "1", "'+_row+'") ?> </td></tr>');
     $("select").select2({
       dir: "<?= _DIRECTION ?>"
     });
@@ -245,7 +237,7 @@ $total_num_end = form_input(array('id' => 'total_num_end', 'name' => 'total_num_
   }
 
   //fill user detail
-  function checkuser() {
+  function checkUser() {
     var e = document.getElementById("user");
     var _str = e.options[e.selectedIndex].id;
     document.getElementById("user_details").innerHTML = _str;
