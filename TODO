@@ -4,7 +4,14 @@
 -- default tax
 -- save and pay
 
+- ui
+-- font
+-- fix menu
+-- fix calendar for get date
+-dashboard
+--add charts
 
-fix calendar for get date
-add charts
-add api
+-english
+--translation
+--ltr
+--calendar
